@@ -1,0 +1,567 @@
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:46:31 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x892d0c0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f985 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029fab09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b484fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b48651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029fc42b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x0296c116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x0296bcd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000d5cea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029dbd43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029dd384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02939d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02939280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029391a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x030622c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0306238d GSEventRun + 115",
+    "22  UIKit                               0x00364b58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b44 main + 102",
+    "24  S4iPhoneTest                        0x00002ad5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:49:18 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x7554e20
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029fab09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b484fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b48651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029fc42b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x0296c116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x0296bcd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000d5cea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029dbd43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029dd384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02939d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02939280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029391a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x030622c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0306238d GSEventRun + 115",
+    "22  UIKit                               0x00364b58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:49:24 -0700
+Name: SignalReceivedByApplication
+Reason: Signal 10 was received.
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "5   libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "6   ???                                 0xffffffff 0x0 + 4294967295",
+    "7   Foundation                          0x000d5cea __NSFireDelayedPerform + 441",
+    "8   CoreFoundation                      0x029dbd43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "9   CoreFoundation                      0x029dd384 __CFRunLoopDoTimer + 1364",
+    "10  CoreFoundation                      0x02939d09 __CFRunLoopRun + 1817",
+    "11  CoreFoundation                      0x02939280 CFRunLoopRunSpecific + 208",
+    "12  CoreFoundation                      0x029391a1 CFRunLoopRunInMode + 97",
+    "13  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "14  Foundation                          0x000d5448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "15  Foundation                          0x000e7a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "16  S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "17  CoreFoundation                      0x029fab09 __handleUncaughtException + 377",
+    "18  libobjc.A.dylib                     0x02b484fd _objc_terminate + 97",
+    "19  libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "20  libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "21  libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "22  libobjc.A.dylib                     0x02b48651 __objc_personality_v0 + 0",
+    "23  CoreFoundation                      0x029fc42b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "24  CoreFoundation                      0x0296c116 ___forwarding___ + 966",
+    "25  CoreFoundation                      0x0296bcd2 _CF_forwarding_prep_0 + 50",
+    "26  Foundation                          0x000d5cea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029dbd43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029dd384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02939d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:50:10 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x7554e20
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029fab09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b484fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b48651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029fc42b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x0296c116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x0296bcd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000d5cea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029dbd43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029dd384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02939d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02939280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029391a1 CFRunLoopRunInMode + 97",
+    "20  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "21  Foundation                          0x000d5448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "22  Foundation                          0x000e7a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "23  S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "24  libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "25  ???                                 0xffffffff 0x0 + 4294967295",
+    "26  Foundation                          0x000d5cea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029dbd43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029dd384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02939d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:50:33 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x8904b70
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x0305b2c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0305b38d GSEventRun + 115",
+    "22  UIKit                               0x0035db58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:50:47 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x880e8a0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x0305b2c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0305b38d GSEventRun + 115",
+    "22  UIKit                               0x0035db58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:50:53 -0700
+Name: SignalReceivedByApplication
+Reason: Signal 10 was received.
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "5   libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "6   ???                                 0xffffffff 0x0 + 4294967295",
+    "7   Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "8   CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "9   CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "10  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "11  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "12  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "13  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "14  Foundation                          0x000ce448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "15  Foundation                          0x000e0a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "16  S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "17  CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "18  libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "19  libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "20  libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "21  libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "22  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "23  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "24  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "25  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "26  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:51:13 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x7524fa0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x0305b2c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0305b38d GSEventRun + 115",
+    "22  UIKit                               0x0035db58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:51:19 -0700
+Name: SignalReceivedByApplication
+Reason: Signal 10 was received.
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "5   libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "6   ???                                 0xffffffff 0x0 + 4294967295",
+    "7   Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "8   CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "9   CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "10  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "11  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "12  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "13  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "14  Foundation                          0x000ce448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "15  Foundation                          0x000e0a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "16  S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "17  CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "18  libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "19  libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "20  libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "21  libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "22  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "23  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "24  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "25  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "26  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:51:36 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x7524fa0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "21  Foundation                          0x000ce448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "22  Foundation                          0x000e0a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "23  S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "24  libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "25  ???                                 0xffffffff 0x0 + 4294967295",
+    "26  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:52:10 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x7539be0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x0305b2c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0305b38d GSEventRun + 115",
+    "22  UIKit                               0x0035db58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:52:16 -0700
+Name: SignalReceivedByApplication
+Reason: Signal 10 was received.
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "5   libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "6   ???                                 0xffffffff 0x0 + 4294967295",
+    "7   Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "8   CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "9   CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "10  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "11  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "12  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "13  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "14  Foundation                          0x000ce448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "15  Foundation                          0x000e0a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "16  S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "17  CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "18  libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "19  libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "20  libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "21  libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "22  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "23  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "24  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "25  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "26  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:52:29 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x883a6d0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x0305b2c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0305b38d GSEventRun + 115",
+    "22  UIKit                               0x0035db58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:52:44 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x7525980
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x0305b2c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0305b38d GSEventRun + 115",
+    "22  UIKit                               0x0035db58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:52:50 -0700
+Name: SignalReceivedByApplication
+Reason: Signal 10 was received.
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "5   libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "6   ???                                 0xffffffff 0x0 + 4294967295",
+    "7   Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "8   CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "9   CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "10  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "11  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "12  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "13  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "14  Foundation                          0x000ce448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "15  Foundation                          0x000e0a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "16  S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "17  CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "18  libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "19  libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "20  libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "21  libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "22  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "23  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "24  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "25  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "26  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:53:03 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x8908dc0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  GraphicsServices                    0x0305b2c8 GSEventRunModal + 217",
+    "21  GraphicsServices                    0x0305b38d GSEventRun + 115",
+    "22  UIKit                               0x0035db58 UIApplicationMain + 1160",
+    "23  S4iPhoneTest                        0x00002b64 main + 102",
+    "24  S4iPhoneTest                        0x00002af5 start + 53"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:53:09 -0700
+Name: SignalReceivedByApplication
+Reason: Signal 10 was received.
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "5   libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "6   ???                                 0xffffffff 0x0 + 4294967295",
+    "7   Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "8   CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "9   CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "10  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "11  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "12  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "13  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "14  Foundation                          0x000ce448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "15  Foundation                          0x000e0a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "16  S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "17  CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "18  libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "19  libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "20  libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "21  libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "22  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "23  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "24  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "25  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "26  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817"
+)
+
+
+S4CrashManager Log Entry - Date and Time: 2010-07-11 15:53:19 -0700
+Name: NSInvalidArgumentException
+Reason: -[RootViewController string]: unrecognized selector sent to instance 0x8908dc0
+Call Stack:
+(
+    "4   S4iPhoneTest                        0x0004f9a5 S4ExceptionHandler + 188",
+    "5   CoreFoundation                      0x029f3b09 __handleUncaughtException + 377",
+    "6   libobjc.A.dylib                     0x02b414fd _objc_terminate + 97",
+    "7   libstdc++.6.dylib                   0x9464a17a _ZN10__cxxabiv111__terminateEPFvvE + 10",
+    "8   libstdc++.6.dylib                   0x9464a1ba _ZN10__cxxabiv112__unexpectedEPFvvE + 0",
+    "9   libstdc++.6.dylib                   0x9464a2b8 _ZL23__gxx_exception_cleanup19_Unwind_Reason_CodeP17_Unwind_Exception + 0",
+    "10  libobjc.A.dylib                     0x02b41651 __objc_personality_v0 + 0",
+    "11  CoreFoundation                      0x029f542b -[NSObject(NSObject) doesNotRecognizeSelector:] + 187",
+    "12  CoreFoundation                      0x02965116 ___forwarding___ + 966",
+    "13  CoreFoundation                      0x02964cd2 _CF_forwarding_prep_0 + 50",
+    "14  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "15  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "16  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "17  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817",
+    "18  CoreFoundation                      0x02932280 CFRunLoopRunSpecific + 208",
+    "19  CoreFoundation                      0x029321a1 CFRunLoopRunInMode + 97",
+    "20  S4iPhoneTest                        0x00050ad4 -[S4CrashManager handleException:] + 1625",
+    "21  Foundation                          0x000ce448 -[NSObject(NSThreadPerformAdditions) performSelector:onThread:withObject:waitUntilDone:modes:] + 229",
+    "22  Foundation                          0x000e0a56 -[NSObject(NSThreadPerformAdditions) performSelectorOnMainThread:withObject:waitUntilDone:] + 184",
+    "23  S4iPhoneTest                        0x0004fbbe S4SignalHandler + 474",
+    "24  libSystem.B.dylib                   0x926cd1fb _sigtramp + 43",
+    "25  ???                                 0xffffffff 0x0 + 4294967295",
+    "26  Foundation                          0x000cecea __NSFireDelayedPerform + 441",
+    "27  CoreFoundation                      0x029d4d43 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 19",
+    "28  CoreFoundation                      0x029d6384 __CFRunLoopDoTimer + 1364",
+    "29  CoreFoundation                      0x02932d09 __CFRunLoopRun + 1817"
+)
+
+
