@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'S4iOSLibTest' target in the 'S4iOSLibTest' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
