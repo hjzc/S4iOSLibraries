@@ -416,7 +416,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"dist/libS4iOS_UI_Lib.a\" ] ; then\n  rm dist/libS4iOS_UI_Lib.a\nfi\n\nif [ -e \"dist/Headers/S4CommonDefines.h\" ] ; then\n  rm dist/Headers/*.h\nfi\n\nif [ -e \"dist/Resources/ico_refresh.png\" ] ; then\n  rm dist/Resources/*.png\nfi\n\nif [ -e \"dist/Resources/S4WebView.xib\" ] ; then\n  rm dist/Resources/*.xib\nfi\n";
+			shellScript = "if [ -e \"dist/libS4iOS_UI_Lib.a\" ] ; then\n  rm dist/libS4iOS_UI_Lib.a\nfi\n\nif [ -e \"dist/Headers/S4AbstractAppDelegate.h\" ] ; then\n  rm dist/Headers/*.h\nfi\n\nif [ -e \"dist/Resources/ico_refresh.png\" ] ; then\n  rm dist/Resources/*.png\nfi\n\nif [ -e \"dist/Resources/S4WebView.xib\" ] ; then\n  rm dist/Resources/*.xib\nfi\n";
 		};
 		0AD539FC125AA343009EC85A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

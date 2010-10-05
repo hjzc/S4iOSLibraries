@@ -125,8 +125,9 @@
 {														\
 	if (IS_NOT_NULL(object))							\
 	{													\
-		[object release];								\
+		id tmpObject = object;							\
 		object = nil;									\
+		[tmpObject release];							\
 	}													\
 }
 
@@ -136,8 +137,9 @@
 {														\
 	if (NULL != x)										\
 	{													\
-		CFRelease(x);									\
+		CFTypeRef cf = x;								\
 		x = NULL;										\
+		CFRelease(cf);									\
 	}													\
 }
 
