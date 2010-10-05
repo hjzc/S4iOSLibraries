@@ -1,0 +1,1 @@
+This directory contains IB .xib files and PNG image files.

@@ -18,8 +18,6 @@
 		0A8FCBF0123808CF00E95217 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBEF123808CF00E95217 /* UIKit.framework */; };
 		0A8FCBF2123808CF00E95217 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBF1123808CF00E95217 /* libsqlite3.dylib */; };
 		0A8FCBF4123808CF00E95217 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBF3123808CF00E95217 /* libxml2.dylib */; };
-		0A8FCC4C1238111900E95217 /* S4AbstractAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC031238111900E95217 /* S4AbstractAppDelegate.h */; };
-		0A8FCC4D1238111900E95217 /* S4AbstractAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC041238111900E95217 /* S4AbstractAppDelegate.m */; };
 		0A8FCC4E1238111900E95217 /* S4AppUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC051238111900E95217 /* S4AppUtils.h */; };
 		0A8FCC4F1238111900E95217 /* S4AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC061238111900E95217 /* S4AppUtils.m */; };
 		0A8FCC501238111900E95217 /* S4CrashManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC071238111900E95217 /* S4CrashManager.h */; };
@@ -36,8 +34,6 @@
 		0A8FCC5B1238111900E95217 /* NSObject+S4Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC131238111900E95217 /* NSObject+S4Utilities.m */; };
 		0A8FCC5C1238111900E95217 /* NSString+S4Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC141238111900E95217 /* NSString+S4Utilities.h */; };
 		0A8FCC5D1238111900E95217 /* NSString+S4Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC151238111900E95217 /* NSString+S4Utilities.m */; };
-		0A8FCC5E1238111900E95217 /* UIColor+S4Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC161238111900E95217 /* UIColor+S4Utilities.h */; };
-		0A8FCC5F1238111900E95217 /* UIColor+S4Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC171238111900E95217 /* UIColor+S4Utilities.m */; };
 		0A8FCC601238111900E95217 /* S4BaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC191238111900E95217 /* S4BaseClass.h */; };
 		0A8FCC611238111900E95217 /* S4BaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC1A1238111900E95217 /* S4BaseClass.m */; };
 		0A8FCC621238111900E95217 /* S4DelgateArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC1B1238111900E95217 /* S4DelgateArray.h */; };
@@ -68,22 +64,8 @@
 		0A8FCC7B1238111900E95217 /* S4NetUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC381238111900E95217 /* S4NetUtilities.m */; };
 		0A8FCC7C1238111900E95217 /* S4NetworkAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC391238111900E95217 /* S4NetworkAccess.h */; };
 		0A8FCC7D1238111900E95217 /* S4NetworkAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC3A1238111900E95217 /* S4NetworkAccess.m */; };
-		0A8FCC7E1238111900E95217 /* S4FullScreenMoviePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC3C1238111900E95217 /* S4FullScreenMoviePlayer.h */; };
-		0A8FCC7F1238111900E95217 /* S4FullScreenMoviePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC3D1238111900E95217 /* S4FullScreenMoviePlayer.m */; };
-		0A8FCC801238111900E95217 /* S4OverlayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC3E1238111900E95217 /* S4OverlayViewController.h */; };
-		0A8FCC811238111900E95217 /* S4OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC3F1238111900E95217 /* S4OverlayViewController.m */; };
-		0A8FCC821238111900E95217 /* S4PdfSearcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC401238111900E95217 /* S4PdfSearcher.h */; };
-		0A8FCC831238111900E95217 /* S4PdfSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC411238111900E95217 /* S4PdfSearcher.m */; };
-		0A8FCC841238111900E95217 /* S4PdfView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC421238111900E95217 /* S4PdfView.h */; };
-		0A8FCC851238111900E95217 /* S4PdfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC431238111900E95217 /* S4PdfView.m */; };
-		0A8FCC861238111900E95217 /* S4RoundedRectView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC441238111900E95217 /* S4RoundedRectView.h */; };
-		0A8FCC871238111900E95217 /* S4RoundedRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC451238111900E95217 /* S4RoundedRectView.m */; };
 		0A8FCC881238111900E95217 /* S4ScreenUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC461238111900E95217 /* S4ScreenUtils.h */; };
 		0A8FCC891238111900E95217 /* S4ScreenUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC471238111900E95217 /* S4ScreenUtils.m */; };
-		0A8FCC8A1238111900E95217 /* S4TextUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC481238111900E95217 /* S4TextUtils.h */; };
-		0A8FCC8B1238111900E95217 /* S4TextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC491238111900E95217 /* S4TextUtils.m */; };
-		0A8FCC8C1238111900E95217 /* S4WebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC4A1238111900E95217 /* S4WebViewController.h */; };
-		0A8FCC8D1238111900E95217 /* S4WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC4B1238111900E95217 /* S4WebViewController.m */; };
 		0A8FCC921238119400E95217 /* NSFileManager-Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC901238119400E95217 /* NSFileManager-Utilities.h */; };
 		0A8FCC931238119400E95217 /* NSFileManager-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCC911238119400E95217 /* NSFileManager-Utilities.m */; };
 		0A8FCC96123811B400E95217 /* UIDevice-Hardware.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8FCC94123811B400E95217 /* UIDevice-Hardware.h */; };
@@ -139,8 +121,6 @@
 		0A8FCBEF123808CF00E95217 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0A8FCBF1123808CF00E95217 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0A8FCBF3123808CF00E95217 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		0A8FCC031238111900E95217 /* S4AbstractAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4AbstractAppDelegate.h; sourceTree = "<group>"; };
-		0A8FCC041238111900E95217 /* S4AbstractAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4AbstractAppDelegate.m; sourceTree = "<group>"; };
 		0A8FCC051238111900E95217 /* S4AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4AppUtils.h; sourceTree = "<group>"; };
 		0A8FCC061238111900E95217 /* S4AppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4AppUtils.m; sourceTree = "<group>"; };
 		0A8FCC071238111900E95217 /* S4CrashManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4CrashManager.h; sourceTree = "<group>"; };
@@ -157,8 +137,6 @@
 		0A8FCC131238111900E95217 /* NSObject+S4Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+S4Utilities.m"; sourceTree = "<group>"; };
 		0A8FCC141238111900E95217 /* NSString+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+S4Utilities.h"; sourceTree = "<group>"; };
 		0A8FCC151238111900E95217 /* NSString+S4Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+S4Utilities.m"; sourceTree = "<group>"; };
-		0A8FCC161238111900E95217 /* UIColor+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+S4Utilities.h"; sourceTree = "<group>"; };
-		0A8FCC171238111900E95217 /* UIColor+S4Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+S4Utilities.m"; sourceTree = "<group>"; };
 		0A8FCC191238111900E95217 /* S4BaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4BaseClass.h; sourceTree = "<group>"; };
 		0A8FCC1A1238111900E95217 /* S4BaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4BaseClass.m; sourceTree = "<group>"; };
 		0A8FCC1B1238111900E95217 /* S4DelgateArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4DelgateArray.h; sourceTree = "<group>"; };
@@ -189,27 +167,12 @@
 		0A8FCC381238111900E95217 /* S4NetUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4NetUtilities.m; sourceTree = "<group>"; };
 		0A8FCC391238111900E95217 /* S4NetworkAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4NetworkAccess.h; sourceTree = "<group>"; };
 		0A8FCC3A1238111900E95217 /* S4NetworkAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4NetworkAccess.m; sourceTree = "<group>"; };
-		0A8FCC3C1238111900E95217 /* S4FullScreenMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4FullScreenMoviePlayer.h; sourceTree = "<group>"; };
-		0A8FCC3D1238111900E95217 /* S4FullScreenMoviePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4FullScreenMoviePlayer.m; sourceTree = "<group>"; };
-		0A8FCC3E1238111900E95217 /* S4OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4OverlayViewController.h; sourceTree = "<group>"; };
-		0A8FCC3F1238111900E95217 /* S4OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4OverlayViewController.m; sourceTree = "<group>"; };
-		0A8FCC401238111900E95217 /* S4PdfSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4PdfSearcher.h; sourceTree = "<group>"; };
-		0A8FCC411238111900E95217 /* S4PdfSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4PdfSearcher.m; sourceTree = "<group>"; };
-		0A8FCC421238111900E95217 /* S4PdfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4PdfView.h; sourceTree = "<group>"; };
-		0A8FCC431238111900E95217 /* S4PdfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4PdfView.m; sourceTree = "<group>"; };
-		0A8FCC441238111900E95217 /* S4RoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4RoundedRectView.h; sourceTree = "<group>"; };
-		0A8FCC451238111900E95217 /* S4RoundedRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4RoundedRectView.m; sourceTree = "<group>"; };
 		0A8FCC461238111900E95217 /* S4ScreenUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4ScreenUtils.h; sourceTree = "<group>"; };
 		0A8FCC471238111900E95217 /* S4ScreenUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4ScreenUtils.m; sourceTree = "<group>"; };
-		0A8FCC481238111900E95217 /* S4TextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4TextUtils.h; sourceTree = "<group>"; };
-		0A8FCC491238111900E95217 /* S4TextUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4TextUtils.m; sourceTree = "<group>"; };
-		0A8FCC4A1238111900E95217 /* S4WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4WebViewController.h; sourceTree = "<group>"; };
-		0A8FCC4B1238111900E95217 /* S4WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4WebViewController.m; sourceTree = "<group>"; };
 		0A8FCC901238119400E95217 /* NSFileManager-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager-Utilities.h"; path = "Vendor/erica_sadun/NSFileManager-Utilities/NSFileManager-Utilities.h"; sourceTree = "<group>"; };
 		0A8FCC911238119400E95217 /* NSFileManager-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager-Utilities.m"; path = "Vendor/erica_sadun/NSFileManager-Utilities/NSFileManager-Utilities.m"; sourceTree = "<group>"; };
 		0A8FCC94123811B400E95217 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice-Hardware.h"; path = "Vendor/erica_sadun/uidevice-extension/UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		0A8FCC95123811B400E95217 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice-Hardware.m"; path = "Vendor/erica_sadun/uidevice-extension/UIDevice-Hardware.m"; sourceTree = "<group>"; };
-		0A8FCC991238123300E95217 /* S4WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = S4WebView.xib; path = Resources/S4WebView.xib; sourceTree = "<group>"; };
 		0ABA9783123C114F006861CD /* yajl_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_common.h; sourceTree = "<group>"; };
 		0ABA9784123C114F006861CD /* yajl_gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_gen.h; sourceTree = "<group>"; };
 		0ABA9785123C114F006861CD /* yajl_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parse.h; sourceTree = "<group>"; };
@@ -287,7 +250,6 @@
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				0A8FCC8E1238114900E95217 /* Vendor */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
-				0A8FCC98123811F200E95217 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 			);
@@ -332,8 +294,6 @@
 		0A8FCC021238111900E95217 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				0A8FCC031238111900E95217 /* S4AbstractAppDelegate.h */,
-				0A8FCC041238111900E95217 /* S4AbstractAppDelegate.m */,
 				0A8FCC051238111900E95217 /* S4AppUtils.h */,
 				0A8FCC061238111900E95217 /* S4AppUtils.m */,
 				0A8FCC071238111900E95217 /* S4CrashManager.h */,
@@ -358,8 +318,6 @@
 				0A8FCC131238111900E95217 /* NSObject+S4Utilities.m */,
 				0A8FCC141238111900E95217 /* NSString+S4Utilities.h */,
 				0A8FCC151238111900E95217 /* NSString+S4Utilities.m */,
-				0A8FCC161238111900E95217 /* UIColor+S4Utilities.h */,
-				0A8FCC171238111900E95217 /* UIColor+S4Utilities.m */,
 			);
 			name = Categories;
 			path = Classes/Categories;
@@ -438,22 +396,8 @@
 		0A8FCC3B1238111900E95217 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0A8FCC3C1238111900E95217 /* S4FullScreenMoviePlayer.h */,
-				0A8FCC3D1238111900E95217 /* S4FullScreenMoviePlayer.m */,
-				0A8FCC3E1238111900E95217 /* S4OverlayViewController.h */,
-				0A8FCC3F1238111900E95217 /* S4OverlayViewController.m */,
-				0A8FCC401238111900E95217 /* S4PdfSearcher.h */,
-				0A8FCC411238111900E95217 /* S4PdfSearcher.m */,
-				0A8FCC421238111900E95217 /* S4PdfView.h */,
-				0A8FCC431238111900E95217 /* S4PdfView.m */,
-				0A8FCC441238111900E95217 /* S4RoundedRectView.h */,
-				0A8FCC451238111900E95217 /* S4RoundedRectView.m */,
 				0A8FCC461238111900E95217 /* S4ScreenUtils.h */,
 				0A8FCC471238111900E95217 /* S4ScreenUtils.m */,
-				0A8FCC481238111900E95217 /* S4TextUtils.h */,
-				0A8FCC491238111900E95217 /* S4TextUtils.m */,
-				0A8FCC4A1238111900E95217 /* S4WebViewController.h */,
-				0A8FCC4B1238111900E95217 /* S4WebViewController.m */,
 			);
 			name = UI;
 			path = Classes/UI;
@@ -478,14 +422,6 @@
 				0A8FCC911238119400E95217 /* NSFileManager-Utilities.m */,
 			);
 			name = erica_sadun;
-			sourceTree = "<group>";
-		};
-		0A8FCC98123811F200E95217 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0A8FCC991238123300E95217 /* S4WebView.xib */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		0ABA9781123C10F1006861CD /* yajl */ = {
@@ -569,7 +505,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA747D9F0F9514B9006C5449 /* S4iOSLib_Prefix.pch in Headers */,
-				0A8FCC4C1238111900E95217 /* S4AbstractAppDelegate.h in Headers */,
 				0A8FCC4E1238111900E95217 /* S4AppUtils.h in Headers */,
 				0A8FCC501238111900E95217 /* S4CrashManager.h in Headers */,
 				0A8FCC521238111900E95217 /* S4FileUtilities.h in Headers */,
@@ -578,7 +513,6 @@
 				0A8FCC581238111900E95217 /* NSInvocation+S4Utilities.h in Headers */,
 				0A8FCC5A1238111900E95217 /* NSObject+S4Utilities.h in Headers */,
 				0A8FCC5C1238111900E95217 /* NSString+S4Utilities.h in Headers */,
-				0A8FCC5E1238111900E95217 /* UIColor+S4Utilities.h in Headers */,
 				0A8FCC601238111900E95217 /* S4BaseClass.h in Headers */,
 				0A8FCC621238111900E95217 /* S4DelgateArray.h in Headers */,
 				0A8FCC641238111900E95217 /* S4ObjC_Utilities.h in Headers */,
@@ -595,14 +529,7 @@
 				0A8FCC781238111900E95217 /* S4HttpInvokeOperation.h in Headers */,
 				0A8FCC7A1238111900E95217 /* S4NetUtilities.h in Headers */,
 				0A8FCC7C1238111900E95217 /* S4NetworkAccess.h in Headers */,
-				0A8FCC7E1238111900E95217 /* S4FullScreenMoviePlayer.h in Headers */,
-				0A8FCC801238111900E95217 /* S4OverlayViewController.h in Headers */,
-				0A8FCC821238111900E95217 /* S4PdfSearcher.h in Headers */,
-				0A8FCC841238111900E95217 /* S4PdfView.h in Headers */,
-				0A8FCC861238111900E95217 /* S4RoundedRectView.h in Headers */,
 				0A8FCC881238111900E95217 /* S4ScreenUtils.h in Headers */,
-				0A8FCC8A1238111900E95217 /* S4TextUtils.h in Headers */,
-				0A8FCC8C1238111900E95217 /* S4WebViewController.h in Headers */,
 				0A8FCC921238119400E95217 /* NSFileManager-Utilities.h in Headers */,
 				0A8FCC96123811B400E95217 /* UIDevice-Hardware.h in Headers */,
 				0ABA9798123C114F006861CD /* yajl_common.h in Headers */,
@@ -711,7 +638,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8FCC4D1238111900E95217 /* S4AbstractAppDelegate.m in Sources */,
 				0A8FCC4F1238111900E95217 /* S4AppUtils.m in Sources */,
 				0A8FCC511238111900E95217 /* S4CrashManager.m in Sources */,
 				0A8FCC531238111900E95217 /* S4FileUtilities.m in Sources */,
@@ -720,7 +646,6 @@
 				0A8FCC591238111900E95217 /* NSInvocation+S4Utilities.m in Sources */,
 				0A8FCC5B1238111900E95217 /* NSObject+S4Utilities.m in Sources */,
 				0A8FCC5D1238111900E95217 /* NSString+S4Utilities.m in Sources */,
-				0A8FCC5F1238111900E95217 /* UIColor+S4Utilities.m in Sources */,
 				0A8FCC611238111900E95217 /* S4BaseClass.m in Sources */,
 				0A8FCC631238111900E95217 /* S4DelgateArray.m in Sources */,
 				0A8FCC651238111900E95217 /* S4ObjC_Utilities.m in Sources */,
@@ -735,14 +660,7 @@
 				0A8FCC791238111900E95217 /* S4HttpInvokeOperation.m in Sources */,
 				0A8FCC7B1238111900E95217 /* S4NetUtilities.m in Sources */,
 				0A8FCC7D1238111900E95217 /* S4NetworkAccess.m in Sources */,
-				0A8FCC7F1238111900E95217 /* S4FullScreenMoviePlayer.m in Sources */,
-				0A8FCC811238111900E95217 /* S4OverlayViewController.m in Sources */,
-				0A8FCC831238111900E95217 /* S4PdfSearcher.m in Sources */,
-				0A8FCC851238111900E95217 /* S4PdfView.m in Sources */,
-				0A8FCC871238111900E95217 /* S4RoundedRectView.m in Sources */,
 				0A8FCC891238111900E95217 /* S4ScreenUtils.m in Sources */,
-				0A8FCC8B1238111900E95217 /* S4TextUtils.m in Sources */,
-				0A8FCC8D1238111900E95217 /* S4WebViewController.m in Sources */,
 				0A8FCC931238119400E95217 /* NSFileManager-Utilities.m in Sources */,
 				0A8FCC97123811B400E95217 /* UIDevice-Hardware.m in Sources */,
 				0ABA979B123C114F006861CD /* yajl_alloc.c in Sources */,
@@ -805,10 +723,15 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				OTHER_CFLAGS = (
+					"-DDEBUG=1",
+					"-D__IPHONE_OS_VERSION_MIN_REQUIRED=030102",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -824,10 +747,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				OTHER_CFLAGS = "-D__IPHONE_OS_VERSION_MIN_REQUIRED=030102";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

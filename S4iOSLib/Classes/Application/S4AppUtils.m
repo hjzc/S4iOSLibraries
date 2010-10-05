@@ -427,7 +427,7 @@ SYNTHESIZE_SINGLETON_CLASS(S4AppUtils)
 		mailComposer = [[MFMailComposeViewController alloc] init];
 		if (IS_NOT_NULL(mailComposer))
 		{
-			mailComposer.mailComposeDelegate = (<MFMailComposeViewControllerDelegate>)viewController;
+			mailComposer.mailComposeDelegate = (id <MFMailComposeViewControllerDelegate>)viewController;
 
 			// set the attachment
 			if ((IS_NOT_NULL(attachData)) && (STR_NOT_EMPTY(attachMimeType)) && (STR_NOT_EMPTY(attachFileName)))

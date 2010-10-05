@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A87F1A9125B08C800963595 /* libS4iOS_UI_Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A87F1A1125B08C800963595 /* libS4iOS_UI_Lib.a */; };
+		0A87F1AA125B08C800963595 /* ico_arrowleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A87F1A3125B08C800963595 /* ico_arrowleft.png */; };
+		0A87F1AB125B08C800963595 /* ico_arrowright.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A87F1A4125B08C800963595 /* ico_arrowright.png */; };
+		0A87F1AC125B08C800963595 /* ico_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A87F1A5125B08C800963595 /* ico_refresh.png */; };
+		0A87F1AE125B08C800963595 /* S4WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A87F1A7125B08C800963595 /* S4WebView.xib */; };
 		0A8FCD0B1238197D00E95217 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCD0A1238197D00E95217 /* AddressBook.framework */; };
 		0A8FCD0D1238197D00E95217 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCD0C1238197D00E95217 /* CoreLocation.framework */; };
 		0A8FCD0F1238197D00E95217 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCD0E1238197D00E95217 /* MapKit.framework */; };
@@ -16,10 +21,6 @@
 		0A8FCD171238197D00E95217 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCD161238197D00E95217 /* SystemConfiguration.framework */; };
 		0A8FCD271238199C00E95217 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCD261238199C00E95217 /* libsqlite3.dylib */; };
 		0A8FCD291238199C00E95217 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCD281238199C00E95217 /* libxml2.dylib */; };
-		0A8FCE5A12381BF800E95217 /* ico_arrowleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FCDBC12381BF800E95217 /* ico_arrowleft.png */; };
-		0A8FCE5B12381BF800E95217 /* ico_arrowright.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FCDBD12381BF800E95217 /* ico_arrowright.png */; };
-		0A8FCE5C12381BF800E95217 /* ico_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FCDBE12381BF800E95217 /* ico_refresh.png */; };
-		0A8FCE6912381BF800E95217 /* S4WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FCDCB12381BF800E95217 /* S4WebView.xib */; };
 		0A8FCE7012381C0C00E95217 /* libS4iOSLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCE6F12381C0C00E95217 /* libS4iOSLib.a */; };
 		0A8FCEB71238238800E95217 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCEAC1238238800E95217 /* AppDelegate_Shared.m */; };
 		0A8FCEB81238238800E95217 /* S4TestVendor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FCEAF1238238800E95217 /* S4TestVendor.m */; };
@@ -44,10 +45,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A3DD32A123D8D4B00C86B5F /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64Transcoder.h; path = ../S4iOSLib/dist/Headers/Base64Transcoder.h; sourceTree = SOURCE_ROOT; };
-		0A3DD32B123D8D4B00C86B5F /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hmac.h; path = ../S4iOSLib/dist/Headers/hmac.h; sourceTree = SOURCE_ROOT; };
-		0A3DD32C123D8D4B00C86B5F /* S4CCMacProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4CCMacProvider.h; path = ../S4iOSLib/dist/Headers/S4CCMacProvider.h; sourceTree = SOURCE_ROOT; };
-		0A3DD32D123D8D4B00C86B5F /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha1.h; path = ../S4iOSLib/dist/Headers/sha1.h; sourceTree = SOURCE_ROOT; };
+		0A3DD32A123D8D4B00C86B5F /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		0A3DD32B123D8D4B00C86B5F /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		0A3DD32C123D8D4B00C86B5F /* S4CCMacProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4CCMacProvider.h; sourceTree = "<group>"; };
+		0A3DD32D123D8D4B00C86B5F /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		0A87F198125B08C800963595 /* S4AbstractAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4AbstractAppDelegate.h; sourceTree = "<group>"; };
+		0A87F199125B08C800963595 /* S4FullScreenMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4FullScreenMoviePlayer.h; sourceTree = "<group>"; };
+		0A87F19A125B08C800963595 /* S4OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4OverlayViewController.h; sourceTree = "<group>"; };
+		0A87F19B125B08C800963595 /* S4PdfSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4PdfSearcher.h; sourceTree = "<group>"; };
+		0A87F19C125B08C800963595 /* S4PdfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4PdfView.h; sourceTree = "<group>"; };
+		0A87F19D125B08C800963595 /* S4RoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4RoundedRectView.h; sourceTree = "<group>"; };
+		0A87F19E125B08C800963595 /* S4TextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4TextUtils.h; sourceTree = "<group>"; };
+		0A87F19F125B08C800963595 /* S4WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4WebViewController.h; sourceTree = "<group>"; };
+		0A87F1A0125B08C800963595 /* UIColor+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+S4Utilities.h"; sourceTree = "<group>"; };
+		0A87F1A1125B08C800963595 /* libS4iOS_UI_Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libS4iOS_UI_Lib.a; path = ../S4iOS_UI_Lib/dist/libS4iOS_UI_Lib.a; sourceTree = SOURCE_ROOT; };
+		0A87F1A3125B08C800963595 /* ico_arrowleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_arrowleft.png; sourceTree = "<group>"; };
+		0A87F1A4125B08C800963595 /* ico_arrowright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_arrowright.png; sourceTree = "<group>"; };
+		0A87F1A5125B08C800963595 /* ico_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_refresh.png; sourceTree = "<group>"; };
+		0A87F1A7125B08C800963595 /* S4WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = S4WebView.xib; sourceTree = "<group>"; };
 		0A8FCD0A1238197D00E95217 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0A8FCD0C1238197D00E95217 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0A8FCD0E1238197D00E95217 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -57,16 +72,11 @@
 		0A8FCD161238197D00E95217 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0A8FCD261238199C00E95217 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0A8FCD281238199C00E95217 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		0A8FCDBC12381BF800E95217 /* ico_arrowleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_arrowleft.png; sourceTree = "<group>"; };
-		0A8FCDBD12381BF800E95217 /* ico_arrowright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_arrowright.png; sourceTree = "<group>"; };
-		0A8FCDBE12381BF800E95217 /* ico_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_refresh.png; sourceTree = "<group>"; };
-		0A8FCDCB12381BF800E95217 /* S4WebView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = S4WebView.xib; sourceTree = "<group>"; };
 		0A8FCE6F12381C0C00E95217 /* libS4iOSLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libS4iOSLib.a; path = ../S4iOSLib/dist/libS4iOSLib.a; sourceTree = SOURCE_ROOT; };
 		0A8FCE7212381C1B00E95217 /* NSCollections+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCollections+S4Utilities.h"; sourceTree = "<group>"; };
 		0A8FCE7312381C1B00E95217 /* NSInvocation+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+S4Utilities.h"; sourceTree = "<group>"; };
 		0A8FCE7412381C1B00E95217 /* NSObject+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+S4Utilities.h"; sourceTree = "<group>"; };
 		0A8FCE7512381C1B00E95217 /* NSString+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+S4Utilities.h"; sourceTree = "<group>"; };
-		0A8FCE7612381C1B00E95217 /* S4AbstractAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4AbstractAppDelegate.h; sourceTree = "<group>"; };
 		0A8FCE7712381C1B00E95217 /* S4AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4AppUtils.h; sourceTree = "<group>"; };
 		0A8FCE7812381C1B00E95217 /* S4BaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4BaseClass.h; sourceTree = "<group>"; };
 		0A8FCE7912381C1B00E95217 /* S4CommonDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4CommonDefines.h; sourceTree = "<group>"; };
@@ -74,7 +84,6 @@
 		0A8FCE7B12381C1B00E95217 /* S4CrashManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4CrashManager.h; sourceTree = "<group>"; };
 		0A8FCE7C12381C1B00E95217 /* S4DelgateArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4DelgateArray.h; sourceTree = "<group>"; };
 		0A8FCE7D12381C1B00E95217 /* S4FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4FileUtilities.h; sourceTree = "<group>"; };
-		0A8FCE7E12381C1B00E95217 /* S4FullScreenMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4FullScreenMoviePlayer.h; sourceTree = "<group>"; };
 		0A8FCE7F12381C1B00E95217 /* S4GeoLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4GeoLocation.h; sourceTree = "<group>"; };
 		0A8FCE8012381C1B00E95217 /* S4HttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4HttpConnection.h; sourceTree = "<group>"; };
 		0A8FCE8112381C1B00E95217 /* S4HttpInvokeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4HttpInvokeOperation.h; sourceTree = "<group>"; };
@@ -82,20 +91,13 @@
 		0A8FCE8312381C1B00E95217 /* S4NetworkAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4NetworkAccess.h; sourceTree = "<group>"; };
 		0A8FCE8412381C1B00E95217 /* S4ObjC_Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4ObjC_Utilities.h; sourceTree = "<group>"; };
 		0A8FCE8512381C1B00E95217 /* S4OperationsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4OperationsHandler.h; sourceTree = "<group>"; };
-		0A8FCE8612381C1B00E95217 /* S4OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4OverlayViewController.h; sourceTree = "<group>"; };
-		0A8FCE8712381C1B00E95217 /* S4PdfSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4PdfSearcher.h; sourceTree = "<group>"; };
-		0A8FCE8812381C1B00E95217 /* S4PdfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4PdfView.h; sourceTree = "<group>"; };
 		0A8FCE8912381C1B00E95217 /* S4RegEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4RegEx.h; sourceTree = "<group>"; };
-		0A8FCE8A12381C1B00E95217 /* S4RoundedRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4RoundedRectView.h; sourceTree = "<group>"; };
 		0A8FCE8B12381C1B00E95217 /* S4ScreenUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4ScreenUtils.h; sourceTree = "<group>"; };
 		0A8FCE8C12381C1B00E95217 /* S4SingletonClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4SingletonClass.h; sourceTree = "<group>"; };
 		0A8FCE8D12381C1B00E95217 /* S4SystemUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4SystemUtilities.h; sourceTree = "<group>"; };
-		0A8FCE8E12381C1B00E95217 /* S4TextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4TextUtils.h; sourceTree = "<group>"; };
 		0A8FCE8F12381C1B00E95217 /* S4UIDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4UIDeviceManager.h; sourceTree = "<group>"; };
 		0A8FCE9012381C1B00E95217 /* S4UserDefaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4UserDefaultsManager.h; sourceTree = "<group>"; };
-		0A8FCE9112381C1B00E95217 /* S4WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4WebViewController.h; sourceTree = "<group>"; };
 		0A8FCE9212381C1B00E95217 /* S4XMLToDictionaryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4XMLToDictionaryParser.h; sourceTree = "<group>"; };
-		0A8FCE9312381C1B00E95217 /* UIColor+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+S4Utilities.h"; sourceTree = "<group>"; };
 		0A8FCEAB1238238800E95217 /* AppDelegate_Shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate_Shared.h; path = Shared/AppDelegate_Shared.h; sourceTree = "<group>"; };
 		0A8FCEAC1238238800E95217 /* AppDelegate_Shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate_Shared.m; path = Shared/AppDelegate_Shared.m; sourceTree = "<group>"; };
 		0A8FCEAE1238238800E95217 /* S4TestVendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4TestVendor.h; sourceTree = "<group>"; };
@@ -146,20 +148,57 @@
 				0A8FCD271238199C00E95217 /* libsqlite3.dylib in Frameworks */,
 				0A8FCD291238199C00E95217 /* libxml2.dylib in Frameworks */,
 				0A8FCE7012381C0C00E95217 /* libS4iOSLib.a in Frameworks */,
+				0A87F1A9125B08C800963595 /* libS4iOS_UI_Lib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A87F195125B08A300963595 /* S4iOS_UI_Lib */ = {
+			isa = PBXGroup;
+			children = (
+				0A87F196125B08C800963595 /* Headers */,
+				0A87F1A1125B08C800963595 /* libS4iOS_UI_Lib.a */,
+				0A87F1A2125B08C800963595 /* Resources */,
+			);
+			name = S4iOS_UI_Lib;
+			sourceTree = "<group>";
+		};
+		0A87F196125B08C800963595 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				0A87F198125B08C800963595 /* S4AbstractAppDelegate.h */,
+				0A87F199125B08C800963595 /* S4FullScreenMoviePlayer.h */,
+				0A87F19A125B08C800963595 /* S4OverlayViewController.h */,
+				0A87F19B125B08C800963595 /* S4PdfSearcher.h */,
+				0A87F19C125B08C800963595 /* S4PdfView.h */,
+				0A87F19D125B08C800963595 /* S4RoundedRectView.h */,
+				0A87F19E125B08C800963595 /* S4TextUtils.h */,
+				0A87F19F125B08C800963595 /* S4WebViewController.h */,
+				0A87F1A0125B08C800963595 /* UIColor+S4Utilities.h */,
+			);
+			name = Headers;
+			path = ../S4iOS_UI_Lib/dist/Headers;
+			sourceTree = SOURCE_ROOT;
+		};
+		0A87F1A2125B08C800963595 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0A87F1A3125B08C800963595 /* ico_arrowleft.png */,
+				0A87F1A4125B08C800963595 /* ico_arrowright.png */,
+				0A87F1A5125B08C800963595 /* ico_refresh.png */,
+				0A87F1A7125B08C800963595 /* S4WebView.xib */,
+			);
+			name = Resources;
+			path = ../S4iOS_UI_Lib/dist/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
 		0A8FCD3012381BC300E95217 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				0A3DD32A123D8D4B00C86B5F /* Base64Transcoder.h */,
-				0A3DD32B123D8D4B00C86B5F /* hmac.h */,
-				0A3DD32C123D8D4B00C86B5F /* S4CCMacProvider.h */,
-				0A3DD32D123D8D4B00C86B5F /* sha1.h */,
 				0A8FCD3112381BD600E95217 /* S4iOSLib */,
+				0A87F195125B08A300963595 /* S4iOS_UI_Lib */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -169,39 +208,27 @@
 			children = (
 				0A8FCE7112381C1B00E95217 /* Headers */,
 				0A8FCE6F12381C0C00E95217 /* libS4iOSLib.a */,
-				0A8FCD3212381BF800E95217 /* Resources */,
 			);
 			name = S4iOSLib;
 			sourceTree = "<group>";
 		};
-		0A8FCD3212381BF800E95217 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0A8FCDBC12381BF800E95217 /* ico_arrowleft.png */,
-				0A8FCDBD12381BF800E95217 /* ico_arrowright.png */,
-				0A8FCDBE12381BF800E95217 /* ico_refresh.png */,
-				0A8FCDCB12381BF800E95217 /* S4WebView.xib */,
-			);
-			name = Resources;
-			path = ../S4iOSLib/dist/Resources;
-			sourceTree = SOURCE_ROOT;
-		};
 		0A8FCE7112381C1B00E95217 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				0A3DD32A123D8D4B00C86B5F /* Base64Transcoder.h */,
+				0A3DD32B123D8D4B00C86B5F /* hmac.h */,
 				0A8FCE7212381C1B00E95217 /* NSCollections+S4Utilities.h */,
 				0A8FCE7312381C1B00E95217 /* NSInvocation+S4Utilities.h */,
 				0A8FCE7412381C1B00E95217 /* NSObject+S4Utilities.h */,
 				0A8FCE7512381C1B00E95217 /* NSString+S4Utilities.h */,
-				0A8FCE7612381C1B00E95217 /* S4AbstractAppDelegate.h */,
 				0A8FCE7712381C1B00E95217 /* S4AppUtils.h */,
 				0A8FCE7812381C1B00E95217 /* S4BaseClass.h */,
+				0A3DD32C123D8D4B00C86B5F /* S4CCMacProvider.h */,
 				0A8FCE7912381C1B00E95217 /* S4CommonDefines.h */,
 				0A8FCE7A12381C1B00E95217 /* S4CoreLocationManager.h */,
 				0A8FCE7B12381C1B00E95217 /* S4CrashManager.h */,
 				0A8FCE7C12381C1B00E95217 /* S4DelgateArray.h */,
 				0A8FCE7D12381C1B00E95217 /* S4FileUtilities.h */,
-				0A8FCE7E12381C1B00E95217 /* S4FullScreenMoviePlayer.h */,
 				0A8FCE7F12381C1B00E95217 /* S4GeoLocation.h */,
 				0A8FCE8012381C1B00E95217 /* S4HttpConnection.h */,
 				0A8FCE8112381C1B00E95217 /* S4HttpInvokeOperation.h */,
@@ -209,20 +236,14 @@
 				0A8FCE8312381C1B00E95217 /* S4NetworkAccess.h */,
 				0A8FCE8412381C1B00E95217 /* S4ObjC_Utilities.h */,
 				0A8FCE8512381C1B00E95217 /* S4OperationsHandler.h */,
-				0A8FCE8612381C1B00E95217 /* S4OverlayViewController.h */,
-				0A8FCE8712381C1B00E95217 /* S4PdfSearcher.h */,
-				0A8FCE8812381C1B00E95217 /* S4PdfView.h */,
 				0A8FCE8912381C1B00E95217 /* S4RegEx.h */,
-				0A8FCE8A12381C1B00E95217 /* S4RoundedRectView.h */,
 				0A8FCE8B12381C1B00E95217 /* S4ScreenUtils.h */,
 				0A8FCE8C12381C1B00E95217 /* S4SingletonClass.h */,
 				0A8FCE8D12381C1B00E95217 /* S4SystemUtilities.h */,
-				0A8FCE8E12381C1B00E95217 /* S4TextUtils.h */,
 				0A8FCE8F12381C1B00E95217 /* S4UIDeviceManager.h */,
 				0A8FCE9012381C1B00E95217 /* S4UserDefaultsManager.h */,
-				0A8FCE9112381C1B00E95217 /* S4WebViewController.h */,
 				0A8FCE9212381C1B00E95217 /* S4XMLToDictionaryParser.h */,
-				0A8FCE9312381C1B00E95217 /* UIColor+S4Utilities.h */,
+				0A3DD32D123D8D4B00C86B5F /* sha1.h */,
 			);
 			name = Headers;
 			path = ../S4iOSLib/dist/Headers;
@@ -403,10 +424,6 @@
 			files = (
 				2860E329111B887F00E27156 /* MainWindow_iPhone.xib in Resources */,
 				2860E32F111B888700E27156 /* MainWindow_iPad.xib in Resources */,
-				0A8FCE5A12381BF800E95217 /* ico_arrowleft.png in Resources */,
-				0A8FCE5B12381BF800E95217 /* ico_arrowright.png in Resources */,
-				0A8FCE5C12381BF800E95217 /* ico_refresh.png in Resources */,
-				0A8FCE6912381BF800E95217 /* S4WebView.xib in Resources */,
 				0A8FCECC123824DA00E95217 /* RootViewController.xib in Resources */,
 				0A8FCF0512382A4C00E95217 /* cup_generic.png in Resources */,
 				0A8FCF0612382A4C00E95217 /* fav_off_icon.png in Resources */,
@@ -414,6 +431,10 @@
 				0A8FCF0812382A4C00E95217 /* Icon.png in Resources */,
 				0A8FCF0912382A4C00E95217 /* localSearch.xml in Resources */,
 				0A8FCF0A12382A4C00E95217 /* NearbyVendorsCell.xib in Resources */,
+				0A87F1AA125B08C800963595 /* ico_arrowleft.png in Resources */,
+				0A87F1AB125B08C800963595 /* ico_arrowright.png in Resources */,
+				0A87F1AC125B08C800963595 /* ico_refresh.png in Resources */,
+				0A87F1AE125B08C800963595 /* S4WebView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +491,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../S4iOSLib/dist\"",
+					"\"$(SRCROOT)/../S4iOS_UI_Lib/dist\"",
 				);
 				PRODUCT_NAME = S4iOSLibTest;
 				VALIDATE_PRODUCT = YES;
@@ -489,6 +511,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../S4iOSLib/dist\"",
+					"\"$(SRCROOT)/../S4iOS_UI_Lib/dist\"",
 				);
 				PRODUCT_NAME = S4iOSLibTest;
 			};
@@ -505,6 +528,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../S4iOSLib/dist\"",
+					"\"$(SRCROOT)/../S4iOS_UI_Lib/dist\"",
 				);
 				PRODUCT_NAME = S4iOSLibTest;
 				VALIDATE_PRODUCT = YES;
