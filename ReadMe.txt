@@ -5,7 +5,7 @@ S4iOSLibrary Quick Start Developer Guide
 
 Michael Papp
 
-September 9, 2010
+October 25, 2010
 
 
 
@@ -13,9 +13,9 @@ Overview
 
 	The S4iOSLib library is designed to be both a platform (framework, if you will) for iOS development, as well as a 'container' for utilities that should be useful to all Apple developers.  The library's APIs are designed to convey the same architectural patterns utilized by Apple's iOS/ObjectiveC-based platform.  It relies heavily on protocols and delegates, and offers singletons when appropriate for Manager-type classes.  The main goal, however, is to provide a robust and stable set of utilities that will allow developers to focus on creating great new features for iOS, and not reinvent the millions of little wheels that underly almost every application.  This library will be continually updated to the latest version of iOS, and track improvements in the XCode IDE as well.  The basics:
 
-	• Supports iOS versions from 3.1.2 up to 4.1.
+	• Supports iOS versions from 3.1.2 up to 4.2 (XCode 3.2.5 with iOS 4.2 GM SDK).
 	• Supports both Simulator and Device
-	• Free for use in both open source and commercial projects (under Mozilla MPL license)
+	• Free for use in both open source and commercial projects under a Mozilla MPL 1.1 license <http://www.mozilla.org/MPL/MPL-1.1.html>
 	• Attribution appreciated but not required
 	• The project is currently a one-person endeavor and likely to stay that way;  suggestions are gladly taken and contributions welcomed
 	• The project utilizes a select set of other open source projects.  They are selected for great code and an active development community.
@@ -34,10 +34,10 @@ While there is nothing special about the particular arrangement of the directori
 
 Directory layouts within each project are self-explanatory.  In brief, the S4iOSLib project contains the following directories:
 
-	• Classes - contains source code
-	• dist - a directory containing headers, resources, and the static library to be used in other projects.  The contents of this directory is managed by build scripts within each project.  DO NOT modify the contents yourself.  Directions are given below for modifying this directory.  DO NOT link other projects into the "build" directory, please use this one instead.
-	• Resources - contains graphics files (.png, .jpg, etc.), IB files, and any files you intend to build into an application outside of source files.
-	• Vendor - this directory contains 3rd-party libraries and source code.  The Facebook Connect library is an example.  In general, the directories in the Vendor folder are created by performing a command (using the appropriate SCM tool) to checkout or clone a copy of the source from the host repository.  If you ever want to get the latest copy of a 3rd-party library, just use Terminal to cd into that directory and use the SCM-appropriate command to update the copy.  More on this later.
+	•	Classes - contains source code
+	•	dist - a directory containing headers, resources, and the static library to be used in other projects.  The contents of this directory is managed by build scripts within each project.  DO NOT modify the contents yourself.  Directions are given below for modifying this directory.  DO NOT link other projects into the "build" directory, please use this one instead.
+	•	Resources - contains graphics files (.png, .jpg, etc.), IB files, and any files you intend to build into an application outside of source files.
+	•	Vendor - this directory contains 3rd-party libraries and source code.  The Facebook Connect library is an example.  In general, the directories in the Vendor folder are created by performing a command (using the appropriate SCM tool) to checkout or clone a copy of the source from the host repository.  If you ever want to get the latest copy of a 3rd-party library, just use Terminal to cd into that directory and use the SCM-appropriate command to update the copy.  More on this later.
 
 
 
@@ -49,17 +49,23 @@ As described above, the end results of building the S4iOSLib project is to place
 
 Now you know most of the basics needed to build the libraries.  If you are familiar with the workings of XCode 3.x, the instructions below give you the general idea of what you need to do;  if you are new or uncertain about how XCode works, please follow these instructions exactly:
 
-	1. In the build target drop down menu (top left in the Project Window), select "iOS <LATEST VERSION>  Simulator" and then select (in the same drop down) "Debug".  Go to the build menu and select "Clean all targets".  Click OK on the resulting modal dialog.
-	2. Now go back to the build target drop down menu and select "iOS <LATEST VERSION> Device" and then select "Release" in the same menu. Go to the build menu and select "Clean all targets".  Click OK on the resulting modal dialog
-	3. Select Build from the "Build" menu (or type cmd-B).
-	4. If everything builds OK, go back to the build target drop down menu and select "iOS <LATEST VERSION>  Simulator" and then select (in the same drop down) "Debug".
-	5. Select Build from the "Build" menu (or type cmd-B).
-	6. If the compile/link cycle for both builds succeeds, there will be a fresh set of files in the dist directory, including a brand new libS4iOSLib.a file.
+	1.	In the build target drop down menu (top left in the Project Window), select "iOS <LATEST VERSION>  Simulator" and then select (in the same drop down) "Debug".  Go to the build menu and select "Clean all targets".  Click OK on the resulting modal dialog.
+	2.	Now go back to the build target drop down menu and select "iOS <LATEST VERSION> Device" and then select "Release" in the same menu. Go to the build menu and select "Clean all targets".  Click OK on the resulting modal dialog
+	3.	Select Build from the "Build" menu (or type cmd-B).
+	4.	If everything builds OK, go back to the build target drop down menu and select "iOS <LATEST VERSION>  Simulator" and then select (in the same drop down) "Debug".
+	5.	Select Build from the "Build" menu (or type cmd-B).
+	6.	If the compile/link cycle for both builds succeeds, there will be a fresh set of files in the dist directory, including a brand new libS4iOSLib.a file.
 
 There are no "hidden" errors with the build scripts.  Compile and/or linker errors appear as they normally would in the build results window.  Errors in running the scripts ALSO appear in the build results window.  For those knowledgeable in the ways of XCode, and particularly for those more knowledgeable than I regarding embedded build scripts, the build process described above could certainly be streamlined.  However, I wanted to keep things simple and as build scripts get more complex, they become a development area in and of themselves.  Note, I will have instructions on building the library on XCode 4.x when it is released.  For that matter, the project itself will be moved to XCode 4.x once it is released.
 
 If you want to add, remove, or change the location of files in the dist directory, open the 'targets' icon on the lefthand side of the project window in XCode.  Double-
-click the "run script" item that appears first in the list.  This is the pre-processing script and removes ("cleans") the dist directory prior to each build.  If a build ever fails, the dist directory will be devoid of files (although the internal directories remain).  If you add, remove, or move files, make sure this script is updated to address new or removed files, or point to new directories.  You will see another "run script" build phase at the very end of the tasks within the target icon.  This is the post-processing script.  If you add, remove, or move files that should be placed in the dist directory, modify this script.  The script starts by verifying that both a successful simulator and device library builds exist.  If not, nothing happens.  If so, then it calls the lipo tool to build a single, combined static library with both x86 and ARM code inside.  Next, the script copies files from the internal directories in the project into either the Headers directory (.h files, of course) or the Resources directory (just about everything else).  Add or remove the copy commands as appropriate to the change(s) you have made.  Note that these are basically shell scripts, and command calls are
+click the "run script" item that appears first in the list.  This is the pre-processing script and removes ("cleans") the dist directory prior to each build.  If a build ever fails, 
+the dist directory will be devoid of files (although the internal directories remain).  If you add, remove, or move files, make sure this script is updated to address new or
+ removed files, or point to new directories.  You will see another "run script" build phase at the very end of the tasks within the target icon.  This is the post-processing
+ script.  If you add, remove, or move files that should be placed in the dist directory, modify this script.  The script starts by verifying that both a successful simulator and
+ device library builds exist.  If not, nothing happens.  If so, then it calls the lipo tool to build a single, combined static library with both x86 and ARM code inside.  Next,
+ the script copies files from the internal directories in the project into either the Headers directory (.h files, of course) or the Resources directory (just about everything
+ else).  Add or remove the copy commands as appropriate to the change(s) you have made.  Note that these are basically shell scripts, and command calls are
  basically Unix commands.  Hence, you have to follow the rules for these commands as to what can, or cannot, be copied.  For example, .bundle files are actually 
 directories to the cp command - therefore, you cannot cp a .bundle 'file.'  It must be treated as a directory.
 
@@ -87,10 +93,22 @@ Finally, go to the "Project" menu and select the "Edit Project Settings" menu it
 	⁃	(Optional) S4iOSLib supports all iPhone OS deployment target settings of iOS 3.1.2 and above 
 
 	•	In the Linking section:
-	⁃	Add the following flags to the Other Linker Flags item (without the quotes):    "-ObjC -all_load"
+	⁃	Add the following flags to the Other Linker Flags item (without the quotes):    "-ObjC -all_load".  They are case-sensitive and you must specify these linker flags for both the Project Settings and the Target settings
 
 	•	In the Search Paths section:
 	⁃	Add the following flags to the Header Search Paths item (without the quotes):    "$SDKROOT/usr/include/libxml2"
+
+	•	In the GCC 4.2 - Language section:
+	⁃	Add the following flag to the Other C Flags item (without the quotes) for the DEBUG configuration only:    "-DDEBUG=1"
+	⁃	(Only for XCode 3.2.4) Add the following flag to the Other C Flags item (without the quotes) for the ALL configurations:    "-D__IPHONE_OS_VERSION_MIN_REQUIRED=030102"
+	⁃	(Only for XCode 3.2.4) For other iOS deployment targets, use the following numbers:
+	⁃	3.0		-D__IPHONE_OS_VERSION_MIN_REQUIRED=030000
+	⁃	3.1		-D__IPHONE_OS_VERSION_MIN_REQUIRED=030100
+	⁃	3.1.2		-D__IPHONE_OS_VERSION_MIN_REQUIRED=030102
+	⁃	3.1.3		-D__IPHONE_OS_VERSION_MIN_REQUIRED=030103
+	⁃	3.2		-D__IPHONE_OS_VERSION_MIN_REQUIRED=030200
+	⁃	4.0		-D__IPHONE_OS_VERSION_MIN_REQUIRED=040000
+	⁃	4.1		-D__IPHONE_OS_VERSION_MIN_REQUIRED=040100
 
 
 
@@ -102,6 +120,7 @@ Finally, go to the "Project" menu and select the "Edit Project Settings" menu it
 	•	Erica Sadun's uidevice-extension project <http://github.com/erica/uidevice-extension>
 	•	Stig Brautaset's json-framework project <http://github.com/stig/json-framework>
 	•	Lloyd Hilaiel's yajl project <http://github.com/lloyd/yajl>
+
 
 
 

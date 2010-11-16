@@ -91,6 +91,12 @@
 								  dataIsForm: (BOOL)bIsForm
 							   handleCookies: (BOOL)bHandleCookies;
 
++ (NSMutableURLRequest *)addBasicAuthToURLRequest: (NSURLRequest *)urlRequest
+									  forUserName: (NSString *)username
+									  andPassword: (NSString *)password;
+
++ (NSURLCredential *)createNSURLCredentialForUser: (NSString *)username withPassword: (NSString *)password;
+
 + (NSString *)createQueryStringForPath: (NSString *)path, ...;
 
 // get the text encoding of a file (for text-based files)

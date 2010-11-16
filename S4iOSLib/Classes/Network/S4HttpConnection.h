@@ -71,8 +71,25 @@ typedef enum
 - (void)httpConnection: (S4HttpConnection *)connection completedWithData: (NSMutableData *)data;
 
 @optional
+//	Implement if the delegate wants to examine the HTTP response
 - (BOOL)httpConnection: (S4HttpConnection *)connection receivedResponse: (NSURLResponse *)response;
-- (NSURLRequest *)httpConnection: (S4HttpConnection *)connection receivedRedirectdirectRequest: (NSURLRequest *)request forResponse: (NSURLResponse *)redirectResponse;
+
+//	Handle redirect requests
+- (NSURLRequest *)httpConnection: (S4HttpConnection *)connection
+		 receivedRedirectRequest: (NSURLRequest *)request
+					 forResponse: (NSURLResponse *)redirectResponse;
+
+//	Provides delegate with progress information for uploads
+- (void)httpConnection: (S4HttpConnection *)connection
+	 totalBytesWritten: (NSInteger)bytesWritten
+	 totalBytesToWrite: (NSInteger)bytesToWrite;
+
+//	Asks if the delegate can handle specific types of authentication
+- (BOOL)httpConnection: (S4HttpConnection *)connection supportsProtectionSpace: (NSURLProtectionSpace *)protectionSpace;
+
+//	Handle HTTPS authentication challenges
+- (NSURLCredential *)httpConnection: (S4HttpConnection *)connection
+			 respondToAuthChallenge: (NSURLAuthenticationChallenge *)challenge;
 
 @end
 

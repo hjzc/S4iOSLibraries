@@ -45,6 +45,7 @@
 
 #define DFLT_DATA_BUFFER_SZ					(NSUInteger)2048
 #define MAX_BUFFER_SZ						(NSUInteger)(NSUIntegerMax - 4)
+#define MAX_AUTH_ATTEMPTS					(NSInteger)5
 
 
 // ================================== Typedefs ==========================================
@@ -453,13 +454,67 @@
 	if (nil != redirectResponse)
 	{
 		// inform the delegate of a redirect if it supports this optional protocol method
-		if ((nil != m_delegate) && ([m_delegate respondsToSelector: @selector(httpConnection:receivedRedirectdirectRequest:forResponse:)]))
+		if ((nil != m_delegate) && ([m_delegate respondsToSelector: @selector(httpConnection:receivedRedirectRequest:forResponse:)]))
 		{
-			newRequest = [m_delegate httpConnection: self receivedRedirectdirectRequest: request forResponse: redirectResponse];
+			newRequest = [m_delegate httpConnection: self receivedRedirectRequest: request forResponse: redirectResponse];
 		}
 	}
 	return (newRequest);
 	
+}
+
+
+//============================================================================
+//	S4HttpConnection :: didSendBodyData
+//	Provides delegate with progress information for uploads
+//============================================================================
+- (void)connection: (NSURLConnection *)connection didSendBodyData: (NSInteger)bytesWritten
+												totalBytesWritten: (NSInteger)totalBytesWritten
+										totalBytesExpectedToWrite: (NSInteger)totalBytesExpectedToWrite
+{
+	// inform the delegate of a redirect if it supports this optional protocol method
+	if ((nil != m_delegate) && ([m_delegate respondsToSelector: @selector(httpConnection:totalBytesWritten:totalBytesToWrite:)]))
+	{
+		[m_delegate httpConnection: self totalBytesWritten: totalBytesWritten totalBytesToWrite: totalBytesExpectedToWrite];
+	}	
+}
+
+
+//============================================================================
+//	S4HttpConnection :: canAuthenticateAgainstProtectionSpace
+//	Asks if the delegate can handle specific types of authentication
+//============================================================================
+- (BOOL)connection: (NSURLConnection *)connection canAuthenticateAgainstProtectionSpace: (NSURLProtectionSpace *)protectionSpace
+{
+	NSString				*authenticationMethod;
+	BOOL					bResult = NO;
+
+	// ask the delegate if it supports this authentication method (via an optional protocol method)
+	if ((nil != m_delegate) && ([m_delegate respondsToSelector: @selector(httpConnection:supportsProtectionSpace:)]))
+	{
+		bResult = [m_delegate httpConnection: self supportsProtectionSpace: protectionSpace];
+	}
+	else		// default behavior mimics the System rules that apply if the delegate method was not implemented
+	{
+		authenticationMethod = [protectionSpace authenticationMethod];
+		if (STR_NOT_EMPTY(authenticationMethod))
+		{
+			if (([authenticationMethod isEqualToString: NSURLAuthenticationMethodDefault]) ||
+				([authenticationMethod isEqualToString: NSURLAuthenticationMethodHTTPBasic]) ||
+				([authenticationMethod isEqualToString: NSURLAuthenticationMethodHTTPDigest]) ||
+				([authenticationMethod isEqualToString: NSURLAuthenticationMethodHTMLForm]) ||
+				([authenticationMethod isEqualToString: NSURLAuthenticationMethodNegotiate]))
+			{
+				bResult = YES;
+			}
+			else if (([authenticationMethod isEqualToString: NSURLAuthenticationMethodClientCertificate]) ||
+					 ([authenticationMethod isEqualToString: NSURLAuthenticationMethodServerTrust]))
+			{
+				bResult = NO;
+			}
+		}
+	}
+	return (bResult);
 }
 
 
@@ -469,27 +524,44 @@
 //============================================================================
 - (void)connection: (NSURLConnection *)connection didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge *)challenge
 {
-/*
-	NSURLCredential				*newCredential;
+	NSURLCredential				*credential = nil;
 
-	if ([challenge previousFailureCount] == 0)
+	if (IS_NOT_NULL(challenge))
 	{
-		newCredential=[NSURLCredential credentialWithUser: [self preferencesName]
-												 password: [self preferencesPassword]
-											  persistence: NSURLCredentialPersistenceNone];
+		// if authentication has failed less than MAX_AUTH_ATTEMPTS times
+		if ([challenge previousFailureCount] < MAX_AUTH_ATTEMPTS)
+		{
+			// inform the delegate of a authentication challenge if it supports this optional protocol method
+			if ((nil != m_delegate) && ([m_delegate respondsToSelector: @selector(httpConnection:respondToAuthChallenge:)]))
+			{
+				credential = [m_delegate httpConnection: self respondToAuthChallenge: challenge];
+			}
 
-		[[challenge sender] useCredential: newCredential forAuthenticationChallenge: challenge];
+			if (IS_NOT_NULL(credential))
+			{
+				[[challenge sender] useCredential: credential forAuthenticationChallenge: challenge];
+			}
+			else
+			{
+				[[challenge sender] continueWithoutCredentialForAuthenticationChallenge: challenge];
+			}			
+		}
+		else
+		{
+			[[challenge sender] cancelAuthenticationChallenge: challenge];
+		}
 	}
-	else
-	{
-		[[challenge sender] cancelAuthenticationChallenge: challenge];
-
-		// inform the user that the user name and password
-		// in the preferences are incorrect
-		[self showPreferencesCredentialsAreIncorrectPanel: self];
-	}
-*/
 }
+
+
+//============================================================================
+//	S4HttpConnection :: didCancelAuthenticationChallenge
+//	The -connection:didCancelAuthenticationChallenge: isn't meaningful in the
+//	context of an NSURLConnection, so we just don't implement that method
+//============================================================================
+//- (void)connection: (NSURLConnection *)connection didCancelAuthenticationChallenge: (NSURLAuthenticationChallenge *)challenge
+//{
+//}
 
 
 //============================================================================

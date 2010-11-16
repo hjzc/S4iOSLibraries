@@ -36,6 +36,7 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 #import "S4NetUtilities.h"
+#import "Base64Transcoder.h"
 #import "S4CommonDefines.h"
 
 
@@ -65,7 +66,6 @@
 @interface S4NetUtilities (PrivateImpl)
 
 + (NSData *)encodedFormFromDictionary: (NSDictionary *)dict;
-+ (void)placeHolder;
 
 @end
 
@@ -129,14 +129,6 @@
 		}
 	}
 	return (formDataResult);
-}
-
-
-//============================================================================
-//	S4NetUtilities (PrivateImpl) :: placeHolder
-//============================================================================
-+ (void)placeHolder
-{
 }
 
 @end
@@ -344,6 +336,83 @@
 		}
 	}
 	return (requestResult);
+}
+
+
+//============================================================================
+//	S4NetUtilities :: addBasicAuthToURLRequest:
+//============================================================================
++ (NSMutableURLRequest *)addBasicAuthToURLRequest: (NSURLRequest *)urlRequest
+									  forUserName: (NSString *)username
+									  andPassword: (NSString *)password
+{
+	NSString						*dataStr;
+	NSData							*encodeData;
+	NSUInteger						rawLength;
+	size_t							outBufSize;
+	char							*encodeArray;
+	NSString						*encodedStr;
+	NSString						*authStr;
+	NSMutableURLRequest				*requestResult = nil;
+	
+	if ((IS_NOT_NULL(urlRequest)) && (STR_NOT_EMPTY(username)) && (STR_NOT_EMPTY(password)))
+	{
+		dataStr = [NSString stringWithFormat: @"%@:%@", username, password];
+		if (IS_NOT_NULL(dataStr))
+		{
+			encodeData = [dataStr dataUsingEncoding: NSUTF8StringEncoding];
+			if (IS_NOT_NULL(encodeData))
+			{
+				// find the length, in bytes, of the username/password converted to bytes
+				rawLength = [encodeData length];
+
+				// now ask the Base64Encoder to estimate the output buffer size (adding a fudge factor)
+				outBufSize = (EstimateBas64EncodedDataSize((size_t)rawLength)) + 16;
+
+				// and calloc a buffer to hold the encoded bytes; calloc so result is NULL-terminated C string
+				encodeArray = (char *)calloc(outBufSize, sizeof(char));
+				if (NULL != encodeArray)
+				{
+					// Base64 encode username and password
+					if (YES == Base64EncodeData([encodeData bytes], (size_t)rawLength, encodeArray, &outBufSize))
+					{
+						encodedStr = [NSString stringWithCString: (const char *)encodeArray encoding: NSUTF8StringEncoding];
+						if (IS_NOT_NULL(encodedStr))
+						{
+							authStr = [NSString stringWithFormat: @"Basic %@", encodedStr];
+							if (IS_NOT_NULL(authStr))
+							{
+								requestResult = [urlRequest mutableCopyWithZone: [urlRequest zone]];
+								if (IS_NOT_NULL(requestResult))
+								{
+									[requestResult addValue: authStr forHTTPHeaderField: @"Authorization"];
+								}
+							}
+						}
+					}
+					free(encodeArray);
+				}
+			}
+		}
+	}
+	return (requestResult);
+}
+
+
+//============================================================================
+//	S4NetUtilities :: createNSURLCredentialForUser:
+//============================================================================
++ (NSURLCredential *)createNSURLCredentialForUser: (NSString *)username withPassword: (NSString *)password
+{
+	NSURLCredential				*credentialResult = nil;
+
+	if ((IS_NOT_NULL(username)) && (IS_NOT_NULL(password)))
+	{
+		credentialResult = [NSURLCredential credentialWithUser: username
+													  password: password
+												   persistence: NSURLCredentialPersistenceForSession];
+	}
+	return (credentialResult);
 }
 
 
