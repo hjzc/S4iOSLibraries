@@ -1,6 +1,8 @@
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
-/build
+S4iOSLib/build/
+S4iOSLibTest/build/
+S4iOS_UI_Lib/build/
 *.pbxuser
 *.mode1v3
 *.mode2v3
