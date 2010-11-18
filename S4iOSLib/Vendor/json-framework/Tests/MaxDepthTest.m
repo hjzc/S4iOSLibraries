@@ -27,14 +27,30 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "MaxDepthTest.h"
+#import <SenTestingKit/SenTestingKit.h>
 #import "JSON/JSON.h"
+
+@interface MaxDepthTest : SenTestCase {
+	SBJsonParser * parser;
+	SBJsonWriter * writer;
+}
+@end
+
+#define assertErrorContains(e, s) \
+	STAssertTrue([[e localizedDescription] rangeOfString:s].location != NSNotFound, @"%@", [e userInfo])
 
 @implementation MaxDepthTest
 
+
 - (void)setUp {
-    [super setUp];
+    parser = [SBJsonParser new];
+    writer = [SBJsonWriter new];
     parser.maxDepth = writer.maxDepth = 2;
+}
+
+- (void)tearDown {
+	[parser release];
+	[writer release];
 }
 
 - (void)testParseDepthOk {
@@ -57,7 +73,7 @@
     NSArray *a2 = [NSArray arrayWithObject:a1];
     NSArray *a3 = [NSArray arrayWithObject:a2];
     STAssertNil([writer stringWithObject:a3], nil);
-    STAssertEquals([[writer.errorTrace objectAtIndex:0] code], (NSInteger)EDEPTH, nil);
+	assertErrorContains([writer.errorTrace objectAtIndex:0], @"Nested too deep");
 }
 
 - (void)testWriteRecursion {
@@ -70,7 +86,7 @@
     [a1 addObject:a2];
 
     STAssertNil([writer stringWithObject:a1], nil);
-    STAssertEquals([[writer.errorTrace objectAtIndex:0] code], (NSInteger)EDEPTH, nil);
+	assertErrorContains([writer.errorTrace objectAtIndex:0], @"Nested too deep");
 }
 
 @end

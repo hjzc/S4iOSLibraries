@@ -27,19 +27,36 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "ErrorTest.h"
+#import <SenTestingKit/SenTestingKit.h>
 #import <JSON/JSON.h>
 
+@interface ErrorTest : SenTestCase {
+	SBJsonParser * parser;
+	SBJsonWriter * writer;
+}
+@end
+
 #define assertErrorContains(e, s) \
-    STAssertTrue([[e localizedDescription] hasPrefix:s], @"%@", [e userInfo])
+    STAssertTrue([[e localizedDescription] rangeOfString:s].location != NSNotFound, @"%@", [e userInfo])
 
 #define assertUnderlyingErrorContains(e, s) \
-    STAssertTrue([[[[e userInfo] objectForKey:NSUnderlyingErrorKey] localizedDescription] hasPrefix:s], @"%@", [e userInfo])
+    STAssertTrue([[[[e userInfo] objectForKey:NSUnderlyingErrorKey] localizedDescription] rangeOfString:s].location != NSNotFound, @"%@", [e userInfo])
 
 #define assertUnderlyingErrorContains2(e, s) \
     STAssertTrue([[[[[[e userInfo] objectForKey:NSUnderlyingErrorKey] userInfo] objectForKey:NSUnderlyingErrorKey] localizedDescription] hasPrefix:s], @"%@", [e userInfo])
 
 @implementation ErrorTest
+
+
+- (void)setUp {
+    parser = [SBJsonParser new];
+    writer = [SBJsonWriter new];
+}
+
+- (void)tearDown {
+    [parser release];
+    [writer release];
+}
 
 #pragma mark Generator
 
@@ -58,10 +75,10 @@
                      [NSDictionary dictionary],
                      nil];
     
-    for (int i = 0; i < [keys count]; i++) {
+    for (id key in keys) {
         NSError *error = nil;
-        NSDictionary *object = [NSDictionary dictionaryWithObject:@"1" forKey:[keys objectAtIndex:i]];
-        STAssertNil([writer stringWithObject:object error:&error], nil);
+        NSDictionary *object = [NSDictionary dictionaryWithObject:@"1" forKey:key];
+        STAssertEqualObjects([writer stringWithObject:object error:&error], nil, nil);
         STAssertNotNil(error, nil);
     }
 }
