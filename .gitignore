@@ -15,9 +15,7 @@ profile
 S4iOSLib/dist/Headers/*.h
 S4iOSLib/dist/libS4iOSLib.a
 S4iOSLib/dist/Resources/ico_refresh.png
-S4iOSLib/Vendor/cocoaasyncsocket/RunLoop/CertTest
-S4iOSLib/Vendor/cocoaasyncsocket/RunLoop/EchoServer
-S4iOSLib/Vendor/cocoaasyncsocket/RunLoop/InterfaceTest
+S4iOSLib/Vendor/cocoaasyncsocket/RunLoop/Xcode/
 S4iOSLib/Vendor/cocoaasyncsocket/GCD/Vendor
 S4iOSLib/Vendor/cocoaasyncsocket/GCD/Xcode
 S4iOSLib/Vendor/cocoahttpserver/AsyncSocket.h

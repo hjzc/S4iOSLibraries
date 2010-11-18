@@ -23,7 +23,6 @@ enum GCDAsyncSocketError
 	GCDAsyncSocketNoError = 0,           // Never used
 	GCDAsyncSocketBadConfigError,        // Invalid configuration
 	GCDAsyncSocketBadParamError,         // Invalid parameter was passed
-	GCDAsyncSocketCanceledError,         // onSocketWillConnect: returned NO
 	GCDAsyncSocketConnectTimeoutError,   // A connect operation timed out
 	GCDAsyncSocketReadTimeoutError,      // A read operation timed out
 	GCDAsyncSocketWriteTimeoutError,     // A write operation timed out
@@ -137,7 +136,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * However, if you are writing a server that interacts with a plethora of clients,
  * you might encounter a client that uses the discouraged technique of shutting down its write stream.
  * If this is the case, you can set this property to NO,
- * and make use of the onSocketDidCloseReadStream delegate method.
+ * and make use of the socketDidCloseReadStream delegate method.
  * 
  * The default value is YES.
 **/
@@ -170,7 +169,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 /**
  * Tells the socket to begin listening and accepting connections on the given port.
  * When a connection is accepted, a new instance of GCDAsyncSocket will be spawned to handle it,
- * and the onSocket:didAcceptNewSocket: delegate method will be invoked.
+ * and the socket:didAcceptNewSocket: delegate method will be invoked.
  * 
  * The socket will listen on all available interfaces (e.g. wifi, ethernet, etc)
 **/
@@ -242,7 +241,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 /**
  * Disconnects immediately (synchronously). Any pending reads or writes are dropped.
- * If the socket is not already disconnected, the onSocketDidDisconnect delegate method
+ * If the socket is not already disconnected, the socketDidDisconnect delegate method
  * will be called immediately, before this method returns.
  * 
  * Please note the recommended way of releasing an AsyncSocket instance (e.g. in a dealloc method)
@@ -311,13 +310,13 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 // The readData and writeData methods won't block (they are asynchronous).
 // 
-// When a read is complete the onSocket:didReadData:withTag: delegate method is dispatched on the delegateQueue.
-// When a write is complete the onSocket:didWriteDataWithTag: delegate method is dispatched on the delegateQueue.
+// When a read is complete the socket:didReadData:withTag: delegate method is dispatched on the delegateQueue.
+// When a write is complete the socket:didWriteDataWithTag: delegate method is dispatched on the delegateQueue.
 // 
 // You may optionally set a timeout for any read/write operation. (To not timeout, use a negative time interval.)
-// If a read/write opertion times out, the corresponding "onSocket:shouldTimeout..." delegate method
+// If a read/write opertion times out, the corresponding "socket:shouldTimeout..." delegate method
 // is called to optionally allow you to extend the timeout.
-// Upon a timeout, the "onSocket:willDisconnectWithError:" method is called, followed by "onSocketDidDisconnect".
+// Upon a timeout, the "socket:willDisconnectWithError:" method is called, followed by "socketDidDisconnect".
 // 
 // The tag is for your convenience.
 // You can use it as an array index, step number, state id, pointer, etc.
@@ -341,7 +340,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * the method will do nothing, and the delegate will not be called.
  * 
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
- * After completion, the data returned in onSocket:didReadData:withTag: will be a subset of the given buffer.
+ * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
@@ -363,7 +362,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * the method will do nothing, and the delegate will not be called.
  * 
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
- * After completion, the data returned in onSocket:didReadData:withTag: will be a subset of the given buffer.
+ * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
 **/
 - (void)readDataWithTimeout:(NSTimeInterval)timeout
@@ -394,7 +393,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * the method will do nothing, and the delegate will not be called.
  * 
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
- * After completion, the data returned in onSocket:didReadData:withTag: will be a subset of the given buffer.
+ * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
 **/
 - (void)readDataToLength:(NSUInteger)length
@@ -429,7 +428,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * the method will do nothing, and the delegate will not be called.
  * 
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
- * After completion, the data returned in onSocket:didReadData:withTag: will be a subset of the given buffer.
+ * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
  * 
  * To read a line from the socket, use the line separator (e.g. CRLF for HTTP, see below) as the "data" parameter.
@@ -482,7 +481,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * the method will do nothing, and the delegate will not be called.
  * 
  * If you pass a buffer, you must not alter it in any way while AsyncSocket is using it.
- * After completion, the data returned in onSocket:didReadData:withTag: will be a subset of the given buffer.
+ * After completion, the data returned in socket:didReadData:withTag: will be a subset of the given buffer.
  * That is, it will reference the bytes that were appended to the given buffer.
  * 
  * To read a line from the socket, use the line separator (e.g. CRLF for HTTP, see below) as the "data" parameter.
@@ -549,6 +548,79 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  **/
 - (void)startTLS:(NSDictionary *)tlsSettings;
 
+#pragma mark Advanced
+
+/**
+ * It's not thread-safe to access certain variables from outside the socket's internal queue.
+ * 
+ * For example, the socket file descriptor.
+ * File descriptors are simply integers which reference an index in the per-process file table.
+ * However, when one requests a new file descriptor (by opening a file or socket),
+ * the file descriptor returned is guaranteed to be the lowest numbered unused descriptor.
+ * So if we're not careful, the following could be possible:
+ * 
+ * - Thread A invokes a method which returns the socket's file descriptor.
+ * - The socket is closed via the socket's internal queue on thread B.
+ * - Thread C opens a file, and subsequently receives the file descriptor that was previously the socket's FD.
+ * - Thread A is now accessing/altering the file instead of the socket.
+ * 
+ * In addition to this, other variables are not actually objects,
+ * and thus cannot be retained/released or even autoreleased.
+ * An example is the sslContext, of type SSLContextRef, which is actually a malloc'd struct.
+ * 
+ * Although there are internal variables that make it difficult to maintain thread-safety,
+ * it is important to provide access to these variables
+ * to ensure this class can be used in a wide array of environments.
+ * This method helps to accomplish this by invoking the current block on the socket's internal queue.
+ * The methods below can be invoked from within the block to access
+ * those generally thread-unsafe internal variables in a thread-safe manner.
+ * The given block will be invoked synchronously on the socket's internal queue.
+ * 
+ * If you save references to any protected variables and use them outside the block, you do so at your own peril.
+**/
+- (void)performBlock:(dispatch_block_t)block;
+
+/**
+ * These methods are only available from within the context of a performBlock: invocation.
+ * See the documentation for the performBlock: method above.
+ * 
+ * Provides access to the socket's file descriptor(s).
+ * If the socket is a server socket (is accepting incoming connections),
+ * it might actually have multiple internal socket file descriptors - one for IPv4 and one for IPv6.
+**/
+- (int)socketFD;
+- (int)socket4FD;
+- (int)socket6FD;
+
+#if TARGET_OS_IPHONE
+
+/**
+ * These methods are only available from within the context of a performBlock: invocation.
+ * See the documentation for the performBlock: method above.
+ * 
+ * Provides access to the socket's internal read/write streams, if SSL/TLS has been started on the socket.
+ * 
+ * Note: Apple has decided to keep the SecureTransport framework private is iOS.
+ * This means the only supplied way to do SSL/TLS is via CFStream or some other API layered on top of it.
+ * Thus, in order to provide SSL/TLS support on iOS we are forced to rely on CFStream,
+ * instead of the preferred and more powerful SecureTransport.
+ * Read/write streams are only created if startTLS has been invoked to start SSL/TLS.
+**/
+- (CFReadStreamRef)readStream;
+- (CFWriteStreamRef)writeStream;
+
+#else
+
+/**
+ * This method is only available from within the context of a performBlock: invocation.
+ * See the documentation for the performBlock: method above.
+ * 
+ * Provides access to the socket's SSLContext, if SSL/TLS has been started on the socket.
+**/
+- (SSLContextRef)sslContext;
+
+#endif
+
 #pragma mark Utilities
 
 /**
@@ -576,7 +648,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 @optional
 
 /**
- * This method is called immediately prior to onSocket:didAcceptNewSocket:.
+ * This method is called immediately prior to socket:didAcceptNewSocket:.
  * It optionally allows a listening socket to specify the socketQueue for a new accepted socket.
  * If this method is not implemented, or returns NULL, the new accepted socket will create its own default queue.
  * 
@@ -604,40 +676,38 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * 
  * By default the new socket will have the same delegate and delegateQueue.
  * You may, of course, change this at any time.
- * 
- * The new socket will call "onSocket:didConnectToHost:port:".
 **/
-- (void)onSocket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket;
+- (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket;
 
 /**
  * Called when a socket connects and is ready for reading and writing.
  * The host parameter will be an IP address, not a DNS name.
 **/
-- (void)onSocket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port;
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port;
 
 /**
  * Called when a socket has completed reading the requested data into memory.
  * Not called if there is an error.
 **/
-- (void)onSocket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag;
 
 /**
  * Called when a socket has read in data, but has not yet completed the read.
  * This would occur if using readToData: or readToLength: methods.
  * It may be used to for things such as updating progress bars.
 **/
-- (void)onSocket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag;
+- (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag;
 
 /**
  * Called when a socket has completed writing the requested data. Not called if there is an error.
 **/
-- (void)onSocket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag;
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag;
 
 /**
  * Called when a socket has written some data, but has not yet completed the entire write.
  * It may be used to for things such as updating progress bars.
 **/
-- (void)onSocket:(GCDAsyncSocket *)sock didWritePartialDataOfLength:(NSUInteger)partialLength tag:(long)tag;
+- (void)socket:(GCDAsyncSocket *)sock didWritePartialDataOfLength:(NSUInteger)partialLength tag:(long)tag;
 
 /**
  * Called if a read operation has reached its timeout without completing.
@@ -650,10 +720,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * 
  * Note that this method may be called multiple times for a single read if you return positive numbers.
 **/
-- (NSTimeInterval)onSocket:(GCDAsyncSocket *)sock
-  shouldTimeoutReadWithTag:(long)tag
-                   elapsed:(NSTimeInterval)elapsed
-                 bytesDone:(NSUInteger)length;
+- (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutReadWithTag:(long)tag
+                                                                 elapsed:(NSTimeInterval)elapsed
+                                                               bytesDone:(NSUInteger)length;
 
 /**
  * Called if a write operation has reached its timeout without completing.
@@ -666,10 +735,9 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * 
  * Note that this method may be called multiple times for a single write if you return positive numbers.
 **/
-- (NSTimeInterval)onSocket:(GCDAsyncSocket *)sock
- shouldTimeoutWriteWithTag:(long)tag
-                   elapsed:(NSTimeInterval)elapsed
-                 bytesDone:(NSUInteger)length;
+- (NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutWriteWithTag:(long)tag
+                                                                  elapsed:(NSTimeInterval)elapsed
+                                                                bytesDone:(NSUInteger)length;
 
 /**
  * Conditionally called if the read stream closes, but the write stream may still be writeable.
@@ -677,7 +745,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * This delegate method is only called if autoDisconnectOnClosedReadStream has been set to NO.
  * See the discussion on the autoDisconnectOnClosedReadStream method for more information.
 **/
-- (void)onSocketDidCloseReadStream:(GCDAsyncSocket *)sock;
+- (void)socketDidCloseReadStream:(GCDAsyncSocket *)sock;
 
 /**
  * Called when a socket disconnects with or without error.
@@ -685,15 +753,15 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * If you call the disconnect method, and the socket wasn't already disconnected,
  * this delegate method will be called before the disconnect method returns.
 **/
-- (void)onSocketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
 
 /**
  * Called after the socket has successfully completed SSL/TLS negotiation.
  * This method is not called unless you use the provided startTLS method.
  * 
  * If a SSL/TLS negotiation fails (invalid certificate, etc) then the socket will immediately close,
- * and the onSocketDidDisconnect:withError: delegate method will be called with the specific SSL error code.
+ * and the socketDidDisconnect:withError: delegate method will be called with the specific SSL error code.
 **/
-- (void)onSocketDidSecure:(GCDAsyncSocket *)sock;
+- (void)socketDidSecure:(GCDAsyncSocket *)sock;
 
 @end
