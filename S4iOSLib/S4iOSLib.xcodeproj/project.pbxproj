@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		0A279E9D129666F4006ECA14 /* WebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A279E9B129666F4006ECA14 /* WebSocket.h */; };
 		0A279E9E129666F4006ECA14 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A279E9C129666F4006ECA14 /* WebSocket.m */; };
+		0A6603EA1296766400857AE4 /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A6603E21296766400857AE4 /* DDASLLogger.h */; };
+		0A6603EB1296766400857AE4 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6603E31296766400857AE4 /* DDASLLogger.m */; };
+		0A6603EC1296766400857AE4 /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A6603E41296766400857AE4 /* DDFileLogger.h */; };
+		0A6603ED1296766400857AE4 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6603E51296766400857AE4 /* DDFileLogger.m */; };
+		0A6603EE1296766400857AE4 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A6603E61296766400857AE4 /* DDLog.h */; };
+		0A6603F01296766400857AE4 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A6603E81296766400857AE4 /* DDTTYLogger.h */; };
+		0A6603F11296766400857AE4 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6603E91296766400857AE4 /* DDTTYLogger.m */; };
+		0A6604381296780D00857AE4 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A6604371296780D00857AE4 /* DDLog.m */; };
 		0A8FCBE0123808CF00E95217 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBDF123808CF00E95217 /* AddressBook.framework */; };
 		0A8FCBE2123808CF00E95217 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBE1123808CF00E95217 /* CoreGraphics.framework */; };
 		0A8FCBE4123808CF00E95217 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBE3123808CF00E95217 /* CoreLocation.framework */; };
@@ -142,6 +150,14 @@
 /* Begin PBXFileReference section */
 		0A279E9B129666F4006ECA14 /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebSocket.h; path = "Vendor/cocoahttpserver-S4/WebSocket.h"; sourceTree = "<group>"; };
 		0A279E9C129666F4006ECA14 /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebSocket.m; path = "Vendor/cocoahttpserver-S4/WebSocket.m"; sourceTree = "<group>"; };
+		0A6603E21296766400857AE4 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDASLLogger.h; path = Vendor/cocoalumberjack/Lumberjack/DDASLLogger.h; sourceTree = "<group>"; };
+		0A6603E31296766400857AE4 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDASLLogger.m; path = Vendor/cocoalumberjack/Lumberjack/DDASLLogger.m; sourceTree = "<group>"; };
+		0A6603E41296766400857AE4 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDFileLogger.h; path = Vendor/cocoalumberjack/Lumberjack/DDFileLogger.h; sourceTree = "<group>"; };
+		0A6603E51296766400857AE4 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = Vendor/cocoalumberjack/Lumberjack/DDFileLogger.m; sourceTree = "<group>"; };
+		0A6603E61296766400857AE4 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDLog.h; path = Vendor/cocoalumberjack/Lumberjack/DDLog.h; sourceTree = "<group>"; };
+		0A6603E81296766400857AE4 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = Vendor/cocoalumberjack/Lumberjack/DDTTYLogger.h; sourceTree = "<group>"; };
+		0A6603E91296766400857AE4 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = Vendor/cocoalumberjack/Lumberjack/DDTTYLogger.m; sourceTree = "<group>"; };
+		0A6604371296780D00857AE4 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = "Vendor/cocoalumberjack-S4/DDLog.m"; sourceTree = "<group>"; };
 		0A8FCBDF123808CF00E95217 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0A8FCBE1123808CF00E95217 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0A8FCBE3123808CF00E95217 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -353,6 +369,21 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		0A6603E11296763A00857AE4 /* cocoalumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				0A6604371296780D00857AE4 /* DDLog.m */,
+				0A6603E21296766400857AE4 /* DDASLLogger.h */,
+				0A6603E31296766400857AE4 /* DDASLLogger.m */,
+				0A6603E41296766400857AE4 /* DDFileLogger.h */,
+				0A6603E51296766400857AE4 /* DDFileLogger.m */,
+				0A6603E61296766400857AE4 /* DDLog.h */,
+				0A6603E81296766400857AE4 /* DDTTYLogger.h */,
+				0A6603E91296766400857AE4 /* DDTTYLogger.m */,
+			);
+			name = cocoalumberjack;
+			sourceTree = "<group>";
+		};
 		0A8FCC021238111900E95217 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +501,7 @@
 			children = (
 				0AADE2051293B72600482CEB /* cocoaasyncsocket */,
 				0AADE2A01293BB5B00482CEB /* cocoahttpserver */,
+				0A6603E11296763A00857AE4 /* cocoalumberjack */,
 				0A8FCC8F1238116700E95217 /* erica_sadun */,
 				0ABA97E3123C3101006861CD /* json-framework */,
 				0ABA9781123C10F1006861CD /* yajl */,
@@ -673,6 +705,10 @@
 				0AEEB2901296206D00C3C9E9 /* SBJsonStreamWriter.h in Headers */,
 				0AEEB2921296206D00C3C9E9 /* SBProxyForJson.h in Headers */,
 				0A279E9D129666F4006ECA14 /* WebSocket.h in Headers */,
+				0A6603EA1296766400857AE4 /* DDASLLogger.h in Headers */,
+				0A6603EC1296766400857AE4 /* DDFileLogger.h in Headers */,
+				0A6603EE1296766400857AE4 /* DDLog.h in Headers */,
+				0A6603F01296766400857AE4 /* DDTTYLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,6 +851,10 @@
 				0AADE2CC1293BBD600482CEB /* HTTPServer.m in Sources */,
 				0AEEB2911296206D00C3C9E9 /* SBJsonStreamWriter.m in Sources */,
 				0A279E9E129666F4006ECA14 /* WebSocket.m in Sources */,
+				0A6603EB1296766400857AE4 /* DDASLLogger.m in Sources */,
+				0A6603ED1296766400857AE4 /* DDFileLogger.m in Sources */,
+				0A6603F11296766400857AE4 /* DDTTYLogger.m in Sources */,
+				0A6604381296780D00857AE4 /* DDLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
