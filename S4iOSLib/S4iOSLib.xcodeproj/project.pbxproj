@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A279E9D129666F4006ECA14 /* WebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A279E9B129666F4006ECA14 /* WebSocket.h */; };
+		0A279E9E129666F4006ECA14 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A279E9C129666F4006ECA14 /* WebSocket.m */; };
 		0A8FCBE0123808CF00E95217 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBDF123808CF00E95217 /* AddressBook.framework */; };
 		0A8FCBE2123808CF00E95217 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBE1123808CF00E95217 /* CoreGraphics.framework */; };
 		0A8FCBE4123808CF00E95217 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBE3123808CF00E95217 /* CoreLocation.framework */; };
@@ -133,13 +135,13 @@
 		0AEEB2911296206D00C3C9E9 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEB28E1296206D00C3C9E9 /* SBJsonStreamWriter.m */; };
 		0AEEB2921296206D00C3C9E9 /* SBProxyForJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AEEB28F1296206D00C3C9E9 /* SBProxyForJson.h */; };
 		0AEEB2C21296224200C3C9E9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEEB2C11296224200C3C9E9 /* CFNetwork.framework */; };
-		0AEEB2C5129622A600C3C9E9 /* WebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AEEB2C3129622A600C3C9E9 /* WebSocket.h */; };
-		0AEEB2C6129622A600C3C9E9 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEB2C4129622A600C3C9E9 /* WebSocket.m */; };
 		AA747D9F0F9514B9006C5449 /* S4iOSLib_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* S4iOSLib_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A279E9B129666F4006ECA14 /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebSocket.h; path = "Vendor/cocoahttpserver-S4/WebSocket.h"; sourceTree = "<group>"; };
+		0A279E9C129666F4006ECA14 /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebSocket.m; path = "Vendor/cocoahttpserver-S4/WebSocket.m"; sourceTree = "<group>"; };
 		0A8FCBDF123808CF00E95217 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0A8FCBE1123808CF00E95217 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0A8FCBE3123808CF00E95217 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -266,8 +268,6 @@
 		0AEEB28E1296206D00C3C9E9 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriter.m; path = "Vendor/json-framework/Classes/SBJsonStreamWriter.m"; sourceTree = "<group>"; };
 		0AEEB28F1296206D00C3C9E9 /* SBProxyForJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBProxyForJson.h; path = "Vendor/json-framework/Classes/SBProxyForJson.h"; sourceTree = "<group>"; };
 		0AEEB2C11296224200C3C9E9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		0AEEB2C3129622A600C3C9E9 /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebSocket.h; path = Vendor/cocoahttpserver/WebSocket.h; sourceTree = "<group>"; };
-		0AEEB2C4129622A600C3C9E9 /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebSocket.m; path = Vendor/cocoahttpserver/WebSocket.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* S4iOSLib_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4iOSLib_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libS4iOSLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libS4iOSLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -502,8 +502,8 @@
 		0AADE2A01293BB5B00482CEB /* cocoahttpserver */ = {
 			isa = PBXGroup;
 			children = (
-				0AEEB2C3129622A600C3C9E9 /* WebSocket.h */,
-				0AEEB2C4129622A600C3C9E9 /* WebSocket.m */,
+				0A279E9B129666F4006ECA14 /* WebSocket.h */,
+				0A279E9C129666F4006ECA14 /* WebSocket.m */,
 				0AADE2A11293BBD600482CEB /* DDData.h */,
 				0AADE2A21293BBD600482CEB /* DDData.m */,
 				0AADE2A31293BBD600482CEB /* DDNumber.h */,
@@ -672,7 +672,7 @@
 				0AADE2CB1293BBD600482CEB /* HTTPServer.h in Headers */,
 				0AEEB2901296206D00C3C9E9 /* SBJsonStreamWriter.h in Headers */,
 				0AEEB2921296206D00C3C9E9 /* SBProxyForJson.h in Headers */,
-				0AEEB2C5129622A600C3C9E9 /* WebSocket.h in Headers */,
+				0A279E9D129666F4006ECA14 /* WebSocket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,7 +814,7 @@
 				0AADE2CA1293BBD600482CEB /* HTTPResponse.m in Sources */,
 				0AADE2CC1293BBD600482CEB /* HTTPServer.m in Sources */,
 				0AEEB2911296206D00C3C9E9 /* SBJsonStreamWriter.m in Sources */,
-				0AEEB2C6129622A600C3C9E9 /* WebSocket.m in Sources */,
+				0A279E9E129666F4006ECA14 /* WebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
