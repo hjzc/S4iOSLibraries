@@ -5,7 +5,6 @@
 #import <mach/mach_host.h>
 #import <mach/host_info.h>
 #import <libkern/OSAtomic.h>
-#import <UIKit/UIKit.h>
 
 
 /**
@@ -26,9 +25,9 @@
 // So we use a primitive logging macro around NSLog.
 // We maintain the NS prefix on the macros to be explicit about the fact that we're using NSLog.
 
-#define DD_DEBUG NO
+#define DEBUG NO
 
-#define NSLogDebug(frmt, ...) do{ if(DD_DEBUG) NSLog((frmt), ##__VA_ARGS__); } while(0)
+#define NSLogDebug(frmt, ...) do{ if(DEBUG) NSLog((frmt), ##__VA_ARGS__); } while(0)
 
 // Specifies the maximum queue size of the logging thread.
 // 
@@ -1187,10 +1186,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 	if (IS_GCD_AVAILABLE)
 	{
 	#if GCD_MAYBE_AVAILABLE
-		if (NULL != loggerQueue)
-		{
-			dispatch_release(loggerQueue);
-		}
+		dispatch_release(loggerQueue);
 	#endif
 	}
 	
