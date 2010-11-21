@@ -466,7 +466,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		// Check if there's a shared keychain access group name provided and set it appropriately.
 		if (accessGroupName)
 		{
-			DLog(@"getPasswordForUsername: adding access group.");
+			NSLog(@"getPasswordForUsername: adding access group.");
 			[mutableQuery setObject:accessGroupName forKey:(id)kSecAttrAccessGroup];
 		}
 

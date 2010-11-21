@@ -6,6 +6,9 @@
 #import <mach/host_info.h>
 #import <libkern/OSAtomic.h>
 
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
 
 /**
  * Welcome to Cocoa Lumberjack!
