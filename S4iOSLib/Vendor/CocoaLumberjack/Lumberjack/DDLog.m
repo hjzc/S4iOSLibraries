@@ -8,6 +8,8 @@
 
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#else
+#import <Cocoa/Cocoa.h>
 #endif
 
 /**
@@ -553,7 +555,7 @@ typedef struct LoggerNode LoggerNode;
 
 + (NSArray *)registeredClasses
 {
-	int numClasses;
+	int numClasses, i;
 	
 	// We're going to get the list of all registered classes.
 	// The Objective-C runtime library automatically registers all the classes defined in your source code.
@@ -579,7 +581,7 @@ typedef struct LoggerNode LoggerNode;
 	
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:numClasses];
 	
-	for (int i = 0; i < numClasses; i++)
+	for (i = 0; i < numClasses; i++)
 	{
 		Class class = classes[i];
 		
