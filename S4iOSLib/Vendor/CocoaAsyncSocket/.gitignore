@@ -9,3 +9,4 @@ target/*
 profile
 *.svn
 /.svn/*
+project.xcworkspace

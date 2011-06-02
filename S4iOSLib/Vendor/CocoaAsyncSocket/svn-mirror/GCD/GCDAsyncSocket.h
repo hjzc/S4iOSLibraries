@@ -12,11 +12,16 @@
 #import <Security/Security.h>
 #import <dispatch/dispatch.h>
 
-@class AsyncReadPacket;
-@class AsyncWritePacket;
+@class GCDAsyncReadPacket;
+@class GCDAsyncWritePacket;
 
 extern NSString *const GCDAsyncSocketException;
 extern NSString *const GCDAsyncSocketErrorDomain;
+
+#if !TARGET_OS_IPHONE
+extern NSString *const GCDAsyncSocketSSLCipherSuites;
+extern NSString *const GCDAsyncSocketSSLDiffieHellmanParameters;
+#endif
 
 enum GCDAsyncSocketError
 {
@@ -63,8 +68,8 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 	NSMutableArray *readQueue;
 	NSMutableArray *writeQueue;
 	
-	AsyncReadPacket *currentRead;
-	AsyncWritePacket *currentWrite;
+	GCDAsyncReadPacket *currentRead;
+	GCDAsyncWritePacket *currentWrite;
 	
 	unsigned long socketFDBytesAvailable;
 	
@@ -77,7 +82,10 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 #else
 	SSLContextRef sslContext;
 	NSMutableData *sslReadBuffer;
+	size_t sslWriteCachedLength;
 #endif
+	
+	id userData;
 }
 
 /**
@@ -103,12 +111,15 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
+- (void)synchronouslySetDelegate:(id)delegate;
 
 - (dispatch_queue_t)delegateQueue;
 - (void)setDelegateQueue:(dispatch_queue_t)delegateQueue;
+- (void)synchronouslySetDelegateQueue:(dispatch_queue_t)delegateQueue;
 
 - (void)getDelegate:(id *)delegatePtr delegateQueue:(dispatch_queue_t *)delegateQueuePtr;
 - (void)setDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
+- (void)synchronouslySetDelegate:(id)delegate delegateQueue:(dispatch_queue_t)delegateQueue;
 
 /**
  * Traditionally sockets are not closed until the conversation is over.
@@ -164,6 +175,13 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 - (BOOL)isIPv4PreferredOverIPv6;
 - (void)setPreferIPv4OverIPv6:(BOOL)flag;
 
+/**
+ * User data allows you to associate arbitrary information with the socket.
+ * This data is not used internally by socket in any way.
+**/
+- (id)userData;
+- (void)setUserData:(id)arbitraryUserData;
+
 #pragma mark Accepting
 
 /**
@@ -190,7 +208,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * or programmatically via the getifaddrs() function.
  * 
  * To accept connections on any interface pass nil, or simply use the acceptOnPort:error: method.
- **/
+**/
 - (BOOL)acceptOnInterface:(NSString *)interface port:(UInt16)port error:(NSError **)errPtr;
 
 #pragma mark Connecting
@@ -198,7 +216,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 /**
  * Connects to the given host and port.
  * 
- * This method invokes connectToHost:onPort:viatInterface:withTimeout:error:
+ * This method invokes connectToHost:onPort:viaInterface:withTimeout:error:
  * and uses the default interface, and no timeout.
 **/
 - (BOOL)connectToHost:(NSString *)host onPort:(UInt16)port error:(NSError **)errPtr;
@@ -206,7 +224,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 /**
  * Connects to the given host and port with an optional timeout.
  * 
- * This method invokes connectToHost:onPort:viatInterface:withTimeout:error: and uses the default interface.
+ * This method invokes connectToHost:onPort:viaInterface:withTimeout:error: and uses the default interface.
 **/
 - (BOOL)connectToHost:(NSString *)host
                onPort:(UInt16)port
@@ -218,6 +236,7 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * 
  * The host may be a domain name (e.g. "deusty.com") or an IP address string (e.g. "192.168.0.2").
  * The interface may be a name (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.4.35").
+ * The interface may also be used to specify the local port (see below).
  * 
  * To not time out use a negative time interval.
  * 
@@ -230,12 +249,80 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * Since this class supports queued reads and writes, you can immediately start reading and/or writing.
  * All read/write operations will be queued, and upon socket connection,
  * the operations will be dequeued and processed in order.
+ * 
+ * The interface may optionally contain a port number at the end of the string, separated by a colon.
+ * This allows you to specify the local port that should be used for the outgoing connection. (read paragraph to end)
+ * To specify both interface and local port: "en1:8082" or "192.168.4.35:2424".
+ * To specify only local port: ":8082".
+ * Please note this is an advanced feature, and is somewhat hidden on purpose.
+ * You should understand that 99.999% of the time you should NOT specify the local port for an outgoing connection.
+ * If you think you need to, there is a very good chance you have a fundamental misunderstanding somewhere.
+ * Local ports do NOT need to match remote ports. In fact, they almost never do.
+ * This feature is here for networking professionals using very advanced techniques.
 **/
 - (BOOL)connectToHost:(NSString *)host
                onPort:(UInt16)port
          viaInterface:(NSString *)interface
           withTimeout:(NSTimeInterval)timeout
                 error:(NSError **)errPtr;
+
+/**
+ * Connects to the given address, specified as a sockaddr structure wrapped in a NSData object.
+ * For example, a NSData object returned from NSNetservice's addresses method.
+ * 
+ * If you have an existing struct sockaddr you can convert it to a NSData object like so:
+ * struct sockaddr sa  -> NSData *dsa = [NSData dataWithBytes:&remoteAddr length:remoteAddr.sa_len];
+ * struct sockaddr *sa -> NSData *dsa = [NSData dataWithBytes:remoteAddr length:remoteAddr->sa_len];
+ * 
+ * This method invokes connectToAdd
+**/
+- (BOOL)connectToAddress:(NSData *)remoteAddr error:(NSError **)errPtr;
+
+/**
+ * This method is the same as connectToAddress:error: with an additional timeout option.
+ * To not time out use a negative time interval, or simply use the connectToAddress:error: method.
+**/
+- (BOOL)connectToAddress:(NSData *)remoteAddr withTimeout:(NSTimeInterval)timeout error:(NSError **)errPtr;
+
+/**
+ * Connects to the given address, using the specified interface and timeout.
+ * 
+ * The address is specified as a sockaddr structure wrapped in a NSData object.
+ * For example, a NSData object returned from NSNetservice's addresses method.
+ * 
+ * If you have an existing struct sockaddr you can convert it to a NSData object like so:
+ * struct sockaddr sa  -> NSData *dsa = [NSData dataWithBytes:&remoteAddr length:remoteAddr.sa_len];
+ * struct sockaddr *sa -> NSData *dsa = [NSData dataWithBytes:remoteAddr length:remoteAddr->sa_len];
+ * 
+ * The interface may be a name (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.4.35").
+ * The interface may also be used to specify the local port (see below).
+ * 
+ * The timeout is optional. To not time out use a negative time interval.
+ * 
+ * This method will return NO if an error is detected, and set the error pointer (if one was given).
+ * Possible errors would be a nil host, invalid interface, or socket is already connected.
+ * 
+ * If no errors are detected, this method will start a background connect operation and immediately return YES.
+ * The delegate callbacks are used to notify you when the socket connects, or if the host was unreachable.
+ * 
+ * Since this class supports queued reads and writes, you can immediately start reading and/or writing.
+ * All read/write operations will be queued, and upon socket connection,
+ * the operations will be dequeued and processed in order.
+ * 
+ * The interface may optionally contain a port number at the end of the string, separated by a colon.
+ * This allows you to specify the local port that should be used for the outgoing connection. (read paragraph to end)
+ * To specify both interface and local port: "en1:8082" or "192.168.4.35:2424".
+ * To specify only local port: ":8082".
+ * Please note this is an advanced feature, and is somewhat hidden on purpose.
+ * You should understand that 99.999% of the time you should NOT specify the local port for an outgoing connection.
+ * If you think you need to, there is a very good chance you have a fundamental misunderstanding somewhere.
+ * Local ports do NOT need to match remote ports. In fact, they almost never do.
+ * This feature is here for networking professionals using very advanced techniques.
+**/
+- (BOOL)connectToAddress:(NSData *)remoteAddr
+            viaInterface:(NSString *)interface
+             withTimeout:(NSTimeInterval)timeout
+                   error:(NSError **)errPtr;
 
 #pragma mark Disconnecting
 
@@ -274,11 +361,15 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
 #pragma mark Diagnostics
 
 /**
- * Returns YES if the socket is disconnected.
+ * Returns whether the socket is disconnected or connected.
+ * 
  * A disconnected socket may be recycled.
  * That is, it can used again for connecting or listening.
+ * 
+ * If a socket is in the process of connecting, it may be neither disconnected nor connected.
 **/
 - (BOOL)isDisconnected;
+- (BOOL)isConnected;
 
 /**
  * Returns the local or remote host and port to which this socket is connected, or nil and 0 if not connected.
@@ -598,16 +689,79 @@ typedef enum GCDAsyncSocketError GCDAsyncSocketError;
  * These methods are only available from within the context of a performBlock: invocation.
  * See the documentation for the performBlock: method above.
  * 
- * Provides access to the socket's internal read/write streams, if SSL/TLS has been started on the socket.
+ * Provides access to the socket's internal read/write streams.
+ * These streams are normally only created if startTLS has been invoked to start SSL/TLS (see note below),
+ * but if these methods are invoked, the read/write streams will be created automatically so that you may use them.
+ * 
+ * See also: (BOOL)enableBackgroundingOnSocket
  * 
  * Note: Apple has decided to keep the SecureTransport framework private is iOS.
  * This means the only supplied way to do SSL/TLS is via CFStream or some other API layered on top of it.
  * Thus, in order to provide SSL/TLS support on iOS we are forced to rely on CFStream,
- * instead of the preferred and more powerful SecureTransport.
- * Read/write streams are only created if startTLS has been invoked to start SSL/TLS.
+ * instead of the preferred and faster and more powerful SecureTransport.
 **/
 - (CFReadStreamRef)readStream;
 - (CFWriteStreamRef)writeStream;
+
+/**
+ * This method is only available from within the context of a performBlock: invocation.
+ * See the documentation for the performBlock: method above.
+ * 
+ * Configures the socket to allow it to operate when the iOS application has been backgrounded.
+ * In other words, this method creates a read & write stream, and invokes:
+ * 
+ * CFReadStreamSetProperty(readStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP);
+ * CFWriteStreamSetProperty(writeStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP);
+ * 
+ * Returns YES if successful, NO otherwise.
+ * 
+ * Note: Apple does not officially support backgrounding server sockets.
+ * That is, if your socket is accepting incoming connections, Apple does not officially support
+ * allowing iOS applications to accept incoming connections while an app is backgrounded.
+ * 
+ * Example usage:
+ * 
+ * - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+ * {
+ *     [asyncSocket performBlock:^{
+ *         [asyncSocket enableBackgroundingOnSocket];
+ *     }];
+ * }
+**/
+- (BOOL)enableBackgroundingOnSocket;
+
+/**
+ * This method is only available from within the context of a performBlock: invocation.
+ * See the documentation for the performBlock: method above.
+ * 
+ * This method should be used in place of the usual enableBackgroundingOnSocket method if
+ * you later plan on securing the socket with SSL/TLS via the startTLS method.
+ * 
+ * This is due to a bug in iOS. Description of the bug:
+ * 
+ * First of all, Apple has decided to keep the SecureTransport framework private in iOS.
+ * This removes the preferred, faster, and more powerful way of doing SSL/TLS.
+ * The only option they have given us on iOS is to use CFStream.
+ * 
+ * In addition to this, Apple does not allow us to enable SSL/TLS on a stream after it has been opened.
+ * This effectively breaks many newer protocols which negotiate upgrades to TLS in-band (such as XMPP).
+ * 
+ * And on top of that, if we flag a socket for backgrounding, that flag doesn't take effect until
+ * after we have opened the socket. And if we try to flag the socket for backgrounding after we've opened
+ * the socket, the flagging fails.
+ * 
+ * So the order of operations matters, and the ONLY order that works is this:
+ * 
+ * - Create read and write stream
+ * - Mark streams for backgrounding
+ * - Setup SSL on streams
+ * - Open streams
+ * 
+ * So the caveat is that this method will mark the socket for backgrounding,
+ * but it will not open the read and write streams. (Because if it did, later attempts to start TLS would fail.)
+ * Thus the socket will not actually support backgrounding until after the startTLS method has been called.
+**/
+- (BOOL)enableBackgroundingOnSocketWithCaveat;
 
 #else
 

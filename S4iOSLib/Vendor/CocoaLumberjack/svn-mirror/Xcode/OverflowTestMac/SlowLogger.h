@@ -2,7 +2,7 @@
 #import "DDLog.h"
 
 
-@interface SlowLogger : NSObject <DDLogger>
+@interface SlowLogger : DDAbstractLogger <DDLogger>
 
 
 @end

@@ -16,10 +16,21 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)normalConnect
 {
 	NSError *error = nil;
-	if (![asyncSocket connectToHost:@"google.com" onPort:80 error:&error])
+	
+	NSString *host = @"google.com";
+//	NSString *host = @"deusty.com";
+	
+	if (![asyncSocket connectToHost:host onPort:80 error:&error])
 	{
 		DDLogError(@"Error connecting: %@", error);
 	}
+
+	// You can also specify an optional connect timeout.
+	
+//	if (![asyncSocket connectToHost:host onPort:80 withTimeout:5.0 error:&error])
+//	{
+//		DDLogError(@"Error connecting: %@", error);
+//	}
 }
 
 - (void)secureConnect
@@ -66,8 +77,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	DDLogInfo(@"socket:%p didConnectToHost:%@ port:%hu", sock, host, port);
 	
+//	DDLogInfo(@"localHost :%@ port:%hu", [sock localHost], [sock localPort]);
+	
 	if (port == 443)
 	{
+		
+	#if !TARGET_IPHONE_SIMULATOR
+		
+		// Backgrounding doesn't seem to be supported on the simulator yet
+		
+		[sock performBlock:^{
+			if ([sock enableBackgroundingOnSocketWithCaveat])
+				DDLogInfo(@"Enabled backgrounding on socket");
+			else
+				DDLogWarn(@"Enabling backgrounding failed!");
+		}];
+		
+	#endif
+		
 		// Configure SSL/TLS settings
 		NSMutableDictionary *settings = [NSMutableDictionary dictionaryWithCapacity:3];
 		
@@ -110,6 +137,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)socketDidSecure:(GCDAsyncSocket *)sock
 {
 	DDLogInfo(@"socketDidSecure:%p", sock);
+}
+
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
+{
+	DDLogInfo(@"socketDidDisconnect:%p withError: %@", sock, err);
 }
 
 - (void)dealloc

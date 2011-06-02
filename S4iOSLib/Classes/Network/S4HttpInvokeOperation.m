@@ -63,6 +63,7 @@
 
 @interface S4HttpInvokeOperation (PrivateImpl)
 
+- (void)dropConnection;
 - (void)doCancel;
 - (void)invokeDataCallback: (NSData *)returnData;
 - (void)invokeErrorCallback: (NSError *)returnError;
@@ -75,6 +76,20 @@
 @implementation S4HttpInvokeOperation (PrivateImpl)
 
 //============================================================================
+//	S4HttpInvokeOperation (PrivateImpl) :: dropConnection
+//============================================================================
+- (void)dropConnection
+{
+	if (nil != m_S4HttpConnection)
+	{
+		[m_S4HttpConnection cancelConnection];
+		[m_S4HttpConnection autorelease];
+		m_S4HttpConnection = nil;
+	}
+}
+
+
+//============================================================================
 //	S4HttpInvokeOperation (PrivateImpl) :: doCancel
 //============================================================================
 - (void)doCancel
@@ -84,12 +99,7 @@
 	[self willChangeValueForKey: @"isExecuting"];
 	
 	// dump the connection
-	if (nil != m_S4HttpConnection)
-	{
-		[m_S4HttpConnection cancelConnection];
-		[m_S4HttpConnection autorelease];
-		m_S4HttpConnection = nil;
-	}
+	[self dropConnection];
 
 	// update internal values
 	m_bFinished = YES;
@@ -200,30 +210,10 @@
 //============================================================================
 - (void)dealloc
 {
-	if (nil != m_S4HttpConnection)
-	{
-		[m_S4HttpConnection cancelConnection];
-		[m_S4HttpConnection autorelease];
-		m_S4HttpConnection = nil;
-	}
-	
-	if (nil != m_UrlRequest)
-	{
-		[m_UrlRequest release];
-		m_UrlRequest = nil;
-	}
-	
-	if (nil != m_DataInvocation)
-	{
-		[m_DataInvocation release];
-		m_DataInvocation = nil;
-	}
-	
-	if (nil != m_ErrInvocation)
-	{
-		[m_ErrInvocation release];
-		m_ErrInvocation = nil;
-	}
+	[self dropConnection];
+	NS_SAFE_RELEASE(m_UrlRequest)
+	NS_SAFE_RELEASE(m_DataInvocation)
+	NS_SAFE_RELEASE(m_ErrInvocation)
 
 	[super dealloc];
 }
@@ -238,38 +228,49 @@
 //============================================================================
 - (void)start
 {
-	if (NO == [self isCancelled])
+	if (YES == [NSThread isMainThread])
 	{
-		if (NO == m_bStarted)
+		if (NO == [self isCancelled])
 		{
-			if (YES == m_bReady)
+			if (NO == m_bStarted)
 			{
-				m_bStarted = YES;
-				m_S4HttpConnection = [[S4HttpConnection alloc] init];
-				if (nil != m_S4HttpConnection)
+				if (YES == m_bReady)
 				{
-					if ([m_S4HttpConnection openConnectionForRequest: m_UrlRequest delegate: self])
+					m_bStarted = YES;
+					m_S4HttpConnection = [[S4HttpConnection alloc] init];
+					if (nil != m_S4HttpConnection)
 					{
-						// KVO compliance
-						[self willChangeValueForKey: @"isExecuting"];
-						m_bExecuting = YES;
-						[self didChangeValueForKey: @"isExecuting"];
-					}
+						if ([m_S4HttpConnection openConnectionForRequest: m_UrlRequest delegate: self])
+						{
+							// KVO compliance
+							[self willChangeValueForKey: @"isExecuting"];
+							m_bExecuting = YES;
+							[self didChangeValueForKey: @"isExecuting"];
+						}
 
-					// release the request now
-					[m_UrlRequest release];
-					m_UrlRequest = nil;				
+						// release the request now
+						[m_UrlRequest release];
+						m_UrlRequest = nil;				
+					}
+				}
+				else
+				{
+					@throw [NSException exceptionWithName: NSInvalidArgumentException
+												   reason: @"S4HttpInvokeOperation started without calling prepareForRequest"
+												 userInfo: nil];
 				}
 			}
 			else
 			{
-				@throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"S4HttpInvokeOperation started without calling prepareForRequest" userInfo: nil];
+				@throw [NSException exceptionWithName: NSInvalidArgumentException
+											   reason: @"[S4HttpInvokeOperation start] has already been performed"
+											 userInfo: nil];
 			}
 		}
-		else
-		{
-			@throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"[S4HttpInvokeOperation start] has already been performed" userInfo: nil];
-		}
+	}
+	else	// iOS 4 bug fix
+	{
+		[self performSelectorOnMainThread: @selector(start) withObject: nil waitUntilDone: NO];
 	}
 }
 

@@ -34,6 +34,7 @@
 		0A8FCF0812382A4C00E95217 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FCF0212382A4C00E95217 /* Icon.png */; };
 		0A8FCF0912382A4C00E95217 /* localSearch.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FCF0312382A4C00E95217 /* localSearch.xml */; };
 		0A8FCF0A12382A4C00E95217 /* NearbyVendorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A8FCF0412382A4C00E95217 /* NearbyVendorsCell.xib */; };
+		0AC5434A13013E9A00CB8702 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC5434913013E9A00CB8702 /* Security.framework */; };
 		0AEEB27D1296201B00C3C9E9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEEB27C1296201B00C3C9E9 /* CFNetwork.framework */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -116,6 +117,7 @@
 		0A8FCF0212382A4C00E95217 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
 		0A8FCF0312382A4C00E95217 /* localSearch.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = localSearch.xml; path = Resources/localSearch.xml; sourceTree = "<group>"; };
 		0A8FCF0412382A4C00E95217 /* NearbyVendorsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NearbyVendorsCell.xib; path = Resources/NearbyVendorsCell.xib; sourceTree = "<group>"; };
+		0AC5434913013E9A00CB8702 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0AEEB27C1296201B00C3C9E9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* S4iOSLibTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = S4iOSLibTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 				0A8FCE7012381C0C00E95217 /* libS4iOSLib.a in Frameworks */,
 				0A87F1A9125B08C800963595 /* libS4iOS_UI_Lib.a in Frameworks */,
 				0AEEB27D1296201B00C3C9E9 /* CFNetwork.framework in Frameworks */,
+				0AC5434A13013E9A00CB8702 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,19 +360,20 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				0A8FCD0A1238197D00E95217 /* AddressBook.framework */,
+				0AEEB27C1296201B00C3C9E9 /* CFNetwork.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				0A8FCD0C1238197D00E95217 /* CoreLocation.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				0A8FCD261238199C00E95217 /* libsqlite3.dylib */,
+				0A8FCD281238199C00E95217 /* libxml2.dylib */,
 				0A8FCD0E1238197D00E95217 /* MapKit.framework */,
 				0A8FCD101238197D00E95217 /* MediaPlayer.framework */,
 				0A8FCD121238197D00E95217 /* MessageUI.framework */,
 				0A8FCD141238197D00E95217 /* OpenGLES.framework */,
+				0AC5434913013E9A00CB8702 /* Security.framework */,
 				0A8FCD161238197D00E95217 /* SystemConfiguration.framework */,
-				0A8FCD261238199C00E95217 /* libsqlite3.dylib */,
-				0A8FCD281238199C00E95217 /* libxml2.dylib */,
-				0AEEB27C1296201B00C3C9E9 /* CFNetwork.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

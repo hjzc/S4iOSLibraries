@@ -54,6 +54,18 @@
 */
 #ifdef DEBUG
 
+/*
+ These are a number of compile-time macros that you can use in your NSLog statements to help you see more about your code:
+
+			Macro						Format Specifier			Description
+	NSStringFromSelector(_cmd)				 %@					Name of the current selector
+	NSStringFromClass([self class])			 %@					Name of the current object’s class
+	__FUNCTION__							 %s					Current function signature
+	__FILE__								 %s					Path of the current file
+	__LINE__								 %d					Current line number
+	__PRETTY_FUNCTION__						 %s					Complete current function signature (with arguments).
+*/
+
 #define S4DebugLog(fmt, ...)							NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 
 #else
@@ -112,6 +124,23 @@
 		{												\
 			mValue = nil;								\
 		}												\
+		if (IS_NOT_NULL(oldValue))						\
+		{												\
+			[oldValue release];							\
+		}												\
+	}													\
+}
+
+
+// macro for safely setting an Objective-C object var via assign
+//  NOTE: we don't want to retain the newValue, but do want to
+//        release the previous object (if any)
+#define S4_SAFE_OBJ_ASSIGN(mValue, newValue)			\
+{														\
+	if (mValue != newValue)								\
+	{													\
+		id oldValue = mValue;							\
+		mValue = newValue;								\
 		if (IS_NOT_NULL(oldValue))						\
 		{												\
 			[oldValue release];							\

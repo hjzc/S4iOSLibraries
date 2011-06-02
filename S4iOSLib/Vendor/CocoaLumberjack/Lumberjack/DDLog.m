@@ -6,11 +6,6 @@
 #import <mach/host_info.h>
 #import <libkern/OSAtomic.h>
 
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <Cocoa/Cocoa.h>
-#endif
 
 /**
  * Welcome to Cocoa Lumberjack!
@@ -178,9 +173,9 @@ typedef struct LoggerNode LoggerNode;
 		}
 		
 	#if TARGET_OS_IPHONE
-		NSString *notificationName = UIApplicationWillTerminateNotification;
+		NSString *notificationName = @"UIApplicationWillTerminateNotification";
 	#else
-		NSString *notificationName = NSApplicationWillTerminateNotification;
+		NSString *notificationName = @"NSApplicationWillTerminateNotification";
 	#endif
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self
@@ -240,7 +235,7 @@ typedef struct LoggerNode LoggerNode;
 			
 			[self lt_addLogger:logger];
 			
-			[pool release];
+			[pool drain];
 		};
 		
 		dispatch_async(loggingQueue, addLoggerBlock);
@@ -270,7 +265,7 @@ typedef struct LoggerNode LoggerNode;
 			
 			[self lt_removeLogger:logger];
 			
-			[pool release];
+			[pool drain];
 		};
 		
 		dispatch_async(loggingQueue, removeLoggerBlock);
@@ -298,7 +293,7 @@ typedef struct LoggerNode LoggerNode;
 			
 			[self lt_removeAllLoggers];
 			
-			[pool release];
+			[pool drain];
 		};
 		
 		dispatch_async(loggingQueue, removeAllLoggersBlock);
@@ -455,7 +450,7 @@ typedef struct LoggerNode LoggerNode;
 			
 			[self lt_log:logMessage];
 			
-			[pool release];
+			[pool drain];
 		};
 		
 		if (flag)
@@ -478,6 +473,7 @@ typedef struct LoggerNode LoggerNode;
 + (void)log:(BOOL)synchronous
       level:(int)level
        flag:(int)flag
+    context:(int)context
        file:(const char *)file
    function:(const char *)function
        line:(int)line
@@ -492,6 +488,7 @@ typedef struct LoggerNode LoggerNode;
 		DDLogMessage *logMessage = [[DDLogMessage alloc] initWithLogMsg:logMsg
 		                                                          level:level
 		                                                           flag:flag
+		                                                        context:context
 		                                                           file:file
 		                                                       function:function
 		                                                           line:line];
@@ -516,7 +513,7 @@ typedef struct LoggerNode LoggerNode;
 			
 			[self lt_flush];
 			
-			[pool release];
+			[pool drain];
 		};
 		
 		dispatch_sync(loggingQueue, flushBlock);
@@ -660,7 +657,7 @@ typedef struct LoggerNode LoggerNode;
 	
 	[[NSRunLoop currentRunLoop] run];
 	
-	[pool release];
+	[pool drain];
 }
 
 #endif
@@ -682,9 +679,13 @@ typedef struct LoggerNode LoggerNode;
 		
 		if ([logger respondsToSelector:@selector(loggerQueue)])
 		{
-			// Logger is providing its own queue
+			// Logger may be providing its own queue
 			
 			loggerNode->loggerQueue = [logger loggerQueue];
+		}
+		
+		if (loggerNode->loggerQueue)
+		{
 			dispatch_retain(loggerNode->loggerQueue);
 		}
 		else
@@ -889,7 +890,7 @@ typedef struct LoggerNode LoggerNode;
 					
 					[currentNode->logger logMessage:logMessage];
 					
-					[pool release];
+					[pool drain];
 				};
 				
 				dispatch_group_async(loggingGroup, currentNode->loggerQueue, loggerBlock);
@@ -912,7 +913,7 @@ typedef struct LoggerNode LoggerNode;
 					
 					[currentNode->logger logMessage:logMessage];
 					
-					[pool release];
+					[pool drain];
 				};
 				
 				dispatch_sync(currentNode->loggerQueue, loggerBlock);
@@ -1005,7 +1006,52 @@ typedef struct LoggerNode LoggerNode;
 **/
 + (void)lt_flush
 {
-	// All log statements issued before the flush method was invoked have now been flushed
+	// All log statements issued before the flush method was invoked have now been executed.
+	// 
+	// Now we need to propogate the flush request to any loggers that implement the flush method.
+	// This is designed for loggers that buffer IO.
+	
+	if (IS_GCD_AVAILABLE)
+	{
+	#if GCD_MAYBE_AVAILABLE
+		
+		LoggerNode *currentNode = loggerNodes;
+		
+		while (currentNode)
+		{
+			if ([currentNode->logger respondsToSelector:@selector(flush)])
+			{
+				dispatch_block_t loggerBlock = ^{
+					NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+					
+					[currentNode->logger flush];
+					
+					[pool drain];
+				};
+				
+				dispatch_group_async(loggingGroup, currentNode->loggerQueue, loggerBlock);
+			}
+			currentNode = currentNode->next;
+		}
+		
+		dispatch_group_wait(loggingGroup, DISPATCH_TIME_FOREVER);
+		
+	#endif
+	}
+	else
+	{
+	#if GCD_MAYBE_UNAVAILABLE
+		
+		for (id <DDLogger> logger in loggers)
+		{
+			if ([logger respondsToSelector:@selector(flush)])
+			{
+				[logger flush];
+			}
+		}
+		
+	#endif
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1095,17 +1141,19 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 - (id)initWithLogMsg:(NSString *)msg
                level:(int)level
                 flag:(int)flag
+             context:(int)context
                 file:(const char *)aFile
             function:(const char *)aFunction
                 line:(int)line
 {
 	if((self = [super init]))
 	{
-		logMsg = [msg retain];
-		logLevel = level;
-		logFlag = flag;
-		file = aFile;
-		function = aFunction;
+		logMsg     = [msg retain];
+		logLevel   = level;
+		logFlag    = flag;
+		logContext = context;
+		file       = aFile;
+		function   = aFunction;
 		lineNumber = line;
 		
 		timestamp = [[NSDate alloc] init];
@@ -1151,6 +1199,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 	[timestamp release];
 	
 	[threadID release];
+	[fileName release];
 	[methodName release];
 	
 	[super dealloc];
@@ -1191,10 +1240,7 @@ NSString *ExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
 	if (IS_GCD_AVAILABLE)
 	{
 	#if GCD_MAYBE_AVAILABLE
-		if (NULL != loggerQueue)
-		{
-			dispatch_release(loggerQueue);
-		}
+		if (loggerQueue) dispatch_release(loggerQueue);
 	#endif
 	}
 	
