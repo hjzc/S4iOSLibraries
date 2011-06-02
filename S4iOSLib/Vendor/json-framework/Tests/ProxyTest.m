@@ -28,7 +28,7 @@
  */
 
 #import <SenTestingKit/SenTestingKit.h>
-#import <JSON/JSON.h>
+#import <SBJson/SBJson.h>
 
 #pragma mark Helper objects
 
@@ -55,7 +55,7 @@
 
 @implementation Bool
 - (id)proxyForJson {
-    return [NSArray arrayWithObjects:[True new], [False new], nil];
+    return [NSArray arrayWithObjects:[[True new] autorelease], [[False new] autorelease], nil];
 }
 @end
 
@@ -85,7 +85,7 @@
 
 - (void)testUnsupportedWithoutProxy {
     STAssertNil([writer stringWithObject:[NSArray arrayWithObject:[NSObject new]]], nil);
-    STAssertEquals([[writer.errorTrace objectAtIndex:0] code], (NSInteger)EUNSUPPORTED, nil);
+	STAssertEqualObjects(writer.error, @"JSON serialisation not supported for NSObject", nil);
 }
 
 - (void)testUnsupportedWithProxy {

@@ -29,7 +29,7 @@
 
 
 #import <SenTestingKit/SenTestingKit.h>
-#import <JSON/JSON.h>
+#import <SBJson/SBJson.h>
 
 @interface WriterTest : SenTestCase {
 	SBJsonWriter * writer;
@@ -66,10 +66,17 @@
 	 */
 }
 
+- (void)testTimeInterval {
+	NSTimeInterval interval = 319670801.45073098; // seconds since epoc
+	NSNumber *number = [NSNumber numberWithDouble:interval];
+	NSArray *array = [NSArray arrayWithObject:number];
+
+	STAssertEqualObjects(@"[319670801.45073098]", [writer stringWithObject:array], nil);
+}
+
 
 - (void)testWriteToStream {
-	NSOutputStream *stream = [NSOutputStream outputStreamToMemory];	
-	SBJsonStreamWriter *streamWriter = [[[SBJsonStreamWriter alloc] initWithStream:stream] autorelease];
+	SBJsonStreamWriter *streamWriter = [[[SBJsonStreamWriter alloc] init] autorelease];
 	
 	STAssertTrue([streamWriter writeArray:[NSArray array]], nil);
 	
