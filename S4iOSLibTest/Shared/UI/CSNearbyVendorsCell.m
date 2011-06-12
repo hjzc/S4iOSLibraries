@@ -147,7 +147,7 @@ const char						*g_YahooSearchUrlPath = "http://www.google.com/webhp?hl=en";
 	if (YES)
 	{
 		// this works
-		path = @"http://mozcom-cdn.mozilla.net/img/tignish/home/sidebar-mobile.png";
+		path = @"http://a2.twimg.com/profile_images/1303409503/avatar_normal.png";
 		// this 404's
 //		path = @"http://www.seastonessoftware.com/images/squirrels";
 		// this is a raw NSURLError

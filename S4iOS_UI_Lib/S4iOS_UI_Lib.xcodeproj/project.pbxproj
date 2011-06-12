@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A40ABCE13A43B50005BF1B0 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A40ABCD13A43B4F005BF1B0 /* SFHFKeychainUtils.h */; };
 		0AB5B16E125AA9C000B7767B /* S4AbstractAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB5B16C125AA9C000B7767B /* S4AbstractAppDelegate.h */; };
 		0AB5B16F125AA9C000B7767B /* S4AbstractAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5B16D125AA9C000B7767B /* S4AbstractAppDelegate.m */; };
 		0AB5B17E125AA9D700B7767B /* S4FullScreenMoviePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB5B170125AA9D700B7767B /* S4FullScreenMoviePlayer.h */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A40ABCD13A43B4F005BF1B0 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		0AB5B16C125AA9C000B7767B /* S4AbstractAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4AbstractAppDelegate.h; path = Classes/Application/S4AbstractAppDelegate.h; sourceTree = "<group>"; };
 		0AB5B16D125AA9C000B7767B /* S4AbstractAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = S4AbstractAppDelegate.m; path = Classes/Application/S4AbstractAppDelegate.m; sourceTree = "<group>"; };
 		0AB5B170125AA9D700B7767B /* S4FullScreenMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4FullScreenMoviePlayer.h; path = Classes/UI/S4FullScreenMoviePlayer.h; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		0AD53A43125AA4F6009EC85A /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				0A40ABCD13A43B4F005BF1B0 /* SFHFKeychainUtils.h */,
 				0AD53A44125AA4F6009EC85A /* Base64Transcoder.h */,
 				0AD53A46125AA4F6009EC85A /* hmac.h */,
 				0AD53A47125AA4F6009EC85A /* NSCollections+S4Utilities.h */,
@@ -351,6 +354,7 @@
 				0AB5B188125AA9D700B7767B /* S4TextUtils.h in Headers */,
 				0AB5B18A125AA9D700B7767B /* S4WebViewController.h in Headers */,
 				0AB5B1D9125AADB300B7767B /* UIColor+S4Utilities.h in Headers */,
+				0A40ABCE13A43B50005BF1B0 /* SFHFKeychainUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +420,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"dist/libS4iOS_UI_Lib.a\" ] ; then\n  rm dist/libS4iOS_UI_Lib.a\nfi\n\nif [ -e \"dist/Headers/S4AbstractAppDelegate.h\" ] ; then\n  rm dist/Headers/*.h\nfi\n\nif [ -e \"dist/Resources/ico_refresh.png\" ] ; then\n  rm dist/Resources/*.png\nfi\n\nif [ -e \"dist/Resources/S4WebView.xib\" ] ; then\n  rm dist/Resources/*.xib\nfi\n";
+			shellScript = "if [ -e \"${PROJECT_DIR}/dist/libS4iOS_UI_Lib.a\" ] ; then\n  rm ${PROJECT_DIR}/dist/libS4iOS_UI_Lib.a\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Headers/S4AbstractAppDelegate.h\" ] ; then\n  rm ${PROJECT_DIR}/dist/Headers/*.h\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Resources/ico_refresh.png\" ] ; then\n  rm ${PROJECT_DIR}/dist/Resources/*.png\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Resources/S4WebView.xib\" ] ; then\n  rm ${PROJECT_DIR}/dist/Resources/*.xib\nfi\n";
 		};
 		0AD539FC125AA343009EC85A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -429,7 +433,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"build/Release-iphoneos/libS4iOS_UI_Lib.a\" ] ; then\n\tif [ -e \"build/Debug-iphonesimulator/libS4iOS_UI_Lib.a\" ] ; then\n\t\tlipo -create \"build/Release-iphoneos/libS4iOS_UI_Lib.a\" \"build/Debug-iphonesimulator/libS4iOS_UI_Lib.a\" -output \"dist/libS4iOS_UI_Lib.a\"\n\t\tcp Classes/Application/*.h dist/Headers/\n\t\tcp Classes/Categories/*.h dist/Headers/\n\t\tcp Classes/UI/*.h dist/Headers/\n\t\tcp Resources/* dist/Resources\n\tfi\nfi\n";
+			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOS_UI_Lib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOS_UI_Lib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOS_UI_Lib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOS_UI_Lib.a\" -output \"${PROJECT_DIR}/dist/libS4iOS_UI_Lib.a\"\n\t\tcp ${PROJECT_DIR}/Classes/Application/*.h dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Categories/*.h dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/UI/*.h dist/Headers/\n\t\tcp ${PROJECT_DIR}/Resources/* dist/Resources\n\tfi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
