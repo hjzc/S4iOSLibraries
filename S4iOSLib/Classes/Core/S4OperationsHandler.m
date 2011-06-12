@@ -172,7 +172,8 @@ static BOOL								g_bInitialized = NO;
 //============================================================================
 - (id)init
 {
-	if (self = [super init])
+	self = [super init];
+	if (nil != self)
 	{
 		self.m_instanceOperationQueue = g_classOperationQueue;
 	}
@@ -185,7 +186,8 @@ static BOOL								g_bInitialized = NO;
 //============================================================================
 - (id)initWithOperationQueue: (NSOperationQueue *)queue
 {
-	if (self = [super init])
+	self = [super init];
+	if (nil != self)
 	{
 		if IS_NOT_NULL(queue)
 		{

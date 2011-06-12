@@ -627,7 +627,8 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 - (id)init
 {
-	if (self = [super init])
+	self = [super init];
+	if (nil != self)
 	{
 		// public member vars
 		self.delegate = nil;

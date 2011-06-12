@@ -110,7 +110,7 @@ static classname						*g_clsInstance = nil;		\
 }																	\
 																	\
 																	\
-- (void)release														\
+- (oneway void)release												\
 {																	\
 }																	\
 																	\

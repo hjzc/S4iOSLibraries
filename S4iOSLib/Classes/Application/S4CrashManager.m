@@ -74,6 +74,9 @@ volatile int32_t					g_failureCount = 0;
 
 // ============================= Forward Declarations ==================================
 
+void S4ExceptionHandler(NSException *exception);
+void S4SignalHandler(int signal);
+void InstallS4Handlers(void);
 
 
 // ================================== Inlines ==========================================

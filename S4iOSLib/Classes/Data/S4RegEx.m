@@ -124,7 +124,8 @@ S4_INTERN_CONSTANT_NSSTR			kS4EmailRegexPattern =	@"(?:[a-z0-9!#$%\\&'*+/=?\\^_`
 {
 	id					idResult = nil;
 
-	if (self = [super init])
+	self = [super init];
+	if (nil != self)
 	{
 		m_regExPredicate = nil;
 
