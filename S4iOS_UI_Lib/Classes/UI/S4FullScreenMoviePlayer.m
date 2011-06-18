@@ -223,7 +223,7 @@
 		// now see if we are on an OS that supports the MPMoviePlayerViewController class
 		if (YES == [viewController respondsToSelector: @selector(presentMoviePlayerViewControllerAnimated:)])
 		{
-			tmpMovieVC = (MPMoviePlayerViewController *)[S4ObjC_Utilities instanceForClassName: @"MPMoviePlayerViewController" additionalInstanceBytes: 0];
+			tmpMovieVC = (MPMoviePlayerViewController *)[[S4ObjC_Utilities instanceForClassName: @"MPMoviePlayerViewController" additionalInstanceBytes: 0] retain];
 			if (IS_NOT_NULL(tmpMovieVC))
 			{
 				m_movieViewController = [tmpMovieVC initWithContentURL: self.contentURL];

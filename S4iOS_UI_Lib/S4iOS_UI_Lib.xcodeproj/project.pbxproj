@@ -433,7 +433,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOS_UI_Lib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOS_UI_Lib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOS_UI_Lib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOS_UI_Lib.a\" -output \"${PROJECT_DIR}/dist/libS4iOS_UI_Lib.a\"\n\t\tcp ${PROJECT_DIR}/Classes/Application/*.h dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Categories/*.h dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/UI/*.h dist/Headers/\n\t\tcp ${PROJECT_DIR}/Resources/* dist/Resources\n\tfi\nfi\n";
+			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOS_UI_Lib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOS_UI_Lib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOS_UI_Lib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOS_UI_Lib.a\" -output \"${PROJECT_DIR}/dist/libS4iOS_UI_Lib.a\"\n\t\tcp ${PROJECT_DIR}/Classes/Application/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Categories/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/UI/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Resources/* ${PROJECT_DIR}/dist/Resources\n\tfi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
