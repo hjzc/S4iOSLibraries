@@ -31,3 +31,5 @@ profile
 */*/xcuserdata
 */*/*/xcuserdata
 */*/*/*/xcuserdata
+*.hg
+/.hg/*
