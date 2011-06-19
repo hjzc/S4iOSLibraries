@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A21B24013AE60CD005AC674 /* yajl_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A21B23F13AE60CD005AC674 /* yajl_tree.h */; };
+		0A21B24313AE60FE005AC674 /* yajl_tree.c in Sources */ = {isa = PBXBuildFile; fileRef = 0A21B24113AE60FE005AC674 /* yajl_tree.c */; };
+		0A21B24413AE60FE005AC674 /* yajl_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 0A21B24213AE60FE005AC674 /* yajl_version.c */; };
 		0A3E48A81298BA5600D33673 /* AsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A3E48A41298BA5600D33673 /* AsyncSocket.h */; };
 		0A3E48A91298BA5600D33673 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3E48A51298BA5600D33673 /* AsyncSocket.m */; };
 		0A3E48AA1298BA5600D33673 /* AsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A3E48A61298BA5600D33673 /* AsyncUdpSocket.h */; };
@@ -170,6 +173,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A21B23F13AE60CD005AC674 /* yajl_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_tree.h; sourceTree = "<group>"; };
+		0A21B24113AE60FE005AC674 /* yajl_tree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = yajl_tree.c; path = Vendor/yajl/src/yajl_tree.c; sourceTree = "<group>"; };
+		0A21B24213AE60FE005AC674 /* yajl_version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = yajl_version.c; path = Vendor/yajl/src/yajl_version.c; sourceTree = "<group>"; };
 		0A3E48A41298BA5600D33673 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = "Vendor/CocoaAsyncSocket/Github-fork/RunLoop/AsyncSocket.h"; sourceTree = "<group>"; };
 		0A3E48A51298BA5600D33673 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = "Vendor/CocoaAsyncSocket/Github-fork/RunLoop/AsyncSocket.m"; sourceTree = "<group>"; };
 		0A3E48A61298BA5600D33673 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = "Vendor/CocoaAsyncSocket/Github-fork/RunLoop/AsyncUdpSocket.h"; sourceTree = "<group>"; };
@@ -416,12 +422,12 @@
 		0A3E48A31298BA2500D33673 /* CocoaAsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
-				0AAA597313976813006FB758 /* GCDAsyncSocket.h */,
-				0AAA597413976813006FB758 /* GCDAsyncSocket.m */,
 				0A3E48A41298BA5600D33673 /* AsyncSocket.h */,
 				0A3E48A51298BA5600D33673 /* AsyncSocket.m */,
 				0A3E48A61298BA5600D33673 /* AsyncUdpSocket.h */,
 				0A3E48A71298BA5600D33673 /* AsyncUdpSocket.m */,
+				0AAA597313976813006FB758 /* GCDAsyncSocket.h */,
+				0AAA597413976813006FB758 /* GCDAsyncSocket.m */,
 			);
 			name = CocoaAsyncSocket;
 			sourceTree = "<group>";
@@ -603,6 +609,8 @@
 				0ABA9792123C114F006861CD /* yajl_lex.h */,
 				0ABA9793123C114F006861CD /* yajl_parser.c */,
 				0ABA9794123C114F006861CD /* yajl_parser.h */,
+				0A21B24113AE60FE005AC674 /* yajl_tree.c */,
+				0A21B24213AE60FE005AC674 /* yajl_version.c */,
 				0ABA9796123C114F006861CD /* yajl.c */,
 			);
 			name = yajl;
@@ -611,6 +619,7 @@
 		0ABA9782123C114F006861CD /* api */ = {
 			isa = PBXGroup;
 			children = (
+				0A21B23F13AE60CD005AC674 /* yajl_tree.h */,
 				0ABA9783123C114F006861CD /* yajl_common.h */,
 				0ABA9784123C114F006861CD /* yajl_gen.h */,
 				0ABA9785123C114F006861CD /* yajl_parse.h */,
@@ -795,6 +804,7 @@
 				0AC835E513977260007D3010 /* SBJsonTokeniser.h in Headers */,
 				0AC835E713977260007D3010 /* SBJsonUTF8Stream.h in Headers */,
 				0AC835EF139772CA007D3010 /* NSObject+SBJson.h in Headers */,
+				0A21B24013AE60CD005AC674 /* yajl_tree.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +962,8 @@
 				0AC835E613977260007D3010 /* SBJsonTokeniser.m in Sources */,
 				0AC835E813977260007D3010 /* SBJsonUTF8Stream.m in Sources */,
 				0AC835F0139772CA007D3010 /* NSObject+SBJson.m in Sources */,
+				0A21B24313AE60FE005AC674 /* yajl_tree.c in Sources */,
+				0A21B24413AE60FE005AC674 /* yajl_version.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
