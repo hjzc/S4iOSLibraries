@@ -10,3 +10,5 @@ target/*
 profile
 *.svn
 /.svn/*
+Makefile
+
