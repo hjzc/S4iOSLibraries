@@ -60,17 +60,13 @@
 
 
 - (sbjson_token_t)match:(const char *)pattern length:(NSUInteger)len retval:(sbjson_token_t)token {
-    if (![_stream ensureChars:len])
+    if (![_stream haveRemainingCharacters:len])
         return sbjson_token_eof;
 
     if ([_stream skipCharacters:pattern length:len])
         return token;
 
-    char bytes[len+1];
-    (void)[_stream getBytes:bytes length:len];
-
-    NSString *fmt = [NSString stringWithFormat:@"Expected '%%s' but found '%%.%us'", len];
-    self.error = [NSString stringWithFormat:fmt, pattern, bytes];
+    self.error = [NSString stringWithFormat:@"Expected '%s' after initial '%.1s'", pattern, pattern];
     return sbjson_token_error;
 }
 
@@ -148,6 +144,12 @@
             NSMutableString *string = nil;
             if (![_stream getSimpleString:&string])
                 return sbjson_token_eof;
+            
+            if (!string) {
+                self.error = @"Broken Unicode encoding";
+                return sbjson_token_error;
+            }
+                
         
             if (![_stream getUnichar:&ch])
                 return sbjson_token_eof;
@@ -182,7 +184,7 @@
                     return sbjson_token_eof;
 
                 if (ch == 'u') {
-                    if (![_stream ensureChars:5])
+                    if (![_stream haveRemainingCharacters:5])
                         return sbjson_token_eof;
 
                     unichar hi;
@@ -194,7 +196,7 @@
                     if (CFStringIsSurrogateHighCharacter(hi)) {
                         unichar lo;
 
-                        if (![_stream ensureChars:6])
+                        if (![_stream haveRemainingCharacters:6])
                             return sbjson_token_eof;
 
                         (void)[_stream getNextUnichar:&ch];
@@ -229,9 +231,8 @@
                 break;
 
             default: {
-                char bytes[1];
-                [_stream getBytes:bytes length:1];
-                [NSException raise:@"unexpected error" format:@"Should not get here: '%c'", *bytes];
+                self.error = [NSString stringWithFormat:@"Invalid UTF-8: '%x'", (int)ch];
+                return sbjson_token_error;
                 break;
             }
         }
@@ -346,17 +347,9 @@
         return sbjson_token_error;
 
     } else if (mantissa_length >= 19) {
-        // The super slow path... for REALLY long numbers
-        NSUInteger index = _stream.index;        
-        NSUInteger length = index - numberStart;
-        char bytes[length+1];
-
-        _stream.index = numberStart;
-        [_stream getBytes:bytes length:length];
-        _stream.index = index;
-
-        NSString *numberString = [[[NSString alloc] initWithBytes:bytes length:length encoding:NSUTF8StringEncoding] autorelease];
-        *token = [NSDecimalNumber decimalNumberWithString:numberString];
+        
+        NSString *number = [_stream stringWithRange:NSMakeRange(numberStart, _stream.index - numberStart)];
+        *token = [NSDecimalNumber decimalNumberWithString:number];
 
     } else if (!isFloat && !hasExponent) {
         if (!isNegative)

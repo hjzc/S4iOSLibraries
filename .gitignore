@@ -17,6 +17,7 @@ S4iOSLib/Vendor/cocoahttpserver/AsyncSocket.m
 S4iOSLib/Vendor/cocoahttpserver/Samples
 S4iOSLib/Vendor/cocoalumberjack/Benchmarking
 S4iOSLib/Vendor/cocoalumberjack/Xcode
+S4iOSLib/Vendor/json-framework/Examples
 S4iOSLibTest/build/
 *.pbxuser
 *.mode1v3

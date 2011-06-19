@@ -55,9 +55,6 @@
         // Discard data we've already parsed
 		[_data replaceBytesInRange:NSMakeRange(0, _index) withBytes:"" length:0];
         
-        // Keep track of how much we have discarded
-        _discarded += _index;
-        
         // Reset index to point to current position
 		_index = 0;
 	}
@@ -124,7 +121,7 @@
     }
 }
 
-- (BOOL)ensureChars:(NSUInteger)chars {
+- (BOOL)haveRemainingCharacters:(NSUInteger)chars {
     return [_data length] - _index >= chars;
 }
 
@@ -137,13 +134,9 @@
     return NO;
 }
 
-- (BOOL)getBytes:(char *)bytes length:(NSUInteger)length {
-    if (![self ensureChars:length])
-        return NO;
+- (NSString*)stringWithRange:(NSRange)range {
+    return [[[NSString alloc] initWithBytes:_bytes + range.location length:range.length encoding:NSUTF8StringEncoding] autorelease];
     
-    memcpy(bytes, _bytes + _index, length);
-    bytes[length] = 0x0; // terminating NUL byte
-    return YES;
 }
 
 

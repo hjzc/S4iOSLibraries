@@ -28,25 +28,52 @@
  */
 
 /**
- @mainpage A strict JSON parser and generator for Objective-C
-
- JSON (JavaScript Object Notation) is a lightweight data-interchange
- format. This framework provides two apis for parsing and generating
- JSON. One standard object-based and a higher level api consisting of
- categories added to existing Objective-C classes.
-
- This framework does its best to be as strict as possible, both in what
- it accepts and what it generates. For example, it does not support
- trailing commas in arrays or objects. Nor does it support embedded
- comments, or anything else not in the JSON specification. This is
- considered a feature. 
-  
- @section Links
-
- @li <a href="http://stig.github.com/json-framework">Project home page</a>.
- @li Online version of the <a href="http://stig.github.com/json-framework/api">API documentation</a>. 
+ @page json2objc JSON to Objective-C
  
-*/
+ JSON is mapped to Objective-C types in the following way:
+ 
+ @li null    -> NSNull
+ @li string  -> NSString
+ @li array   -> NSMutableArray
+ @li object  -> NSMutableDictionary
+ @li true    -> NSNumber's -numberWithBool:YES
+ @li false   -> NSNumber's -numberWithBool:NO
+ @li integer up to 19 digits -> NSNumber's -numberWithLongLong:
+ @li all other numbers       -> NSDecimalNumber
+ 
+ Since Objective-C doesn't have a dedicated class for boolean values,
+ these turns into NSNumber instances. However, since these are
+ initialised with the -initWithBool: method they round-trip back to JSON
+ properly. In other words, they won't silently suddenly become 0 or 1;
+ they'll be represented as 'true' and 'false' again.
+ 
+ As an optimisation integers up to 19 digits in length (the max length
+ for signed long long integers) turn into NSNumber instances, while
+ complex ones turn into NSDecimalNumber instances. We can thus avoid any
+ loss of precision as JSON allows ridiculously large numbers.
+
+ @page objc2json Objective-C to JSON
+ 
+ Objective-C types are mapped to JSON types in the following way:
+ 
+ @li NSNull        -> null
+ @li NSString      -> string
+ @li NSArray       -> array
+ @li NSDictionary  -> object
+ @li NSNumber's -initWithBool:YES -> true
+ @li NSNumber's -initWithBool:NO  -> false
+ @li NSNumber      -> number
+ 
+ @note In JSON the keys of an object must be strings. NSDictionary
+ keys need not be, but attempting to convert an NSDictionary with
+ non-string keys into JSON will throw an exception.
+ 
+ NSNumber instances created with the -numberWithBool: method are
+ converted into the JSON boolean "true" and "false" values, and vice
+ versa. Any other NSNumber instances are converted to a JSON number the
+ way you would expect.
+
+ */
 
 #import "SBJsonParser.h"
 #import "SBJsonWriter.h"
@@ -54,3 +81,4 @@
 #import "SBJsonStreamParserAdapter.h"
 #import "SBJsonStreamWriter.h"
 #import "NSObject+SBJson.h"
+

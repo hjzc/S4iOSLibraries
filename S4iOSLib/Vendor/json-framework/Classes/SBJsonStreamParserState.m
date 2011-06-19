@@ -62,6 +62,10 @@
 	return @"<aaiie!>";
 }
 
+- (BOOL)isError {
+    return NO;
+}
+
 @end
 
 #pragma mark -
@@ -88,7 +92,7 @@ SINGLETON
 
 		case sbjson_token_array_end:
 		case sbjson_token_object_end:
-			if (parser.multi)
+			if (parser.supportMultipleDocuments)
 				state = parser.state;
 			else
 				state = [SBJsonStreamParserStateComplete sharedInstance];
@@ -134,6 +138,10 @@ SINGLETON
 
 - (SBJsonStreamParserStatus)parserShouldReturn:(SBJsonStreamParser*)parser {
 	return SBJsonStreamParserError;
+}
+
+- (BOOL)isError {
+    return YES;
 }
 
 @end

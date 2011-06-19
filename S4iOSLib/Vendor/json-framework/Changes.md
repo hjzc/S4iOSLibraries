@@ -1,24 +1,31 @@
 # JSON Framework Changes
 
-## Version 3.0beta3 (TBD)
+## Version 3.0 (June 18th, 2011)
+
+* Bump version number
+
+## Version 3.0beta3 (June 11th, 2011)
 
 ### Changes
 
+* Fleshed out the [API documentation][api].
 * Remove the (admittedly rather cool) JavaScript hack from the Contrib directory, as I don't want to get stuck maintaining JavaScript I don't understand after 3.0.
 * Moved content of Installation file to Readme.
 * [Issue 73][#73]: Project rename, to avoid clashing with Apple's internal JSON.framework
   * Renamed Mac framework to SBJson.framework
   * Renamed iOS static lib to sbjson-ios.
   * Changed name of main header to be SBJson.h rather than JSON.h. A backward compatibility header is included, but this will be removed in the future.
-* Extracted the example applications to [their own
-project](https://github.com/stig/json-framework-examples) on GitHub.
-Expanded the Mac version to be a fully functional application that
-reformats JSON you put into one text field into another one.
-* Removed the header indirection
+* Expanded the Mac example app to be a fully functional application
+that reformats JSON you put into a text field.
+* Removed the header indirection hack by making more headers public.
+* Detect if NSCache is available and only use it if it is. This lets us support iOS versions prior to 4.0.
 
 ### Bug Fixes
 
-* [Issue 70][#70]: SBStateStack breaks when running with GC. This was fixed by removing the class altogether and just using an NSMutableArray. This turns out to have very little measurable effect on performance.
+* [Issue 43][#43]: Don't crash on parsing broken UTF8.
+* [Issue 70][#70]: SBStateStack breaks when running with GC. This was
+fixed by removing it and just using an NSMutableArray. This turns out
+to have very little measurable effect on performance.
 
 
 ## Version 3.0beta2 (May 24th, 2011)
@@ -317,3 +324,4 @@ http://code.google.com/p/json-framework/wiki/ReleaseNotes
 [#1]: http://github.com/stig/json-framework/issues/1
 
 [bench]: http://github.com/samsoffes/json-benchmarks
+[api]: http://stig.github.com/json-framework/api/3.0
