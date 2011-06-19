@@ -96,6 +96,9 @@
 		0AAA5992139768ED006FB758 /* HTTPLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAA598B139768ED006FB758 /* HTTPLogging.h */; };
 		0AAA5993139768ED006FB758 /* HTTPRedirectResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAA598C139768ED006FB758 /* HTTPRedirectResponse.h */; };
 		0AAA5994139768ED006FB758 /* HTTPRedirectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA598D139768ED006FB758 /* HTTPRedirectResponse.m */; };
+		0AB551D113AE83DD00589E24 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB551CF13AE83DD00589E24 /* DDAbstractDatabaseLogger.h */; };
+		0AB551D213AE83DD00589E24 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB551D013AE83DD00589E24 /* DDAbstractDatabaseLogger.m */; };
+		0AB551EF13AE863100589E24 /* yajl_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB551EE13AE863100589E24 /* yajl_version.h */; };
 		0ABA9798123C114F006861CD /* yajl_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA9783123C114F006861CD /* yajl_common.h */; };
 		0ABA9799123C114F006861CD /* yajl_gen.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA9784123C114F006861CD /* yajl_gen.h */; };
 		0ABA979A123C114F006861CD /* yajl_parse.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA9785123C114F006861CD /* yajl_parse.h */; };
@@ -262,6 +265,9 @@
 		0AAA598B139768ED006FB758 /* HTTPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPLogging.h; path = "Vendor/CocoaHttpServer/Github-fork/HTTPLogging.h"; sourceTree = "<group>"; };
 		0AAA598C139768ED006FB758 /* HTTPRedirectResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPRedirectResponse.h; path = "Vendor/CocoaHttpServer/Github-fork/HTTPRedirectResponse.h"; sourceTree = "<group>"; };
 		0AAA598D139768ED006FB758 /* HTTPRedirectResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTPRedirectResponse.m; path = "Vendor/CocoaHttpServer/Github-fork/HTTPRedirectResponse.m"; sourceTree = "<group>"; };
+		0AB551CF13AE83DD00589E24 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = Vendor/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		0AB551D013AE83DD00589E24 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = Vendor/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		0AB551EE13AE863100589E24 /* yajl_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_version.h; sourceTree = "<group>"; };
 		0ABA9783123C114F006861CD /* yajl_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_common.h; sourceTree = "<group>"; };
 		0ABA9784123C114F006861CD /* yajl_gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_gen.h; sourceTree = "<group>"; };
 		0ABA9785123C114F006861CD /* yajl_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parse.h; sourceTree = "<group>"; };
@@ -435,6 +441,8 @@
 		0A3E48AC1298BACE00D33673 /* CocoaLumberjack */ = {
 			isa = PBXGroup;
 			children = (
+				0AB551CF13AE83DD00589E24 /* DDAbstractDatabaseLogger.h */,
+				0AB551D013AE83DD00589E24 /* DDAbstractDatabaseLogger.m */,
 				0A3E48B01298BAF300D33673 /* DDASLLogger.h */,
 				0A3E48B11298BAF300D33673 /* DDASLLogger.m */,
 				0A3E48B21298BAF300D33673 /* DDFileLogger.h */,
@@ -619,6 +627,7 @@
 		0ABA9782123C114F006861CD /* api */ = {
 			isa = PBXGroup;
 			children = (
+				0AB551EE13AE863100589E24 /* yajl_version.h */,
 				0A21B23F13AE60CD005AC674 /* yajl_tree.h */,
 				0ABA9783123C114F006861CD /* yajl_common.h */,
 				0ABA9784123C114F006861CD /* yajl_gen.h */,
@@ -805,6 +814,8 @@
 				0AC835E713977260007D3010 /* SBJsonUTF8Stream.h in Headers */,
 				0AC835EF139772CA007D3010 /* NSObject+SBJson.h in Headers */,
 				0A21B24013AE60CD005AC674 /* yajl_tree.h in Headers */,
+				0AB551D113AE83DD00589E24 /* DDAbstractDatabaseLogger.h in Headers */,
+				0AB551EF13AE863100589E24 /* yajl_version.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +975,7 @@
 				0AC835F0139772CA007D3010 /* NSObject+SBJson.m in Sources */,
 				0A21B24313AE60FE005AC674 /* yajl_tree.c in Sources */,
 				0A21B24413AE60FE005AC674 /* yajl_version.c in Sources */,
+				0AB551D213AE83DD00589E24 /* DDAbstractDatabaseLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
