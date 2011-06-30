@@ -64,6 +64,6 @@
 {
 }
 
-- (BOOL)start;
+- (BOOL)startForDelegate: (id <S4XmlDictParserDelegate>)delegate;
 
 @end

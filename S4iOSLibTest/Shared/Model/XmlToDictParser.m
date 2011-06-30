@@ -116,10 +116,9 @@ static NSString							*kSearchRadius			= @"40";
 //============================================================================
 //	XmlToDictParser :: start
 //============================================================================
-- (BOOL)start
+- (BOOL)startForDelegate: (id <S4XmlDictParserDelegate>)delegate
 {
 	S4CoreLocationManager				*corelocMgr;
-//	int									i;
 	CLLocation							*curCLLocation;
 	CLLocationDegrees					latitude;
 	CLLocationDegrees					longitude;
@@ -147,11 +146,11 @@ static NSString							*kSearchRadius			= @"40";
 		urlStr = [[NSString alloc] initWithFormat: kYahooLocationService, kYahooDevApiKey, kCoffeeQueryStr, kCategoryInt, kTestAddressStr, kSearchRadius];
 	}
 
-	bResult = [self startParsingFromUrlPath: urlStr rootElementName: kResult_Element withObject: nil];
+	bResult = [self startParsingFromUrlPath: urlStr rootElementName: kResult_Element withDelegate: delegate];
 	if (NO == bResult)
 	{
 		pathStr = [[S4FileUtilities documentsDirectory] stringByAppendingPathComponent: LOCAL_XML_FILE];
-		bResult = [self startParsingFromFilePath: pathStr rootElementName: kResult_Element withObject: nil];
+		bResult = [self startParsingFromFilePath: pathStr rootElementName: kResult_Element  withDelegate: delegate];
 	}
 	return (bResult);
 }

@@ -314,8 +314,7 @@ static UIImage					*favOnIcon = nil;
 	
 	// Create the CSfeedParser, set its delegate, and start it.
 	xmlParser = [[XmlToDictParser alloc] init];
-	xmlParser.delegate = self;
-	bResult = [xmlParser start];
+	bResult = [xmlParser startForDelegate: self];
 	if (YES == bResult)
 	{
 		// Reset the title
@@ -464,10 +463,20 @@ static UIImage					*favOnIcon = nil;
 //============================================================================
 //	RootViewController :: parserDidEndParsingData
 //============================================================================
+- (void)parserDidBeginParsingData: (S4XMLToDictionaryParser *)parser
+{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+
+//============================================================================
+//	RootViewController :: parserDidEndParsingData
+//============================================================================
 - (void)parserDidEndParsingData: (S4XMLToDictionaryParser *)parser
 {
 	S4AppUtils						*appUtils;
-	
+
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	if ([self.coffeeVendorArray count] > 0)
 	{		
 		// get an App Utils instance

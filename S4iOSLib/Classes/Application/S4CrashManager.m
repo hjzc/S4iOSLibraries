@@ -351,7 +351,7 @@ SYNTHESIZE_SINGLETON_CLASS(S4CrashManager)
 	NSNumber								*signalNumber;
 	BOOL									bIsSignal = NO;
 	NSMutableDictionary						*localUserInfo;
-	NSException								*localException;
+	NSException								*localException = nil;
 	BOOL									bShouldContinue = NO;
 	UIAlertView								*alert;
 	CFRunLoopRef							runLoop;

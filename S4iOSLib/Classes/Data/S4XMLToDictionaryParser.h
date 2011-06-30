@@ -62,6 +62,9 @@
 @protocol S4XmlDictParserDelegate <NSObject>
 
 @required
+// Called by the parser when parsing has begun.
+- (void)parserDidBeginParsingData: (S4XMLToDictionaryParser *)parser;
+
 // Called by the parser when parsing is finished.
 - (void)parserDidEndParsingData: (S4XMLToDictionaryParser *)parser;
 
@@ -78,9 +81,8 @@
 
 @interface S4XMLToDictionaryParser : NSObject <S4HttpConnectionDelegate>
 {
-    id <S4XmlDictParserDelegate>						m_delegate;
-
 @private
+    id <S4XmlDictParserDelegate>						m_delegate;
 	NSMutableData										*m_charDataBuffer;
 	BOOL												m_bInElement;
     BOOL												m_bElementHasChars;
@@ -94,20 +96,14 @@
 }
 
 // Properties
-@property (nonatomic, retain) id <S4XmlDictParserDelegate>						delegate;
+@property (nonatomic, retain) NSString					*reachableHostStr;
 
 // Class methods
 + (id)parser;
 
 // Instance methods
-- (BOOL)startParsingFromUrlPath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withObject: (id)object;
-- (BOOL)startParsingFromFilePath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withObject: (id)object;
-- (void)setReachabilityHostName: (NSString *)hostName;
-
-// libXml Handler methods
-- (void)didStartElement: (const xmlChar *)name withPrefix: (const xmlChar *)prefix withURI: (const xmlChar *)uri;
-- (void)didEndElement: (const xmlChar *)name withPrefix: (const xmlChar *)prefix withURI: (const xmlChar *)uri;
-- (void)foundCharacters: (const xmlChar *)charArray numBytes: (int)length;
-- (void)parseErrorOccurred: (const char *)errorChars;
+- (BOOL)startParsingFromUrlPath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withDelegate: (id <S4XmlDictParserDelegate>)delegate;
+- (BOOL)startParsingFromFilePath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withDelegate: (id <S4XmlDictParserDelegate>)delegate;
+- (void)cancelParse;
 
 @end

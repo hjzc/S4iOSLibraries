@@ -177,7 +177,8 @@
 	CFURLRef				baseURL = NULL;
 	BOOL					bError = NO;
 	NSURL					*nsUrlResult = nil;
-	
+
+	// the base url string can be nil
 	if (STR_NOT_EMPTY(base))
 	{
 		rawBaseStr = (CFStringRef)base;
@@ -192,13 +193,15 @@
 			}
 			CFRelease(preBaseStr);
 		}
-		
+
+		// but if it was not nil, then baseURL being NULL means we had an error
 		if (NULL == baseURL)
 		{
 			bError = YES;
 		}
 	}
-	
+
+	// we *must* have a valid path string, and either no base string or no error in creating a URL from the base string if passed in
 	if ((STR_NOT_EMPTY(path)) && (NO == bError))
 	{
 		rawPathStr = (CFStringRef)path;
@@ -213,6 +216,11 @@
 			}
 			CFRelease(prePathStr);
 		}
+	}
+
+	if (NULL != baseURL)
+	{
+		CFRelease(baseURL);
 	}
 	return (nsUrlResult);
 }

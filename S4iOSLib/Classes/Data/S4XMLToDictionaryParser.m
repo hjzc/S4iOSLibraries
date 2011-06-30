@@ -34,7 +34,6 @@
 
 // ================================== Includes =========================================
 
-#import <UIKit/UIKit.h>
 #import "S4XMLToDictionaryParser.h"
 #import "S4NetUtilities.h"
 #import "S4FileUtilities.h"
@@ -46,16 +45,10 @@
 // =================================== Defines =========================================
 
 #define DEFAULT_STRING_SZ						32
-#define GENERIC_REACHABILITY_URL				@"www.yahoo.com"
 #define DEFAULT_DICTIONARY_SZ					(NSUInteger)16
 
 #define MAX_READ_BYTES							(NSUInteger)32768
-#define MAX_READ_BUFFER_SZ						sizeof(uint8_t) * MAX_READ_BYTES
-
-#define XML_PREFIX_SEPARATOR_STR				@"%@:%@"
-
-// ALL S4 LIBS SHOULD DEFINE THIS:
-#define LIB_DOMAIN_NAME_STR						@"S4XMLToDictionaryParser"
+#define MAX_READ_BUFFER_SZ						sizeof(uint8_t) * MAX_READ_BYTES					
 
 
 // ================================== Typedefs =========================================
@@ -64,9 +57,26 @@
 
 // =================================== Globals =========================================
 
+S4_INTERN_CONSTANT_NSSTR						kDefaultReachabilityHostStr = @"www.yahoo.com";
+S4_INTERN_CONSTANT_NSSTR						kXML_PrefixSeparatorStr = @"%@:%@";
+
+// ALL S4 LIBS SHOULD DEFINE THIS:
+S4_INTERN_CONSTANT_NSSTR						kLibraryDomainNameStr = @"S4XMLToDictionaryParser";
 
 
 // ============================= Forward Declarations ==================================
+
+// ====================== Begin Class S4XMLToDictionaryParser () =======================
+
+@interface S4XMLToDictionaryParser ()
+
+// libXml Handler methods
+- (void)didStartElement: (const xmlChar *)name withPrefix: (const xmlChar *)prefix withURI: (const xmlChar *)uri;
+- (void)didEndElement: (const xmlChar *)name withPrefix: (const xmlChar *)prefix withURI: (const xmlChar *)uri;
+- (void)foundCharacters: (const xmlChar *)charArray numBytes: (int)length;
+- (void)parseErrorOccurred: (const char *)errorChars;
+
+@end
 
 
 
@@ -243,16 +253,6 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 };
 
 
-// ====================== Begin Class S4XMLToDictionaryParser () =======================
-
-@interface S4XMLToDictionaryParser ()
-
-@property (nonatomic, retain) NSString								*m_reachableHostStr;
-@property (nonatomic, assign) NSAutoreleasePool						*m_parsingAutoreleasePool;
-
-@end
-
-
 
 // ================= Begin Class S4XMLToDictionaryParser (PrivateImpl) =================
 
@@ -260,13 +260,14 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 
 - (BOOL)setUpParse;
 - (void)cleanUpParse;
-- (void)downloadAndParseWithObject: (id)object forUrl: (NSString *)urlStr;
-- (void)readFileAndParseWithObject: (id)object forFilePath: (NSString *)filePathStr;
-- (void)doCancel;
-- (BOOL)startParsingPath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withObject: (id)object forSelector: (SEL)parsingSelector;
+- (void)downloadAndParseForUrl: (NSString *)urlStr;
+- (void)readAndParseAtFilePath: (NSString *)filePathStr;
+- (BOOL)startParsingPath: (NSString *)pathStr
+		 rootElementName: (NSString *)rootElementStr
+			withDelegate: (id <S4XmlDictParserDelegate>)delegate
+			 forSelector: (SEL)parsingSelector;
 - (NSString *)getQualifiedNameForPrefix: (const xmlChar *)prefix andName: (const xmlChar *)name;
-- (void)downloadStarted;
-- (void)downloadEnded;
+- (void)parseStarted;
 - (void)parsedNewDictionary: (NSDictionary *)newDictionary;
 - (void)parseError: (NSError *)error;
 - (void)parseEnded;
@@ -285,7 +286,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 	BOOL					bResult = NO;
 
 	// create an autorelease pool to deal with temporary alloations
-	self.m_parsingAutoreleasePool = [[NSAutoreleasePool alloc] init];
+	m_parsingAutoreleasePool = [[NSAutoreleasePool alloc] init];
 
 	// set the parser executing flag
 	m_bDoneParsing = NO;
@@ -335,15 +336,18 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 		m_curXmlDictionary = nil;
 	}
 
-	[m_parsingAutoreleasePool release];
-	self.m_parsingAutoreleasePool = nil;
+	if IS_NOT_NULL(m_parsingAutoreleasePool)
+	{
+		[m_parsingAutoreleasePool release];
+		m_parsingAutoreleasePool = nil;
+	}	
 }
 
 
 //============================================================================
-//	S4XMLToDictionaryParser (PrivateImpl) :: downloadAndParseWithObject:forUrl:
+//	S4XMLToDictionaryParser (PrivateImpl) :: downloadAndParseForUrl:
 //============================================================================
-- (void)downloadAndParseWithObject: (id)object forUrl: (NSString *)urlStr
+- (void)downloadAndParseForUrl: (NSString *)urlStr
 {
 	NSURL								*url;
 	NSURLRequest						*request;
@@ -366,8 +370,8 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 				{
 					if ([m_S4HttpConnection openNonCachingConnectionForRequest: request delegate: self])
 					{
-						// tell the UI to show the network spinner going
-						[self performSelectorOnMainThread: @selector(downloadStarted) withObject: nil waitUntilDone: NO];
+						// tell the UI that the operation has begun (put up a network spinner, etc.)
+						[self performSelectorOnMainThread: @selector(parseStarted) withObject: nil waitUntilDone: NO];
 
 						// loop on the runLoop until the m_bdoneParsing flag is set
 						do
@@ -376,7 +380,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 						}
 						while (NO == m_bDoneParsing);
 					}
-					[self doCancel];		// release the S4HttpConnection
+					[self cancelParse];		// release the S4HttpConnection
 				}
 				[request release];			
 			}
@@ -389,9 +393,9 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 
 
 //============================================================================
-//	S4XMLToDictionaryParser (PrivateImpl) :: readFileAndParseWithObject:forFilePath:
+//	S4XMLToDictionaryParser (PrivateImpl) :: readAndParseAtFilePath:
 //============================================================================
-- (void)readFileAndParseWithObject: (id)object forFilePath: (NSString *)filePathStr
+- (void)readAndParseAtFilePath: (NSString *)filePathStr
 {
 	NSInputStream						*inputStream;
 	uint8_t								*readBufferPtr;
@@ -406,12 +410,12 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 			readBufferPtr = malloc(MAX_READ_BUFFER_SZ);
 			if (NULL != readBufferPtr)
 			{
-				// tell the UI to show the network spinner going
-				[self performSelectorOnMainThread: @selector(downloadStarted) withObject: nil waitUntilDone: NO];
+				// tell the UI that parsing has begun (show a spinner, etc.)
+				[self performSelectorOnMainThread: @selector(parseStarted) withObject: nil waitUntilDone: NO];
 
 				// read from stream
 				[inputStream open];
-				while (YES == [inputStream hasBytesAvailable])
+				while ((YES == [inputStream hasBytesAvailable]) && (NO == m_bDoneParsing))
 				{
 					bytesRead = [inputStream read: readBufferPtr maxLength: MAX_READ_BYTES];
 					if (bytesRead > 0)
@@ -423,9 +427,6 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 
 				// close the stream
 				[inputStream close];
-
-				// tell the UI to hide the network spinner
-				[self performSelectorOnMainThread: @selector(downloadEnded) withObject: nil waitUntilDone: NO];
 
 				// Signal the m_libXmlParserContext that parsing is complete by passing "1" as the last parameter.
 				xmlParseChunk(m_libXmlParserContext, NULL, 0, 1);
@@ -445,44 +446,22 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 
 
 //============================================================================
-//	S4XMLToDictionaryParser (PrivateImpl) :: doCancel
-//============================================================================
-- (void)doCancel
-{
-	// dump the connection
-	if (IS_NOT_NULL(m_S4HttpConnection))
-	{
-		[m_S4HttpConnection cancelConnection];
-		[m_S4HttpConnection autorelease];
-		m_S4HttpConnection = nil;
-	}
-	// Set the condition which ends the run loop.
-	m_bDoneParsing = YES; 	
-}
-
-
-//============================================================================
 //	S4XMLToDictionaryParser (PrivateImpl) :: startParsingPath:
 //============================================================================
-- (BOOL)startParsingPath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withObject: (id)object forSelector: (SEL)parsingSelector
+- (BOOL)startParsingPath: (NSString *)pathStr
+		 rootElementName: (NSString *)rootElementStr
+			withDelegate: (id <S4XmlDictParserDelegate>)delegate
+			 forSelector: (SEL)parsingSelector
 {
-	id									localObject;
 	S4OperationsHandler					*s4OpsHandler;
 	NSMutableArray						*argArray;
 	BOOL								bResult = NO;
 
+	// retain the delegate
+	m_delegate = [delegate retain];
+
 	// set the root element tag
 	m_rootElementNameStr = [rootElementStr retain];
-
-	// set the local var for the object
-	if (nil == object)
-	{
-		localObject = [NSNull null];
-	}
-	else
-	{
-		localObject = object;
-	}
 
 	// create an S4OperationsHandler instance to spin a new thread for the parse operation
 	s4OpsHandler = [S4OperationsHandler handlerWithOperationQueue: nil];
@@ -491,9 +470,10 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 		argArray = [NSMutableArray arrayWithCapacity: (NSUInteger)2];
 		if IS_NOT_NULL(argArray)
 		{
-			[argArray addObject: localObject];
+			// put the pathStr argument on the called methods parameter list
 			[argArray addObject: pathStr];
 
+			// create an NSInvocation for the parsing operation on put it on the global NSOperationQueue
 			bResult = [s4OpsHandler addSelectorToQueue: parsingSelector
 											  onTarget: self
 										 withArguments: argArray];
@@ -524,7 +504,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 	
 	if ((STR_NOT_EMPTY(prefixStr)) && (STR_NOT_EMPTY(nameStr)))
 	{
-		strResult = [NSString stringWithFormat: XML_PREFIX_SEPARATOR_STR, prefixStr, nameStr];
+		strResult = [NSString stringWithFormat: kXML_PrefixSeparatorStr, prefixStr, nameStr];
 	}
 	else if (STR_NOT_EMPTY(nameStr))
 	{
@@ -538,20 +518,11 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 /********************************************* Methods performed on the Main Thread  *********************************************/
 
 //============================================================================
-//	S4XMLToDictionaryParser (PrivateImpl) :: downloadStarted
+//	S4XMLToDictionaryParser (PrivateImpl) :: parseStarted
 //============================================================================
-- (void)downloadStarted
+- (void)parseStarted
 {
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-}
-
-
-//============================================================================
-//	S4XMLToDictionaryParser (PrivateImpl) :: downloadEnded
-//============================================================================
-- (void)downloadEnded
-{
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[m_delegate parserDidBeginParsingData: self];
 }
 
 
@@ -560,10 +531,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 - (void)parsedNewDictionary: (NSDictionary *)newDictionary
 {
-	if ((IS_NOT_NULL(self.delegate)) && ([self.delegate respondsToSelector: @selector(parser:addParsedDictionary:)]))
-	{
-		[self.delegate parser: self addParsedDictionary: newDictionary];
-	}
+	[m_delegate parser: self addParsedDictionary: newDictionary];
 }
 
 
@@ -572,10 +540,8 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 - (void)parseError: (NSError *)error
 {
-	if ((IS_NOT_NULL(self.delegate)) && ([self.delegate respondsToSelector: @selector(parser:didFailWithError:)]))
-	{
-		[self.delegate parser: self didFailWithError: error];
-	}
+	[m_delegate parser: self didFailWithError: error];
+	[self cancelParse];
 }
 
 
@@ -587,10 +553,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 - (void)parseEnded
 {
-	if ((IS_NOT_NULL(self.delegate)) && ([self.delegate respondsToSelector: @selector(parserDidEndParsingData:)]))
-	{
-		[self.delegate parserDidEndParsingData: self];
-	}
+	[m_delegate parserDidEndParsingData: self];
 }
 
 @end
@@ -606,11 +569,9 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //	S4XMLToDictionaryParser :: properties
 //============================================================================
 // public
-@synthesize delegate = m_delegate;
+@synthesize reachableHostStr = m_reachableHostStr;
 
 // private
-@synthesize m_reachableHostStr;
-@synthesize m_parsingAutoreleasePool;
 
 
 //============================================================================
@@ -630,17 +591,15 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 	self = [super init];
 	if (nil != self)
 	{
-		// public member vars
-		self.delegate = nil;
-		
 		// private member vars
+		m_delegate = nil;
 		m_charDataBuffer = nil;
 		m_bInElement = NO;
 		m_bElementHasChars = NO;
 		m_rootElementNameStr = nil;
 		m_curXmlDictionary = nil;
-		self.m_reachableHostStr = GENERIC_REACHABILITY_URL;
-		self.m_parsingAutoreleasePool = nil;
+		m_reachableHostStr = [kDefaultReachabilityHostStr retain];
+		m_parsingAutoreleasePool = nil;
 		m_libXmlParserContext = NULL;
 		m_bDoneParsing = YES;
 		m_S4HttpConnection = nil;
@@ -654,7 +613,11 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 - (void)dealloc
 {
-	self.delegate = nil;
+	if IS_NOT_NULL(m_delegate)
+	{
+		[m_delegate release];
+		m_delegate = nil;
+	}
 
 	if IS_NOT_NULL(m_rootElementNameStr)
 	{
@@ -681,18 +644,22 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 //	S4XMLToDictionaryParser :: startParsingFromUrlPath:
 //============================================================================
-- (BOOL)startParsingFromUrlPath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withObject: (id)object
+- (BOOL)startParsingFromUrlPath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withDelegate: (id <S4XmlDictParserDelegate>)delegate
 {
 	S4NetworkAccess						*networkAccess;
 	BOOL								bResult = NO;
 
-	if ((STR_NOT_EMPTY(pathStr)) && (STR_NOT_EMPTY(rootElementStr)))
+	if ((STR_NOT_EMPTY(pathStr)) && (STR_NOT_EMPTY(rootElementStr)) &&
+		(IS_NOT_NULL(delegate)) && (YES == [delegate conformsToProtocol: @protocol(S4XmlDictParserDelegate)]))
 	{
-		networkAccess = [S4NetworkAccess networkAccessWithHostName: self.m_reachableHostStr];
+		networkAccess = [S4NetworkAccess networkAccessWithHostName: self.reachableHostStr];
 		if ((IS_NOT_NULL(networkAccess)) && (NetworkNotReachable != [networkAccess currentReachabilityStatus]))
 		{
 			// start the parse
-			bResult = [self startParsingPath: pathStr rootElementName: rootElementStr withObject: object forSelector: @selector(downloadAndParseWithObject:forUrl:)];
+			bResult = [self startParsingPath: pathStr
+							 rootElementName: rootElementStr
+								withDelegate: delegate
+								 forSelector: @selector(downloadAndParseForUrl:)];
 		}
 	}
 	return (bResult);
@@ -702,16 +669,20 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 //	S4XMLToDictionaryParser :: startParsingFromFilePath:
 //============================================================================
-- (BOOL)startParsingFromFilePath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withObject: (id)object
+- (BOOL)startParsingFromFilePath: (NSString *)pathStr rootElementName: (NSString *)rootElementStr withDelegate: (id <S4XmlDictParserDelegate>)delegate
 {
 	BOOL								bResult = NO;
 	
-	if ((STR_NOT_EMPTY(pathStr)) && (STR_NOT_EMPTY(rootElementStr)))
+	if ((STR_NOT_EMPTY(pathStr)) && (STR_NOT_EMPTY(rootElementStr)) &&
+		(IS_NOT_NULL(delegate)) && (YES == [delegate conformsToProtocol: @protocol(S4XmlDictParserDelegate)]))
 	{
 		if (YES == [S4FileUtilities fileExists: pathStr])
 		{
 			// start the parse
-			bResult = [self startParsingPath: pathStr rootElementName: rootElementStr withObject: object forSelector: @selector(readFileAndParseWithObject:forFilePath:)];
+			bResult = [self startParsingPath: pathStr
+							 rootElementName: rootElementStr
+								withDelegate: delegate
+								 forSelector: @selector(readAndParseAtFilePath:)];
 		}
 	}
 	return (bResult);
@@ -719,14 +690,19 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 
 
 //============================================================================
-//	S4XMLToDictionaryParser :: setReachabilityHostName:
+//	S4XMLToDictionaryParser :: cancelParse
 //============================================================================
-- (void)setReachabilityHostName: (NSString *)hostName
+- (void)cancelParse
 {
-	if (STR_NOT_EMPTY(hostName))
+	// dump the connection
+	if (IS_NOT_NULL(m_S4HttpConnection))
 	{
-		self.m_reachableHostStr = hostName;
+		[m_S4HttpConnection cancelConnection];
+		[m_S4HttpConnection autorelease];
+		m_S4HttpConnection = nil;
 	}
+	// Set the condition which ends the run loop.
+	m_bDoneParsing = YES; 	
 }
 
 
@@ -813,15 +789,13 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 		userInfoDict = [NSDictionary dictionaryWithObject: errorStr forKey: NSLocalizedDescriptionKey];
 		if (IS_NOT_NULL(userInfoDict))
 		{
-			error = [NSError errorWithDomain: LIB_DOMAIN_NAME_STR code: (NSInteger)1 userInfo: userInfoDict];
+			error = [NSError errorWithDomain: kLibraryDomainNameStr code: (NSInteger)1 userInfo: userInfoDict];
 			if (IS_NOT_NULL(error))
 			{
 				[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
 				[error release];
 			}
-			[userInfoDict release];
 		}
-		[errorStr release];
 	}
 }
 
@@ -855,9 +829,6 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 - (void)httpConnection: (S4HttpConnection *)connection completedWithData: (NSMutableData *)data
 {
-	// tell the UI to hide the network spinner
-	[self performSelectorOnMainThread: @selector(downloadEnded) withObject: nil waitUntilDone: NO];
-
 	// Signal the m_libXmlParserContext that parsing is complete by passing "1" as the last parameter.
 	xmlParseChunk(m_libXmlParserContext, NULL, 0, 1);
 
