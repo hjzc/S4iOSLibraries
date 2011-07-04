@@ -35,8 +35,8 @@
 // ================================== Includes =========================================
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "S4HttpConnection.h"
+#import "S4CommonDefines.h"
 #import <libxml/tree.h>
 
 
@@ -50,6 +50,7 @@
 
 // =================================== Globals =========================================
 
+S4_EXTERN_CONSTANT_NSSTR				S4XMLToDictParserErrorDomain;
 
 
 // ============================= Forward Declarations ==================================

@@ -38,7 +38,6 @@
 #import "S4NetUtilities.h"
 #import "S4FileUtilities.h"
 #import "S4NetworkAccess.h"
-#import "S4CommonDefines.h"
 #import "S4OperationsHandler.h"
 
 
@@ -61,7 +60,7 @@ S4_INTERN_CONSTANT_NSSTR						kDefaultReachabilityHostStr = @"www.yahoo.com";
 S4_INTERN_CONSTANT_NSSTR						kXML_PrefixSeparatorStr = @"%@:%@";
 
 // ALL S4 LIBS SHOULD DEFINE THIS:
-S4_INTERN_CONSTANT_NSSTR						kLibraryDomainNameStr = @"S4XMLToDictionaryParser";
+S4_INTERN_CONSTANT_NSSTR						S4XMLToDictParserErrorDomain = @"S4XMLToDictionaryParser";
 
 
 // ============================= Forward Declarations ==================================
@@ -420,7 +419,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 					bytesRead = [inputStream read: readBufferPtr maxLength: MAX_READ_BYTES];
 					if (bytesRead > 0)
 					{
-						// Process the downloaded chunk of data.
+						// Process the block of data
 						xmlParseChunk(m_libXmlParserContext, (const char *)readBufferPtr, bytesRead, 0);
 					}
 				}
@@ -431,7 +430,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 				// Signal the m_libXmlParserContext that parsing is complete by passing "1" as the last parameter.
 				xmlParseChunk(m_libXmlParserContext, NULL, 0, 1);
 
-				// pass the completed NSMutableArray of coffee vendors back to the delegate
+				// let the delegate know the operation has completed
 				[self performSelectorOnMainThread: @selector(parseEnded) withObject: nil waitUntilDone: NO];
 
 				// free the buffer
@@ -637,6 +636,12 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 		m_charDataBuffer = nil;
 	}
 
+	if (IS_NOT_NULL(m_S4HttpConnection))
+	{
+		[m_S4HttpConnection release];
+		m_S4HttpConnection = nil;
+	}
+
 	[super dealloc];
 }
 
@@ -789,7 +794,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 		userInfoDict = [NSDictionary dictionaryWithObject: errorStr forKey: NSLocalizedDescriptionKey];
 		if (IS_NOT_NULL(userInfoDict))
 		{
-			error = [NSError errorWithDomain: kLibraryDomainNameStr code: (NSInteger)1 userInfo: userInfoDict];
+			error = [NSError errorWithDomain: S4XMLToDictParserErrorDomain code: (NSInteger)1 userInfo: userInfoDict];
 			if (IS_NOT_NULL(error))
 			{
 				[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
@@ -819,7 +824,6 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 - (void)httpConnection: (S4HttpConnection *)connection failedWithError: (NSError *)error
 {
-	m_bDoneParsing = YES;
 	[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
 }
 
@@ -832,7 +836,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 	// Signal the m_libXmlParserContext that parsing is complete by passing "1" as the last parameter.
 	xmlParseChunk(m_libXmlParserContext, NULL, 0, 1);
 
-	// pass the completed NSMutableArray of coffee vendors back to the delegate
+	// let the delegate know the operation has completed
 	[self performSelectorOnMainThread: @selector(parseEnded) withObject: nil waitUntilDone: NO];
 
 	// Set the condition which ends the run loop.
