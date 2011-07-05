@@ -36,7 +36,7 @@
 
 #import "S4CryptoUtils.h"
 #include "Base64Transcoder.h"
-// #import "S4CommonDefines.h"
+#import "S4CommonDefines.h"
 
 
 // =================================== Defines =========================================

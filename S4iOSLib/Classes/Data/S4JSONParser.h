@@ -36,6 +36,7 @@
 
 #import <Foundation/Foundation.h>
 #import "S4CommonDefines.h"
+#import "S4JSONCommon.h"
 
 
 // =================================== Defines =========================================
@@ -50,24 +51,6 @@ typedef enum
 	S4JSONParserErrorCodeDoubleOverflow		= 2,
 	S4JSONParserErrorCodeIntegerOverflow	= 3
 } S4JSONParserErrorCode;
-
-
-typedef enum
-{
-	S4JSONParserOptionsNone				= 0,
-	S4JSONParserOptionsAllowComments	= 1 << 0,
-	S4JSONParserOptionsCheckUTF8		= 1 << 1,
-	S4JSONParserOptionsStrictPrecision	= 1 << 2,
-} S4JSONParserOptions;
-
-
-typedef enum
-{
-	S4JSONParserStatusNone		= 0,
-	S4JSONParserStatusOK		= 1,
-	S4JSONParserStatusBadData	= 2,
-	S4JSONParserStatusError		= 3
-} S4JSONParserStatus;
 
 
 // =================================== Globals =========================================

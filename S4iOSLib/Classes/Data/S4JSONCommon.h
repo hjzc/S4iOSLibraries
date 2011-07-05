@@ -25,7 +25,7 @@
 
 /* ***** FILE BLOCK ******
  *
- * Name:		S4JSONSerializer.h
+ * Name:		S4JSONCommon.h
  * Module:		Data
  * Library:		S4 iPhone Libraries
  *
@@ -36,7 +36,6 @@
 
 #import <Foundation/Foundation.h>
 #import "S4CommonDefines.h"
-#import "S4JSONCommon.h"
 
 
 // =================================== Defines =========================================
@@ -45,11 +44,46 @@
 
 // ================================== Typedefs =========================================
 
+typedef enum
+{
+	kInvalidJSONClass		= 0,
+	kNSArrayJSONClass		= 1,
+	kNSDictionaryJSONClass	= 2,
+	kNSStringJSONClass		= 3,
+	kNSNumberJSONClass		= 4,
+	kUnknownJSONClass		= 5
+} S4JSONClassType;
+
+
+typedef enum
+{
+	S4JSONParserOptionsNone				= 0,
+	S4JSONParserOptionsAllowComments	= 1 << 0,
+	S4JSONParserOptionsCheckUTF8		= 1 << 1,
+	S4JSONParserOptionsStrictPrecision	= 1 << 2,
+} S4JSONParserOptions;
+
+
+typedef enum
+{
+	S4JSONParserStatusNone		= 0,
+	S4JSONParserStatusOK		= 1,
+	S4JSONParserStatusBadData	= 2,
+	S4JSONParserStatusError		= 3
+} S4JSONParserStatus;
+
+
+typedef enum
+{
+	S4JSONSerializerOptionsNone						= 0,
+	S4JSONSerializerOptionsBeautify					= 1 << 0,
+	S4JSONSerializerOptionsIgnoreUnknownTypes		= 1 << 1,
+	S4JSONSerializerOptionsIncludeUnsupportedTypes	= 1 << 2,
+} S4JSONSerializerOptions;
 
 
 // =================================== Globals =========================================
 
-extern NSString *const S4JSONSerializerException;
 
 
 // ============================= Forward Declarations ==================================
@@ -58,37 +92,5 @@ extern NSString *const S4JSONSerializerException;
 
 // ================================== Protocols ========================================
 
-@protocol JSONEncoding <NSObject>
-
-@required
-- (id)toJSON;
-
-@end
 
 
-// ============================ Class S4JSONSerializer =================================
-
-@interface S4JSONSerializer : NSObject
-{
-	void											*m_yajl_gen;
-	S4JSONSerializerOptions							m_serializerOptions;
-}
-
-- (id)initWithGenOptions: (S4JSONSerializerOptions)genOptions indentString: (NSString *)indentString;
-
-- (void)object: (id)obj;
-- (void)null;
-- (void)bool: (BOOL)b;
-- (void)number: (NSNumber *)number;
-- (void)string: (NSString *)s;
-
-- (void)startDictionary;
-- (void)endDictionary;
-
-- (void)startArray;
-- (void)endArray;
-
-- (void)clear;
-- (NSString *)buffer;
-
-@end

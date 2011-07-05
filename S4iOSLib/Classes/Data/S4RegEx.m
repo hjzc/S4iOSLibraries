@@ -91,7 +91,6 @@ S4_INTERN_CONSTANT_NSSTR			kS4EmailRegexPattern =	@"(?:[a-z0-9!#$%\\&'*+/=?\\^_`
 	{
 		if (NO == [classInstance setPatternString: patternString])
 		{
-			[classInstance release];
 			classInstance = nil;
 		}
 	}
@@ -111,7 +110,6 @@ S4_INTERN_CONSTANT_NSSTR			kS4EmailRegexPattern =	@"(?:[a-z0-9!#$%\\&'*+/=?\\^_`
 	if (IS_NOT_NULL(classInstance))
 	{
 		bResult = [classInstance stringMatches: emailAddressStr];
-		[classInstance release];
 	}
 	return (bResult);
 }

@@ -24,6 +24,9 @@
 		0A3E48BF1298BAF300D33673 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3E48B71298BAF300D33673 /* DDTTYLogger.m */; };
 		0A3E48C31298BB5A00D33673 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A3E48C11298BB5A00D33673 /* SFHFKeychainUtils.h */; };
 		0A3E48C41298BB5A00D33673 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3E48C21298BB5A00D33673 /* SFHFKeychainUtils.m */; };
+		0A8B045C13C37CC2005031DC /* S4JSONCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8B045B13C37CC2005031DC /* S4JSONCommon.h */; };
+		0A8B049913C38417005031DC /* S4YajlJSONFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A8B049713C38417005031DC /* S4YajlJSONFile.h */; };
+		0A8B049A13C38417005031DC /* S4YajlJSONFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8B049813C38417005031DC /* S4YajlJSONFile.m */; };
 		0A8FCBE0123808CF00E95217 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBDF123808CF00E95217 /* AddressBook.framework */; };
 		0A8FCBE2123808CF00E95217 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBE1123808CF00E95217 /* CoreGraphics.framework */; };
 		0A8FCBE4123808CF00E95217 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8FCBE3123808CF00E95217 /* CoreLocation.framework */; };
@@ -201,6 +204,9 @@
 		0A3E48B71298BAF300D33673 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = Vendor/CocoaLumberjack/Lumberjack/DDTTYLogger.m; sourceTree = "<group>"; };
 		0A3E48C11298BB5A00D33673 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "Vendor/scifihifi-iphone/security/SFHFKeychainUtils.h"; sourceTree = "<group>"; };
 		0A3E48C21298BB5A00D33673 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "Vendor/scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = "<group>"; };
+		0A8B045B13C37CC2005031DC /* S4JSONCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4JSONCommon.h; sourceTree = "<group>"; };
+		0A8B049713C38417005031DC /* S4YajlJSONFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4YajlJSONFile.h; sourceTree = "<group>"; };
+		0A8B049813C38417005031DC /* S4YajlJSONFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4YajlJSONFile.m; sourceTree = "<group>"; };
 		0A8FCBDF123808CF00E95217 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0A8FCBE1123808CF00E95217 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0A8FCBE3123808CF00E95217 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -533,6 +539,9 @@
 		0A8FCC231238111900E95217 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0A8B049713C38417005031DC /* S4YajlJSONFile.h */,
+				0A8B049813C38417005031DC /* S4YajlJSONFile.m */,
+				0A8B045B13C37CC2005031DC /* S4JSONCommon.h */,
 				0ABC653813C2CACB000B05D0 /* S4JSONFile.h */,
 				0ABC653913C2CACB000B05D0 /* S4JSONFile.m */,
 				0ABC653A13C2CACB000B05D0 /* S4JSONParser.h */,
@@ -844,6 +853,8 @@
 				0ABC654013C2CACB000B05D0 /* S4JSONParser.h in Headers */,
 				0ABC654213C2CACB000B05D0 /* S4JSONSerializer.h in Headers */,
 				0ABC654613C2CB57000B05D0 /* S4CryptoUtils.h in Headers */,
+				0A8B045C13C37CC2005031DC /* S4JSONCommon.h in Headers */,
+				0A8B049913C38417005031DC /* S4YajlJSONFile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1019,7 @@
 				0ABC654113C2CACB000B05D0 /* S4JSONParser.m in Sources */,
 				0ABC654313C2CACB000B05D0 /* S4JSONSerializer.m in Sources */,
 				0ABC654713C2CB57000B05D0 /* S4CryptoUtils.m in Sources */,
+				0A8B049A13C38417005031DC /* S4YajlJSONFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

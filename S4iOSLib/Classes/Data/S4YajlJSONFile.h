@@ -25,7 +25,7 @@
 
 /* ***** FILE BLOCK ******
  *
- * Name:		S4JSONFile.h
+ * Name:		S4YajlJSONFile.h
  * Module:		Data
  * Library:		S4 iOS Libraries
  *
@@ -36,72 +36,50 @@
 
 #import <Foundation/Foundation.h>
 #import "S4CommonDefines.h"
+#import "S4JSONParser.h"
 #import "S4JSONCommon.h"
+#import "S4JSONFile.h"
+#import "S4HttpConnection.h"
 
 
 // =================================== Defines =========================================
 
-#define DEFAULT_JSON_TIMEOUT			(NSTimeInterval)300.0
 
 
 // ================================== Typedefs =========================================
 
-typedef enum
-{
-	JSONRetrieverNoError				= 0,
-	JSONFileParseError					= 1,
-	JSONFileOutofMemoryError			= 2,
-	JSONFileInvalidResponseError		= 3
-} S4JSONFileError;
 
 
 // =================================== Globals =========================================
 
-S4_EXTERN_CONSTANT_NSSTR				S4JSONFileErrorDomain;
-S4_EXTERN_CONSTANT_NSSTR				kDefaultJSONFileHostStr;
 
 
 // ============================= Forward Declarations ==================================
 
-@class S4JSONFile;
 
 
 // ================================== Protocols ========================================
 
-@protocol S4JSONFileDelegate <NSObject>
-
-@required
-// Called by the parser when parsing has begun.
-- (void)jsonFileDidBeginParsingData: (S4JSONFile *)file;
-
-// Called by the retriever in the case of an error.
-- (void)jsonFile: (S4JSONFile *)file didFailWithError: (NSError *)error;
-
-// Called by the retriever when all the JSON has been parsed.
-- (void)jsonFile: (S4JSONFile *)file didEndParsingJSON: (id)jsonObject ofType: (S4JSONClassType)type;
-
-@end
 
 
-// ================================ Class S4JSONFile ===================================
+// ============================== Class S4YajlJSONFile =================================
 
-@interface S4JSONFile : NSObject
+@interface S4YajlJSONFile : S4JSONFile <S4JSONParserDelegate, S4HttpConnectionDelegate>
 {
-@protected
-	id													m_rootJSONObject;
-	S4JSONParserStatus									m_parserStatus;
-	id <S4JSONFileDelegate>								m_delegate;
-    NSString											*m_reachableHostStr;
-	NSOperationQueue									*m_operationQueue;
-    NSAutoreleasePool									*m_parsingAutoreleasePool;
-    BOOL												m_bDoneParsing;
+@private
+	S4JSONParser										*m_parser;
+	__weak NSMutableDictionary							*m_dict;
+	__weak NSMutableArray								*m_array;
+	__weak NSString										*m_key;
+	NSMutableArray										*m_stack;
+	NSMutableArray										*m_keyStack;
+	S4JSONClassType										m_curClassType;
+	S4HttpConnection									*m_S4HttpConnection;
+	NSTimeInterval										m_requestTimeout;
+	BOOL												m_bUseCache;	
 }
 
 // Properties
-@property (nonatomic, retain) NSString						*reachableHostStr;
-@property (nonatomic, retain) NSOperationQueue				*operationQueue;
-@property (nonatomic, readonly) id							document;
-@property (nonatomic, readonly) S4JSONParserStatus			parserStatus;
 
 // Class methods
 + (id)jsonFile;
