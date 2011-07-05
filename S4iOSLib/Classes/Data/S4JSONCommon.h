@@ -66,11 +66,16 @@ typedef enum
 
 typedef enum
 {
-	S4JSONParserStatusNone		= 0,
-	S4JSONParserStatusOK		= 1,
-	S4JSONParserStatusBadData	= 2,
-	S4JSONParserStatusError		= 3
-} S4JSONParserStatus;
+	S4JSONParserNoError					= 0,
+	S4JSONParserParsingError			= 1,
+	S4JSONParserInvalidDataError		= 2,
+	S4JSONParserAllocationError			= 3,
+	S4JSONParserDoubleOverflowError		= 4,
+	S4JSONParserIntegerOverflowError	= 5,
+	S4JSONParserCanceledError			= 6,
+	S4JSONParserUnknownError			= 7,
+	S4JSONParserUnimplementedError		= 8
+} S4JSONParserError;
 
 
 typedef enum

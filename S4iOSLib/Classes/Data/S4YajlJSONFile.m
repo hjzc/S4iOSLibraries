@@ -243,11 +243,12 @@ NSInteger										S4JSONFileStackCapacity = 20;
 //============================================================================
 - (BOOL)parseData: (NSData *)data
 {
+	S4JSONParserError					parseError;
 	NSError								*error = nil;
 	BOOL								bResult = NO;
 
-	[self parse: data error: &error];
-	if ((S4JSONParserStatusOK == m_parserStatus) && (nil == error))
+	parseError = [self parse: data error: &error];
+	if ((S4JSONParserNoError == parseError) && (nil == error))
 	{
 		bResult = YES;
 	}
@@ -257,7 +258,7 @@ NSInteger										S4JSONFileStackCapacity = 20;
 	}
 	else
 	{
-		error = [NSError errorWithDomain: S4JSONFileErrorDomain code: JSONFileInvalidResponseError userInfo: nil];
+		error = [self errorforCode: S4JSONParserParsingError description: nil reason: nil];
 		[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
 	}
 	return (bResult);
@@ -378,7 +379,7 @@ NSInteger										S4JSONFileStackCapacity = 20;
 	NSString								*localizedDescription;
 	NSString								*localizedFailureReason;
 
-	if (S4JSONParserStatusOK == [self parseCompleted])
+	if (S4JSONParserNoError == [self parseCompleted])
 	{
 		parsedJSON = self.document;
 		if (nil != parsedJSON)
@@ -418,12 +419,12 @@ NSInteger										S4JSONFileStackCapacity = 20;
 				[userDict setObject: localizedFailureReason forKey: NSLocalizedFailureReasonErrorKey];
 			}
 			// create the NSError
-			error = [NSError errorWithDomain: S4JSONFileErrorDomain code: JSONFileParseError userInfo: userDict];
+			error = [self errorforCode: S4JSONParserParsingError description: nil reason: nil];
 		}
 	}
 	else	// could not create a JSON parser
 	{
-		error = [NSError errorWithDomain: S4JSONFileErrorDomain code: JSONFileOutofMemoryError userInfo: nil];
+		error = [self errorforCode: S4JSONParserAllocationError description: nil reason: nil];
 	}
 	
 	if (nil != error)
@@ -531,24 +532,28 @@ NSInteger										S4JSONFileStackCapacity = 20;
 //============================================================================
 //	S4YajlJSONFile :: parse:
 //============================================================================
-- (S4JSONParserStatus)parse: (NSData *)data error: (NSError **)error
+- (S4JSONParserError)parse: (NSData *)data error: (NSError **)error
 {
-	m_parserStatus = [m_parser parse: data];
+	S4JSONParserError				parseError;
+
+	parseError = [m_parser parse: data];
 	if (nil != error)
 	{
 		*error = [m_parser parserError];
 	}
-	return (m_parserStatus);
+	return (parseError);
 }
 
 
 //============================================================================
 //	S4YajlJSONFile :: parseCompleted
 //============================================================================
-- (S4JSONParserStatus)parseCompleted
+- (S4JSONParserError)parseCompleted
 {
-	m_parserStatus = [m_parser parseCompleted];
-	return (m_parserStatus);
+	S4JSONParserError				parseError;
+
+	parseError = [m_parser parseCompleted];
+	return (parseError);
 }
 
 

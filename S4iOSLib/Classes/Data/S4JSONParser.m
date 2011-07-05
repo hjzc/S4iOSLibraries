@@ -121,7 +121,7 @@ int ParseDouble(void *ctx, const char *buf, const char *numberVal, unsigned int 
 	if ((d == HUGE_VAL || d == -HUGE_VAL) && errno == ERANGE)
 	{
 		NSString *s = [[NSString alloc] initWithBytes:numberVal length:numberLen encoding:NSUTF8StringEncoding];
-		[(id)ctx _cancelWithErrorForStatus: S4JSONParserErrorCodeDoubleOverflow message: [NSString stringWithFormat:@"double overflow on '%@'", s] value: s];
+		[(id)ctx _cancelWithErrorForStatus: S4JSONParserDoubleOverflowError message: [NSString stringWithFormat:@"double overflow on '%@'", s] value: s];
 		[s release];
 		return 0;
 	}
@@ -150,7 +150,7 @@ int yajl_number(void *ctx, const char *numberVal, size_t numberLen)
 			if (([(id)ctx parserOptions] & S4JSONParserOptionsStrictPrecision) == S4JSONParserOptionsStrictPrecision)
 			{
 				NSString *s = [[NSString alloc] initWithBytes: numberVal length: numberLen encoding: NSUTF8StringEncoding];
-				[(id)ctx _cancelWithErrorForStatus: S4JSONParserErrorCodeIntegerOverflow message: [NSString stringWithFormat: @"integer overflow on '%@'", s] value: s];
+				[(id)ctx _cancelWithErrorForStatus: S4JSONParserIntegerOverflowError message: [NSString stringWithFormat: @"integer overflow on '%@'", s] value: s];
 				[s release];
 				return 0;
 			}
@@ -387,16 +387,16 @@ static yajl_callbacks callbacks =
 //============================================================================
 //	S4JSONParser :: parse:
 //============================================================================
-- (S4JSONParserStatus)parse: (NSData *)data
+- (S4JSONParserError)parse: (NSData *)data
 {
-	S4JSONParserStatus			parseStatus = S4JSONParserStatusError;
-	
+	S4JSONParserError			parseError = S4JSONParserAllocationError;
+
 	if (NULL == m_yajl_handle)
 	{
 		m_yajl_handle = (void *)yajl_alloc(&callbacks, NULL, self);
 		if (NULL == m_yajl_handle)
 		{
-			self.parserError = [self _errorForStatus: S4JSONParserErrorCodeAllocError message: @"Unable to allocate YAJL handle" value: nil];
+			self.parserError = [self _errorForStatus: S4JSONParserAllocationError message: @"Unable to allocate YAJL handle" value: nil];
 		}
 		else
 		{
@@ -427,7 +427,7 @@ static yajl_callbacks callbacks =
 		{
 			// We cancelled because we encountered an error here in the client;
 			// and parserError should be already set
-			parseStatus = S4JSONParserStatusError;
+			parseError = S4JSONParserCanceledError;
 		}
 		else if (status == yajl_status_error)
 		{
@@ -435,27 +435,29 @@ static yajl_callbacks callbacks =
 			NSString *errorString = [NSString stringWithUTF8String: (char *)errorMessage];
 			self.parserError = [self _errorForStatus: status message: errorString value: nil];
 			yajl_free_error((yajl_handle)m_yajl_handle, errorMessage);
+			parseError = S4JSONParserParsingError;
 		}
 		else if (status == yajl_status_ok)
 		{
-			parseStatus = S4JSONParserStatusOK;
+			parseError = S4JSONParserNoError;
 		}
 		else
 		{
 			self.parserError = [self _errorForStatus: status message: [NSString stringWithFormat: @"Unexpected status %d", status] value: nil];
+			parseError = S4JSONParserUnknownError;
 		}
 	}
-	return (parseStatus);
+	return (parseError);
 }
 
 
 //============================================================================
 //	S4JSONParser :: parseCompleted
 //============================================================================
-- (S4JSONParserStatus)parseCompleted
+- (S4JSONParserError)parseCompleted
 {
 	yajl_status					status;
-	S4JSONParserStatus			parseStatus = S4JSONParserStatusError;
+	S4JSONParserError			parseError = S4JSONParserAllocationError;
 
 	if (NULL != m_yajl_handle)
 	{
@@ -463,17 +465,19 @@ static yajl_callbacks callbacks =
 		if (yajl_status_error == status)
 		{
 			self.parserError = [self _errorForStatus: status message: [NSString stringWithFormat: @"Parse error with status %d", status] value: nil];
+			parseError = S4JSONParserParsingError;
 		}
 		else if (yajl_status_ok == status)
 		{
-			parseStatus = S4JSONParserStatusOK;
+			parseError = S4JSONParserNoError;
 		}
 		else
 		{
 			self.parserError = [self _errorForStatus: status message: [NSString stringWithFormat: @"Unexpected status %d", status] value: nil];
+			parseError = S4JSONParserUnknownError;
 		}
 	}
-	return (parseStatus);
+	return (parseError);
 }
 
 @end

@@ -70,13 +70,13 @@
 - (void)cleanUpParse;
 - (void)downloadAndParseForUrl: (NSString *)urlStr;
 - (void)readAndParseAtFilePath: (NSString *)filePathStr;
-- (BOOL)parseData: (NSData *)data;
 - (BOOL)startParsingPath: (NSString *)pathStr
 			withDelegate: (id <S4JSONFileDelegate>)delegate
 			 forSelector: (SEL)parsingSelector;
+- (NSError *)errorWithDescription: (NSString *)descStr andFailReason: (NSString *)failStr;
 - (void)parseStarted;
 - (void)parseError: (NSError *)error;
-- (void)parseEnded;
+- (void)parseEnded: (NSData *)data;
 
 @end
 
@@ -148,7 +148,7 @@
 				if (IS_NOT_NULL(m_S4HttpConnection))
 				{
 					// open the HTTP connection
-					if ([m_S4HttpConnection openNonCachingConnectionForRequest: request delegate: self])
+					if ([m_S4HttpConnection openConnectionForRequest: request delegate: self])
 					{
 						// tell the UI that the operation has begun (put up a network spinner, etc.)
 						[self performSelectorOnMainThread: @selector(parseStarted) withObject: nil waitUntilDone: NO];
@@ -179,7 +179,6 @@
 {
 	NSData								*jsonData;
 	NSError								*error = nil;
-	SBJsonParser						*jsonParser;
 
 	if (YES == [self setUpParse])
 	{
@@ -190,46 +189,13 @@
 		jsonData = [NSData dataWithContentsOfFile: filePathStr options: NSDataReadingUncached error: &error];
 		if ((nil == error) && (IS_NOT_NULL(jsonData)))
 		{
-			jsonParser = [[SBJsonParser alloc] init];
-			if IS_NOT_NULL(jsonParser)
-			{
-				idResult = [jsonParser objectWithString: rawString error: &error];
-				[jsonParser release];
-
-				// pass the parsed JSON back to the delegate
-				[self performSelectorOnMainThread: @selector(parseEnded) withObject: nil waitUntilDone: NO];
-			}
+			// pass the parsed JSON back to the delegate
+			[self performSelectorOnMainThread: @selector(parseEnded) withObject: jsonData waitUntilDone: NO];
 		}
 	}
 	// Release resources used only in this thread
 	m_bDoneParsing = YES;
 	[self cleanUpParse];
-}
-
-
-//============================================================================
-//	S4SbJSONFile (PrivateImpl) :: parseData:
-//============================================================================
-- (BOOL)parseData: (NSData *)data
-{
-	NSError								*error = nil;
-	BOOL								bResult = NO;
-	
-	[self parse: data error: &error];
-	if ((S4JSONParserStatusOK == m_parserStatus) && (nil == error))
-	{
-		bResult = YES;
-	}
-	else if (IS_NOT_NULL(error))
-	{
-		[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
-	}
-	else
-	{
-		error = [NSError errorWithDomain: S4JSONFileErrorDomain code: JSONFileInvalidResponseError userInfo: nil];
-		[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
-	}
-	return (bResult);
 }
 
 
@@ -246,7 +212,7 @@
     
 	// retain the delegate
 	m_delegate = [delegate retain];
-	
+
 	// create an S4OperationsHandler instance to spin a new thread for the parse operation
 	s4OpsHandler = [S4OperationsHandler handlerWithOperationQueue: self.operationQueue];
 	if IS_NOT_NULL(s4OpsHandler)
@@ -264,6 +230,47 @@
 		}
 	}
 	return (bResult);
+}
+
+
+//============================================================================
+//	S4SbJSONFile (PrivateImpl) :: errorWithLocalDescription:
+//============================================================================
+- (NSError *)errorWithDescription: (NSString *)descStr andFailReason: (NSString *)failStr
+{
+	NSError									*error = nil;
+	NSMutableDictionary						*userDict = nil;
+	NSString								*localizedDescription;
+	NSString								*localizedFailureReason;
+
+	userDict = [NSMutableDictionary dictionaryWithCapacity: 2];
+	if (nil != userDict)
+	{
+		if (STR_NOT_EMPTY(descStr))
+		{
+			localizedDescription = descStr;
+		}
+		else
+		{
+			localizedDescription = @"Generic JSON error";
+		}
+		[userDict setObject: localizedDescription forKey: NSLocalizedDescriptionKey];
+
+		if (STR_NOT_EMPTY(failStr))
+		{
+			localizedFailureReason = failStr;
+		}
+		else
+		{
+			localizedFailureReason = @"Generic JSON error";
+		}
+		[userDict setObject: localizedFailureReason forKey: NSLocalizedFailureReasonErrorKey];
+	}
+
+	// create the NSError
+	error = [NSError errorWithDomain: S4JSONFileErrorDomain code: JSONFileParseError userInfo: userDict];
+
+	return (error);
 }
 
 
@@ -295,66 +302,36 @@
 //		and implicitly by the S4HttpConnection's completion
 //		delegate method
 //============================================================================
-- (void)parseEnded
+- (void)parseEnded: (NSData *)data
 {
-	id										parsedJSON = nil;
 	S4JSONClassType							jsonObjectType;
 	NSError									*error = nil;
-	NSMutableDictionary						*userDict;
-	NSString								*localizedDescription;
-	NSString								*localizedFailureReason;
 
-	if (S4JSONParserStatusOK == [self parseCompleted])
+	if (S4JSONParserStatusOK == [self parse: data error: &error])
 	{
-		parsedJSON = self.document;
-		if (nil != parsedJSON)
+		if (YES == [m_rootJSONObject isKindOfClass: [NSDictionary class]])
 		{
-			if (YES == [parsedJSON isKindOfClass: [NSDictionary class]])
-			{
-				jsonObjectType = kNSDictionaryJSONClass;
-			}
-			else if (YES == [parsedJSON isKindOfClass: [NSArray class]])
-			{
-				jsonObjectType = kNSArrayJSONClass;
-			}
-			else if (YES == [parsedJSON isKindOfClass: [NSString class]])
-			{
-				jsonObjectType = kNSStringJSONClass;
-			}
-			else if (YES == [parsedJSON isKindOfClass: [NSNumber class]])
-			{
-				jsonObjectType = kNSNumberJSONClass;
-			}
-			else
-			{
-				jsonObjectType = kUnknownJSONClass;
-			}			
-			
-			// call the delegate with the JSON from the server parsed into an NSObject class
-			[m_delegate jsonFile: self didEndParsingJSON: parsedJSON ofType: jsonObjectType];
+			jsonObjectType = kNSDictionaryJSONClass;
 		}
-		else	// JSON parser could not parse response from server or response could not be converted to string
+		else if (YES == [m_rootJSONObject isKindOfClass: [NSArray class]])
 		{
-			userDict = [NSMutableDictionary dictionaryWithCapacity: 10];
-			if (nil != userDict)
-			{
-				localizedDescription = @"Malformed JSON";
-				[userDict setObject: localizedDescription forKey: NSLocalizedDescriptionKey];
-				localizedFailureReason = @"Malformed JSON response";
-				[userDict setObject: localizedFailureReason forKey: NSLocalizedFailureReasonErrorKey];
-			}
-			// create the NSError
-			error = [NSError errorWithDomain: S4JSONFileErrorDomain code: JSONFileParseError userInfo: userDict];
+			jsonObjectType = kNSArrayJSONClass;
 		}
-	}
-	else	// could not create a JSON parser
-	{
-		error = [NSError errorWithDomain: S4JSONFileErrorDomain code: JSONFileOutofMemoryError userInfo: nil];
-	}
-	
-	if (nil != error)
-	{
-		[self parseError: error];
+		else if (YES == [m_rootJSONObject isKindOfClass: [NSString class]])
+		{
+			jsonObjectType = kNSStringJSONClass;
+		}
+		else if (YES == [m_rootJSONObject isKindOfClass: [NSNumber class]])
+		{
+			jsonObjectType = kNSNumberJSONClass;
+		}
+		else
+		{
+			jsonObjectType = kUnknownJSONClass;
+		}			
+
+		// call the delegate with the JSON from the server parsed into an NSObject class
+		[m_delegate jsonFile: self didEndParsingJSON: m_rootJSONObject ofType: jsonObjectType];
 	}
 }
 
@@ -432,10 +409,43 @@
 //============================================================================
 - (S4JSONParserStatus)parse: (NSData *)data error: (NSError **)error
 {
-	m_parserStatus = [m_parser parse: data];
+	SBJsonParser						*jsonParser;
+	id									idResult;
+	NSError								*localError = nil;
+
+	if (IS_NOT_NULL(data))
+	{
+		jsonParser = [[SBJsonParser alloc] init];
+		if IS_NOT_NULL(jsonParser)
+		{
+			idResult = [jsonParser objectWithData: data];
+			if (IS_NOT_NULL(idResult))
+			{
+				m_rootJSONObject = [idResult retain];
+				m_parserStatus = S4JSONParserStatusOK;
+			}
+			else
+			{
+				localError = [self errorWithDescription: @"Parser error" andFailReason: jsonParser.error];
+				m_parserStatus = S4JSONParserStatusBadData;
+			}
+			[jsonParser release];
+		}
+		else
+		{
+			localError = [self errorWithDescription: @"Allocation error" andFailReason: @"could not allocate parser"];
+			m_parserStatus = S4JSONParserStatusError;
+		}
+	}
+	else
+	{
+		localError = [self errorWithDescription: @"Bad data" andFailReason: @"data to parse is NIL"];
+		m_parserStatus = S4JSONParserStatusError;
+	}
+
 	if (nil != error)
 	{
-		*error = [m_parser parserError];
+		*error = localError;
 	}
 	return (m_parserStatus);
 }
@@ -524,7 +534,7 @@
 //============================================================================
 - (BOOL)httpConnection: (S4HttpConnection *)connection receivedData: (NSData *)data
 {
-	return ([self parseData: data]);
+	return (YES);
 }
 
 
@@ -542,7 +552,7 @@
 //============================================================================
 - (void)httpConnection: (S4HttpConnection *)connection completedWithData: (NSMutableData *)data
 {
-	[self performSelectorOnMainThread: @selector(parseEnded) withObject: nil waitUntilDone: NO];
+	[self performSelectorOnMainThread: @selector(parseEnded) withObject: data waitUntilDone: NO];
 }
 
 @end

@@ -46,13 +46,6 @@
 
 // ================================== Typedefs =========================================
 
-typedef enum
-{
-	JSONRetrieverNoError				= 0,
-	JSONFileParseError					= 1,
-	JSONFileOutofMemoryError			= 2,
-	JSONFileInvalidResponseError		= 3
-} S4JSONFileError;
 
 
 // =================================== Globals =========================================
@@ -89,7 +82,7 @@ S4_EXTERN_CONSTANT_NSSTR				kDefaultJSONFileHostStr;
 {
 @protected
 	id													m_rootJSONObject;
-	S4JSONParserStatus									m_parserStatus;
+	NSError												*m_lastError;
 	id <S4JSONFileDelegate>								m_delegate;
     NSString											*m_reachableHostStr;
 	NSOperationQueue									*m_operationQueue;
@@ -101,7 +94,7 @@ S4_EXTERN_CONSTANT_NSSTR				kDefaultJSONFileHostStr;
 @property (nonatomic, retain) NSString						*reachableHostStr;
 @property (nonatomic, retain) NSOperationQueue				*operationQueue;
 @property (nonatomic, readonly) id							document;
-@property (nonatomic, readonly) S4JSONParserStatus			parserStatus;
+@property (nonatomic, readonly) NSError						*lastError;
 
 // Class methods
 + (id)jsonFile;
@@ -109,9 +102,9 @@ S4_EXTERN_CONSTANT_NSSTR				kDefaultJSONFileHostStr;
 // Instance methods
 - (id)initWithParserOptions: (S4JSONParserOptions)parserOptions;
 
-- (S4JSONParserStatus)parse: (NSData *)data error: (NSError **)error;
+- (S4JSONParserError)parse: (NSData *)data error: (NSError **)error;
 
-- (S4JSONParserStatus)parseCompleted;
+- (S4JSONParserError)parseCompleted;
 
 - (BOOL)requestJSONfromURLStr: (NSString *)urlStr
 				  forDelegate: (id <S4JSONFileDelegate>)delegate
@@ -121,5 +114,8 @@ S4_EXTERN_CONSTANT_NSSTR				kDefaultJSONFileHostStr;
 - (BOOL)parseJSONfromFilePath: (NSString *)pathStr forDelegate: (id <S4JSONFileDelegate>)delegate;
 
 - (void)cancel;
+
+// protected method (of sorts)
+- (NSError *)errorforCode: (S4JSONParserError)code description: (NSString *)descStr reason: (NSString *)failStr;
 
 @end

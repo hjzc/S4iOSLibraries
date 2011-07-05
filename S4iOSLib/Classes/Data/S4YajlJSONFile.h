@@ -87,9 +87,9 @@
 // Instance methods
 - (id)initWithParserOptions: (S4JSONParserOptions)parserOptions;
 
-- (S4JSONParserStatus)parse: (NSData *)data error: (NSError **)error;
+- (S4JSONParserError)parse: (NSData *)data error: (NSError **)error;
 
-- (S4JSONParserStatus)parseCompleted;
+- (S4JSONParserError)parseCompleted;
 
 - (BOOL)requestJSONfromURLStr: (NSString *)urlStr
 				  forDelegate: (id <S4JSONFileDelegate>)delegate

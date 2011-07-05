@@ -77,7 +77,7 @@ static BOOL										g_bInitialized = NO;
 @synthesize reachableHostStr = m_reachableHostStr;
 @synthesize operationQueue = m_operationQueue;
 @synthesize document = m_rootJSONObject;
-@synthesize parserStatus = m_parserStatus;
+@synthesize lastError = m_lastError;
 
 // private
 
@@ -125,7 +125,7 @@ static BOOL										g_bInitialized = NO;
 	{
 		// protected member vars
 		m_rootJSONObject = nil;
-		m_parserStatus = S4JSONParserStatusNone;
+		m_lastError = nil;
 		m_delegate = nil;
 		m_reachableHostStr = [kDefaultJSONFileHostStr retain];
 		m_operationQueue = g_classOperationQueue;
@@ -160,18 +160,18 @@ static BOOL										g_bInitialized = NO;
 //============================================================================
 //	S4JSONFile :: parse:
 //============================================================================
-- (S4JSONParserStatus)parse: (NSData *)data error: (NSError **)error
+- (S4JSONParserError)parse: (NSData *)data error: (NSError **)error
 {
-	return (S4JSONParserStatusError);
+	return (S4JSONParserUnimplementedError);
 }
 
 
 //============================================================================
 //	S4JSONFile :: parseCompleted
 //============================================================================
-- (S4JSONParserStatus)parseCompleted
+- (S4JSONParserError)parseCompleted
 {
-	return (S4JSONParserStatusError);
+	return (S4JSONParserUnimplementedError);
 }
 
 
@@ -201,6 +201,58 @@ static BOOL										g_bInitialized = NO;
 //============================================================================
 - (void)cancel
 {
+}
+
+
+//============================================================================
+//	S4JSONFile :: errorforCode:
+//============================================================================
+- (NSError *)errorforCode: (S4JSONParserError)code description: (NSString *)descStr reason: (NSString *)failStr
+{
+	NSError									*error;
+	NSMutableDictionary						*userDict = nil;
+	NSString								*localizedDescription;
+	NSString								*localizedFailureReason;
+
+	if (S4JSONParserNoError == code)
+	{
+		error = nil;
+	}
+	else
+	{
+		userDict = [NSMutableDictionary dictionaryWithCapacity: 2];
+		if (nil != userDict)
+		{
+			if (STR_NOT_EMPTY(descStr))
+			{
+				localizedDescription = descStr;
+			}
+			else
+			{
+				localizedDescription = @"Generic JSON error";
+			}
+			[userDict setObject: localizedDescription forKey: NSLocalizedDescriptionKey];
+
+			if (STR_NOT_EMPTY(failStr))
+			{
+				localizedFailureReason = failStr;
+			}
+			else
+			{
+				localizedFailureReason = @"Generic JSON error";
+			}
+			[userDict setObject: localizedFailureReason forKey: NSLocalizedFailureReasonErrorKey];
+		}
+
+		// create the NSError
+		error = [[NSError alloc] initWithDomain: S4JSONFileErrorDomain code: (NSInteger)code userInfo: userDict];
+		if (IS_NOT_NULL(m_lastError))
+		{
+			[m_lastError release];
+		}
+		m_lastError = [error copy];
+	}
+	return (error);
 }
 
 @end

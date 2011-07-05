@@ -45,12 +45,6 @@
 
 // ================================== Typedefs =========================================
 
-typedef enum
-{
-	S4JSONParserErrorCodeAllocError			= 1,
-	S4JSONParserErrorCodeDoubleOverflow		= 2,
-	S4JSONParserErrorCodeIntegerOverflow	= 3
-} S4JSONParserErrorCode;
 
 
 // =================================== Globals =========================================
@@ -95,7 +89,7 @@ S4_EXTERN_CONSTANT_NSSTR				S4JSONParserValueKey;
 @property (nonatomic, readonly) S4JSONParserOptions								parserOptions;
 
 - (id)initWithParserOptions: (S4JSONParserOptions)parserOptions;
-- (S4JSONParserStatus)parse: (NSData *)data;
-- (S4JSONParserStatus)parseCompleted;
+- (S4JSONParserError)parse: (NSData *)data;
+- (S4JSONParserError)parseCompleted;
 
 @end
