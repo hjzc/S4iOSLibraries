@@ -35,7 +35,7 @@
 // ================================== Includes =========================================
 
 #import <Foundation/Foundation.h>
-#include "yajl_gen.h"
+#import "S4CommonDefines.h"
 
 
 // =================================== Defines =========================================
@@ -76,8 +76,8 @@ extern NSString *const S4JSONSerializerException;
 
 @interface S4JSONSerializer : NSObject
 {
-	yajl_gen									gen_;
-	S4JSONSerializerOptions						genOptions_;
+	void											*m_yajl_gen;
+	S4JSONSerializerOptions							m_serializerOptions;
 }
 
 - (id)initWithGenOptions: (S4JSONSerializerOptions)genOptions indentString: (NSString *)indentString;

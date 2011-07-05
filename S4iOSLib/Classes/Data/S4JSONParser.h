@@ -35,7 +35,7 @@
 // ================================== Includes =========================================
 
 #import <Foundation/Foundation.h>
-#include "yajl_parse.h"
+#import "S4CommonDefines.h"
 
 
 // =================================== Defines =========================================
@@ -72,9 +72,9 @@ typedef enum
 
 // =================================== Globals =========================================
 
-extern NSString *const S4JSONParserErrorDomain;
-extern NSString *const S4JSONParserException;
-extern NSString *const S4JSONParserValueKey;
+S4_EXTERN_CONSTANT_NSSTR				S4JSONParserErrorDomain;
+S4_EXTERN_CONSTANT_NSSTR				S4JSONParserException;
+S4_EXTERN_CONSTANT_NSSTR				S4JSONParserValueKey;
 
 
 // ============================= Forward Declarations ==================================
@@ -101,10 +101,10 @@ extern NSString *const S4JSONParserValueKey;
 
 @interface S4JSONParser : NSObject
 {
-	yajl_handle											handle_;
-	__weak id <S4JSONParserDelegate>					delegate_;
-	S4JSONParserOptions									parserOptions_;
-	NSError												*parserError_;
+	void													*m_yajl_handle;
+	__weak id <S4JSONParserDelegate>						m_delegate;
+	S4JSONParserOptions										m_parserOptions;
+	NSError													*m_parserError;
 }
 
 @property (nonatomic, assign) __weak											id <S4JSONParserDelegate> delegate;

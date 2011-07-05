@@ -120,6 +120,14 @@
 		0ABA97F7123C31E6006861CD /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA97EC123C31E6006861CD /* SBJsonParser.m */; };
 		0ABA97F8123C31E6006861CD /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA97ED123C31E6006861CD /* SBJsonWriter.h */; };
 		0ABA97F9123C31E6006861CD /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA97EE123C31E6006861CD /* SBJsonWriter.m */; };
+		0ABC653E13C2CACB000B05D0 /* S4JSONFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABC653813C2CACB000B05D0 /* S4JSONFile.h */; };
+		0ABC653F13C2CACB000B05D0 /* S4JSONFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABC653913C2CACB000B05D0 /* S4JSONFile.m */; };
+		0ABC654013C2CACB000B05D0 /* S4JSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABC653A13C2CACB000B05D0 /* S4JSONParser.h */; };
+		0ABC654113C2CACB000B05D0 /* S4JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABC653B13C2CACB000B05D0 /* S4JSONParser.m */; };
+		0ABC654213C2CACB000B05D0 /* S4JSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABC653C13C2CACB000B05D0 /* S4JSONSerializer.h */; };
+		0ABC654313C2CACB000B05D0 /* S4JSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABC653D13C2CACB000B05D0 /* S4JSONSerializer.m */; };
+		0ABC654613C2CB57000B05D0 /* S4CryptoUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABC654413C2CB57000B05D0 /* S4CryptoUtils.h */; };
+		0ABC654713C2CB57000B05D0 /* S4CryptoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABC654513C2CB57000B05D0 /* S4CryptoUtils.m */; };
 		0AC835D813977260007D3010 /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC835C513977260007D3010 /* SBJson.h */; };
 		0AC835D913977260007D3010 /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC835C613977260007D3010 /* SBJsonStreamParser.h */; };
 		0AC835DA13977260007D3010 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC835C713977260007D3010 /* SBJsonStreamParser.m */; };
@@ -289,6 +297,14 @@
 		0ABA97EC123C31E6006861CD /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = "Vendor/json-framework/Classes/SBJsonParser.m"; sourceTree = "<group>"; };
 		0ABA97ED123C31E6006861CD /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = "Vendor/json-framework/Classes/SBJsonWriter.h"; sourceTree = "<group>"; };
 		0ABA97EE123C31E6006861CD /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonWriter.m; path = "Vendor/json-framework/Classes/SBJsonWriter.m"; sourceTree = "<group>"; };
+		0ABC653813C2CACB000B05D0 /* S4JSONFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4JSONFile.h; sourceTree = "<group>"; };
+		0ABC653913C2CACB000B05D0 /* S4JSONFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4JSONFile.m; sourceTree = "<group>"; };
+		0ABC653A13C2CACB000B05D0 /* S4JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4JSONParser.h; sourceTree = "<group>"; };
+		0ABC653B13C2CACB000B05D0 /* S4JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4JSONParser.m; sourceTree = "<group>"; };
+		0ABC653C13C2CACB000B05D0 /* S4JSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4JSONSerializer.h; sourceTree = "<group>"; };
+		0ABC653D13C2CACB000B05D0 /* S4JSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4JSONSerializer.m; sourceTree = "<group>"; };
+		0ABC654413C2CB57000B05D0 /* S4CryptoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4CryptoUtils.h; path = Classes/Crypto/S4CryptoUtils.h; sourceTree = "<group>"; };
+		0ABC654513C2CB57000B05D0 /* S4CryptoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = S4CryptoUtils.m; path = Classes/Crypto/S4CryptoUtils.m; sourceTree = "<group>"; };
 		0AC835C513977260007D3010 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = "Vendor/json-framework/Classes/SBJson.h"; sourceTree = "<group>"; };
 		0AC835C613977260007D3010 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParser.h; path = "Vendor/json-framework/Classes/SBJsonStreamParser.h"; sourceTree = "<group>"; };
 		0AC835C713977260007D3010 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamParser.m; path = "Vendor/json-framework/Classes/SBJsonStreamParser.m"; sourceTree = "<group>"; };
@@ -517,6 +533,12 @@
 		0A8FCC231238111900E95217 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0ABC653813C2CACB000B05D0 /* S4JSONFile.h */,
+				0ABC653913C2CACB000B05D0 /* S4JSONFile.m */,
+				0ABC653A13C2CACB000B05D0 /* S4JSONParser.h */,
+				0ABC653B13C2CACB000B05D0 /* S4JSONParser.m */,
+				0ABC653C13C2CACB000B05D0 /* S4JSONSerializer.h */,
+				0ABC653D13C2CACB000B05D0 /* S4JSONSerializer.m */,
 				0A8FCC241238111900E95217 /* S4RegEx.h */,
 				0A8FCC251238111900E95217 /* S4RegEx.m */,
 				0A8FCC261238111900E95217 /* S4UserDefaultsManager.h */,
@@ -673,6 +695,8 @@
 		0AD5F35D123D859B00024367 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				0ABC654413C2CB57000B05D0 /* S4CryptoUtils.h */,
+				0ABC654513C2CB57000B05D0 /* S4CryptoUtils.m */,
 				0AD5F35E123D85B100024367 /* Base64Transcoder.c */,
 				0AD5F35F123D85B100024367 /* Base64Transcoder.h */,
 				0AD5F360123D85B100024367 /* hmac.c */,
@@ -816,6 +840,10 @@
 				0A21B24013AE60CD005AC674 /* yajl_tree.h in Headers */,
 				0AB551D113AE83DD00589E24 /* DDAbstractDatabaseLogger.h in Headers */,
 				0AB551EF13AE863100589E24 /* yajl_version.h in Headers */,
+				0ABC653E13C2CACB000B05D0 /* S4JSONFile.h in Headers */,
+				0ABC654013C2CACB000B05D0 /* S4JSONParser.h in Headers */,
+				0ABC654213C2CACB000B05D0 /* S4JSONSerializer.h in Headers */,
+				0ABC654613C2CB57000B05D0 /* S4CryptoUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,6 +1004,10 @@
 				0A21B24313AE60FE005AC674 /* yajl_tree.c in Sources */,
 				0A21B24413AE60FE005AC674 /* yajl_version.c in Sources */,
 				0AB551D213AE83DD00589E24 /* DDAbstractDatabaseLogger.m in Sources */,
+				0ABC653F13C2CACB000B05D0 /* S4JSONFile.m in Sources */,
+				0ABC654113C2CACB000B05D0 /* S4JSONParser.m in Sources */,
+				0ABC654313C2CACB000B05D0 /* S4JSONSerializer.m in Sources */,
+				0ABC654713C2CB57000B05D0 /* S4CryptoUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

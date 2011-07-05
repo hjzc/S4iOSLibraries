@@ -36,8 +36,8 @@
 
 #import "S4JSONSerializer.h"
 #import "S4CryptoUtils.h"
+#include "yajl_gen.h"
 // #include "Base64Transcoder.h"
-// #import "S4CommonDefines.h"
 
 
 // =================================== Defines =========================================
@@ -61,44 +61,59 @@ NSString *const S4JSONSerializerException = @"S4JSONSerializerException";
 
 
 
-// ========================= Begin Class S4JSONParser ========================
+// ========================= Begin Class S4JSONSerializer ==============================
 
 @implementation S4JSONSerializer
 
-
 //============================================================================
-//	S4JSONParser :: init
+//	S4JSONSerializer :: init
 //============================================================================
 - (id)init
 {
-	return [self initWithGenOptions:S4JSONSerializerOptionsNone indentString:@""];
+	return [self initWithGenOptions: S4JSONSerializerOptionsNone indentString: @""];
 }
 
 
+//============================================================================
+//	S4JSONSerializer :: initWithGenOptions:
+//============================================================================
 - (id)initWithGenOptions: (S4JSONSerializerOptions)genOptions indentString: (NSString *)indentString
 {
-  if ((self = [super init]))
-  {
-    genOptions_ = genOptions;
-	  gen_ = yajl_gen_alloc(NULL);
-	  if (NULL != gen_)
-	  {
-		  if (genOptions & S4JSONSerializerOptionsBeautify)
-		  {
-			  yajl_gen_config(gen_, yajl_gen_beautify, 1);
-		  }
-		  yajl_gen_config(gen_, yajl_gen_indent_string, [indentString UTF8String]);
-	  }
-  }
-  return self;
-}
-
-- (void)dealloc { 
-  if (gen_ != NULL) yajl_gen_free(gen_);
-  [super dealloc];
+	self = [super init];
+	if (nil != self)
+	{
+		m_serializerOptions = genOptions;
+		m_yajl_gen = (void *)yajl_gen_alloc(NULL);
+		if (NULL != m_yajl_gen)
+		{
+			if (genOptions & S4JSONSerializerOptionsBeautify)
+			{
+				yajl_gen_config((yajl_gen)m_yajl_gen, yajl_gen_beautify, 1);
+			}
+			yajl_gen_config((yajl_gen)m_yajl_gen, yajl_gen_indent_string, [indentString UTF8String]);
+		}
+	}
+	return self;
 }
 
 
+//============================================================================
+//	S4JSONSerializer :: dealloc
+//============================================================================
+- (void)dealloc
+{ 
+	if (m_yajl_gen != NULL)
+	{
+		yajl_gen_free((yajl_gen)m_yajl_gen);
+	}
+
+	[super dealloc];
+}
+
+
+//============================================================================
+//	S4JSONSerializer :: object:
+//============================================================================
 - (void)object: (id)obj
 {  
 	if ([obj conformsToProtocol: @protocol(JSONEncoding)])
@@ -144,7 +159,7 @@ NSString *const S4JSONSerializerException = @"S4JSONSerializerException";
 	else
 	{
 		BOOL unknownType = NO;
-		if (genOptions_ & S4JSONSerializerOptionsIncludeUnsupportedTypes)
+		if (m_serializerOptions & S4JSONSerializerOptionsIncludeUnsupportedTypes)
 		{
 			// Begin with support for non-JSON representable (PList) types
 			if ([obj isKindOfClass:[NSDate class]])
@@ -172,7 +187,7 @@ NSString *const S4JSONSerializerException = @"S4JSONSerializerException";
 		// If we didn't handle special PList types
 		if (unknownType)
 		{
-			if (!(genOptions_ & S4JSONSerializerOptionsIgnoreUnknownTypes))
+			if (!(m_serializerOptions & S4JSONSerializerOptionsIgnoreUnknownTypes))
 			{
 				[NSException raise: S4JSONSerializerException format: @"Unknown object type: %@ (%@)", [obj class], obj];
 			}
@@ -185,54 +200,102 @@ NSString *const S4JSONSerializerException = @"S4JSONSerializerException";
 }
 
 
+//============================================================================
+//	S4JSONSerializer :: null
+//============================================================================
 - (void)null
 {
-	yajl_gen_null(gen_);
+	yajl_gen_null((yajl_gen)m_yajl_gen);
 }
 
-- (void)bool:(BOOL)b {
-  yajl_gen_bool(gen_, b);
+
+//============================================================================
+//	S4JSONSerializer :: bool:
+//============================================================================
+- (void)bool: (BOOL)b
+{
+	yajl_gen_bool((yajl_gen)m_yajl_gen, b);
 }
 
-- (void)number:(NSNumber *)number {
-  NSString *s = [number stringValue];
-  unsigned int length = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-  const char *c = [s UTF8String];
-  yajl_gen_number(gen_, c, length);
+
+//============================================================================
+//	S4JSONSerializer :: number:
+//============================================================================
+- (void)number: (NSNumber *)number
+{
+	NSString *s = [number stringValue];
+	unsigned int length = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+	const char *c = [s UTF8String];
+	yajl_gen_number((yajl_gen)m_yajl_gen, c, length);
 }
 
-- (void)string:(NSString *)s {
-  unsigned int length = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-  const unsigned char *c = (const unsigned char *)[s UTF8String]; 
-  yajl_gen_string(gen_, c, length);
+
+//============================================================================
+//	S4JSONSerializer :: string:
+//============================================================================
+- (void)string: (NSString *)s
+{
+	unsigned int length = [s lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+	const unsigned char *c = (const unsigned char *)[s UTF8String]; 
+	yajl_gen_string((yajl_gen)m_yajl_gen, c, length);
 }
 
-- (void)startDictionary {
-  yajl_gen_map_open(gen_);
+
+//============================================================================
+//	S4JSONSerializer :: startDictionary
+//============================================================================
+- (void)startDictionary
+{
+	yajl_gen_map_open((yajl_gen)m_yajl_gen);
 }
 
-- (void)endDictionary {
-  yajl_gen_map_close(gen_);
+
+//============================================================================
+//	S4JSONSerializer :: endDictionary
+//============================================================================
+- (void)endDictionary
+{
+	yajl_gen_map_close((yajl_gen)m_yajl_gen);
 }
 
-- (void)startArray {
-  yajl_gen_array_open(gen_);
+
+//============================================================================
+//	S4JSONSerializer :: startArray
+//============================================================================
+- (void)startArray
+{
+	yajl_gen_array_open((yajl_gen)m_yajl_gen);
 }
 
-- (void)endArray {
-  yajl_gen_array_close(gen_);
+
+//============================================================================
+//	S4JSONSerializer :: endArray
+//============================================================================
+- (void)endArray
+{
+	yajl_gen_array_close((yajl_gen)m_yajl_gen);
 }
 
-- (void)clear {
-  yajl_gen_clear(gen_);
+
+//============================================================================
+//	S4JSONSerializer :: clear
+//============================================================================
+- (void)clear
+{
+	yajl_gen_clear((yajl_gen)m_yajl_gen);
 }
 
-- (NSString *)buffer {
-  const unsigned char *buf;  
-  size_t len;
-  yajl_gen_get_buf(gen_, &buf, &len); 
-  NSString *s = [NSString stringWithUTF8String:(const char*)buf]; 
-  return s;
+
+//============================================================================
+//	S4JSONSerializer :: buffer
+//============================================================================
+- (NSString *)buffer
+{
+	const unsigned char *buf;  
+	size_t len;
+	yajl_gen_get_buf((yajl_gen)m_yajl_gen, &buf, &len); 
+	NSString *s = [NSString stringWithUTF8String:(const char*)buf]; 
+	return s;
 } 
 
 @end

@@ -35,7 +35,7 @@
 // ================================== Includes =========================================
 
 #import "S4JSONParser.h"
-// #import "S4CommonDefines.h"
+#include "yajl_parse.h"
 
 
 // =================================== Defines =========================================
@@ -48,13 +48,27 @@
 
 // =================================== Globals =========================================
 
-NSString *const S4JSONParserErrorDomain = @"S4JSONParserErrorDomain";
-NSString *const S4JSONParserException = @"S4JSONParserException";
-NSString *const S4JSONParserValueKey = @"S4JSONParserValueKey";
+S4_INTERN_CONSTANT_NSSTR						S4JSONParserErrorDomain = @"S4JSONParserErrorDomain";
+S4_INTERN_CONSTANT_NSSTR						S4JSONParserException = @"S4JSONParserException";
+S4_INTERN_CONSTANT_NSSTR						S4JSONParserValueKey = @"S4JSONParserValueKey";
 
 
 // ============================= Forward Declarations ==================================
 
+// yajl callback functions
+int yajl_null(void *ctx);
+int yajl_boolean(void *ctx, int boolVal);
+int ParseDouble(void *ctx, const char *buf, const char *numberVal, unsigned int numberLen);
+int yajl_number(void *ctx, const char *numberVal, size_t numberLen);
+int yajl_string(void *ctx, const unsigned char *stringVal, size_t stringLen);
+int yajl_map_key(void *ctx, const unsigned char *stringVal, size_t stringLen);
+int yajl_start_map(void *ctx);
+int yajl_end_map(void *ctx);
+int yajl_start_array(void *ctx);
+int yajl_end_array(void *ctx);
+
+
+// S4JSONParser private methods
 @interface S4JSONParser (PrivateImpl)
 
 - (void)_add: (id)value;
@@ -205,8 +219,8 @@ static yajl_callbacks callbacks =
 {
 	yajl_null,
 	yajl_boolean,
-	NULL, // yajl_integer (using yajl_number)
-	NULL, // yajl_double (using yajl_number)
+	NULL,					// yajl_integer (using yajl_number)
+	NULL,					// yajl_double (using yajl_number)
 	yajl_number,
 	yajl_string,
 	yajl_start_map,
@@ -237,7 +251,7 @@ static yajl_callbacks callbacks =
 //============================================================================
 - (void)_add: (id)value
 {
-	[delegate_ parser: self didAdd: value];
+	[m_delegate parser: self didAdd: value];
 }
 
 
@@ -246,7 +260,7 @@ static yajl_callbacks callbacks =
 //============================================================================
 - (void)_mapKey: (NSString *)key
 {
-	[delegate_ parser: self didMapKey: key];
+	[m_delegate parser: self didMapKey: key];
 }
 
 
@@ -255,7 +269,7 @@ static yajl_callbacks callbacks =
 //============================================================================
 - (void)_startDictionary
 {
-	[delegate_ parserDidStartDictionary: self];
+	[m_delegate parserDidStartDictionary: self];
 }
 
 
@@ -264,7 +278,7 @@ static yajl_callbacks callbacks =
 //============================================================================
 - (void)_endDictionary
 {
-	[delegate_ parserDidEndDictionary: self];
+	[m_delegate parserDidEndDictionary: self];
 }
 
 
@@ -273,7 +287,7 @@ static yajl_callbacks callbacks =
 //============================================================================
 - (void)_startArray
 { 
-	[delegate_ parserDidStartArray: self];
+	[m_delegate parserDidStartArray: self];
 }
 
 
@@ -282,7 +296,7 @@ static yajl_callbacks callbacks =
 //============================================================================
 - (void)_endArray
 {
-	[delegate_ parserDidEndArray:self];
+	[m_delegate parserDidEndArray:self];
 }
 
 
@@ -321,9 +335,9 @@ static yajl_callbacks callbacks =
 //============================================================================
 //	S4JSONParser :: properties
 //============================================================================
-@synthesize parserError = parserError_;
-@synthesize delegate = delegate_;
-@synthesize parserOptions = parserOptions_;
+@synthesize parserError = m_parserError;
+@synthesize delegate = m_delegate;
+@synthesize parserOptions = m_parserOptions;
 
 
 //============================================================================
@@ -331,70 +345,84 @@ static yajl_callbacks callbacks =
 //============================================================================
 - (id)init
 {
-	return [self initWithParserOptions: 0];
+	return [self initWithParserOptions: S4JSONParserOptionsNone];
 }
 
 
-- (id)initWithParserOptions:(S4JSONParserOptions)parserOptions
+//============================================================================
+//	S4JSONParser :: initWithParserOptions:
+//============================================================================
+- (id)initWithParserOptions: (S4JSONParserOptions)parserOptions
 {
 	self = [super init];
 	if (nil != self)
 	{
-		parserOptions_ = parserOptions;   
+		m_parserOptions = parserOptions;   
 	}
 	return self;
 }
 
 
+//============================================================================
+//	S4JSONParser :: dealloc
+//============================================================================
 - (void)dealloc
 {
-	if (NULL != handle_)
+	if (NULL != m_yajl_handle)
 	{
-		yajl_free(handle_);
-		handle_ = NULL;
-	} 
-	[parserError_ release];
+		yajl_free((yajl_handle)m_yajl_handle);
+		m_yajl_handle = NULL;
+	}
+
+	if (IS_NOT_NULL(m_parserError))
+	{
+		[m_parserError release];
+		m_parserError = nil;
+	}
 
 	[super dealloc];
 }
 
 
+//============================================================================
+//	S4JSONParser :: parse:
+//============================================================================
 - (S4JSONParserStatus)parse: (NSData *)data
 {
 	S4JSONParserStatus			parseStatus = S4JSONParserStatusError;
 	
-	if (NULL == handle_)
+	if (NULL == m_yajl_handle)
 	{
-		handle_ = yajl_alloc(&callbacks, NULL, self);
-		if (NULL == handle_)
+		m_yajl_handle = (void *)yajl_alloc(&callbacks, NULL, self);
+		if (NULL == m_yajl_handle)
 		{
 			self.parserError = [self _errorForStatus: S4JSONParserErrorCodeAllocError message: @"Unable to allocate YAJL handle" value: nil];
 		}
 		else
 		{
-			if (parserOptions_ & S4JSONParserOptionsAllowComments)
+			if (m_parserOptions & S4JSONParserOptionsAllowComments)
 			{
-				yajl_config(handle_, yajl_allow_comments, 1); // turn comment support on
+				yajl_config((yajl_handle)m_yajl_handle, yajl_allow_comments, 1); // turn comment support on
 			}
 			else
 			{
-				yajl_config(handle_, yajl_allow_comments, 0); // turn comment support off
+				yajl_config((yajl_handle)m_yajl_handle, yajl_allow_comments, 0); // turn comment support off
 			}
 			
-			if (parserOptions_ & S4JSONParserOptionsCheckUTF8)
+			if (m_parserOptions & S4JSONParserOptionsCheckUTF8)
 			{
-				yajl_config(handle_, yajl_dont_validate_strings, 0); // enable utf8 checking
+				yajl_config((yajl_handle)m_yajl_handle, yajl_dont_validate_strings, 0); // enable utf8 checking
 			}
 			else
 			{
-				yajl_config(handle_, yajl_dont_validate_strings, 1); // disable utf8 checking
+				yajl_config((yajl_handle)m_yajl_handle, yajl_dont_validate_strings, 1); // disable utf8 checking
 			}
 		}
 	}
 	
-	if (NULL != handle_)
+	if (NULL != m_yajl_handle)
 	{
-		yajl_status status = yajl_parse(handle_, [data bytes], [data length]);
+		yajl_status status = yajl_parse((yajl_handle)m_yajl_handle, [data bytes], [data length]);
 		if (status == yajl_status_client_canceled)
 		{
 			// We cancelled because we encountered an error here in the client;
@@ -403,10 +431,10 @@ static yajl_callbacks callbacks =
 		}
 		else if (status == yajl_status_error)
 		{
-			unsigned char *errorMessage = yajl_get_error(handle_, 1, [data bytes], [data length]);
+			unsigned char *errorMessage = yajl_get_error((yajl_handle)m_yajl_handle, 1, [data bytes], [data length]);
 			NSString *errorString = [NSString stringWithUTF8String: (char *)errorMessage];
 			self.parserError = [self _errorForStatus: status message: errorString value: nil];
-			yajl_free_error(handle_, errorMessage);
+			yajl_free_error((yajl_handle)m_yajl_handle, errorMessage);
 		}
 		else if (status == yajl_status_ok)
 		{
@@ -421,14 +449,17 @@ static yajl_callbacks callbacks =
 }
 
 
+//============================================================================
+//	S4JSONParser :: parseCompleted
+//============================================================================
 - (S4JSONParserStatus)parseCompleted
 {
 	yajl_status					status;
 	S4JSONParserStatus			parseStatus = S4JSONParserStatusError;
 
-	if (NULL != handle_)
+	if (NULL != m_yajl_handle)
 	{
-		status = yajl_complete_parse(handle_);
+		status = yajl_complete_parse((yajl_handle)m_yajl_handle);
 		if (yajl_status_error == status)
 		{
 			self.parserError = [self _errorForStatus: status message: [NSString stringWithFormat: @"Parse error with status %d", status] value: nil];
