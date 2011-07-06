@@ -65,6 +65,16 @@ static BOOL										g_bInitialized = NO;
 
 
 
+// =========================== Begin Class S4JSONFile () ===============================
+
+@interface S4JSONFile ()
+
+@property (nonatomic, copy, readwrite) NSError					*lastError;
+
+@end
+
+
+
 // ============================== Begin Class S4JSONFile ===============================
 
 @implementation S4JSONFile
@@ -209,19 +219,20 @@ static BOOL										g_bInitialized = NO;
 //============================================================================
 - (NSError *)errorforCode: (S4JSONParserError)code description: (NSString *)descStr reason: (NSString *)failStr
 {
-	NSError									*error;
 	NSMutableDictionary						*userDict = nil;
 	NSString								*localizedDescription;
 	NSString								*localizedFailureReason;
+	NSError									*error;
 
-	if (S4JSONParserNoError == code)
+	if (S4JSONParserNoError == code)				// if no error, set values to nil
 	{
 		error = nil;
 	}
-	else
+	else											// there was an error
 	{
+		// create an NSDictionary to hold values for the NSError
 		userDict = [NSMutableDictionary dictionaryWithCapacity: 2];
-		if (nil != userDict)
+		if (IS_NOT_NULL(userDict))
 		{
 			if (STR_NOT_EMPTY(descStr))
 			{
@@ -229,9 +240,36 @@ static BOOL										g_bInitialized = NO;
 			}
 			else
 			{
-				localizedDescription = @"Generic JSON error";
+				if (S4JSONParserParsingError == code)
+				{
+					localizedDescription = @"JSON parsing error";
+				}
+				else if (S4JSONParserInvalidDataError == code)
+				{
+					localizedDescription = @"JSON data error";
+				}
+				else if (S4JSONParserAllocationError == code)
+				{
+					localizedDescription = @"Allocation error";
+				}
+				else if (S4JSONParserDoubleOverflowError == code)
+				{
+					localizedDescription = @"Double overflow error";
+				}
+				else if (S4JSONParserIntegerOverflowError == code)
+				{
+					localizedDescription = @"Integer overflow error";
+				}
+				else if (S4JSONParserCanceledError == code)
+				{
+					localizedDescription = @"Operation canceled error";
+				}
+				else
+				{
+					localizedDescription = @"Unknown error";
+				}
 			}
-			[userDict setObject: localizedDescription forKey: NSLocalizedDescriptionKey];
+			
 
 			if (STR_NOT_EMPTY(failStr))
 			{
@@ -239,19 +277,47 @@ static BOOL										g_bInitialized = NO;
 			}
 			else
 			{
-				localizedFailureReason = @"Generic JSON error";
+				if (S4JSONParserParsingError == code)
+				{
+					localizedFailureReason = @"The JSON parser could not parse the data";
+				}
+				else if (S4JSONParserInvalidDataError == code)
+				{
+					localizedFailureReason = @"The JSON could not be found or was malformed";
+				}
+				else if (S4JSONParserAllocationError == code)
+				{
+					localizedFailureReason = @"The application is out of memory";
+				}
+				else if (S4JSONParserDoubleOverflowError == code)
+				{
+					localizedFailureReason = @"A (double) number being evaluated was larger than allowed by the parser";
+				}
+				else if (S4JSONParserIntegerOverflowError == code)
+				{
+					localizedFailureReason = @"A (integer) number being evaluated was larger than allowed by the parser";
+				}
+				else if (S4JSONParserCanceledError == code)
+				{
+					localizedFailureReason = @"The current parsing operation was canceled due to previous failures";
+				}
+				else
+				{
+					localizedFailureReason = @"An unknown error was encountered by the parser";
+				}
 			}
+
+			// set the keys in the error dictionary
+			[userDict setObject: localizedDescription forKey: NSLocalizedDescriptionKey];
 			[userDict setObject: localizedFailureReason forKey: NSLocalizedFailureReasonErrorKey];
 		}
 
 		// create the NSError
 		error = [[NSError alloc] initWithDomain: S4JSONFileErrorDomain code: (NSInteger)code userInfo: userDict];
-		if (IS_NOT_NULL(m_lastError))
-		{
-			[m_lastError release];
-		}
-		m_lastError = [error copy];
 	}
+
+	// and set the instance var
+	self.lastError = error;
 	return (error);
 }
 

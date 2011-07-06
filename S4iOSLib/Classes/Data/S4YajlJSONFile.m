@@ -244,22 +244,21 @@ NSInteger										S4JSONFileStackCapacity = 20;
 - (BOOL)parseData: (NSData *)data
 {
 	S4JSONParserError					parseError;
-	NSError								*error = nil;
+	NSError								*localError;
 	BOOL								bResult = NO;
 
-	parseError = [self parse: data error: &error];
-	if ((S4JSONParserNoError == parseError) && (nil == error))
+	parseError = [m_parser parse: data];
+	if (S4JSONParserNoError == parseError)
 	{
 		bResult = YES;
 	}
-	else if (IS_NOT_NULL(error))
-	{
-		[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
-	}
 	else
 	{
-		error = [self errorforCode: S4JSONParserParsingError description: nil reason: nil];
-		[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
+		localError = [self errorforCode: parseError description: nil reason: nil];
+		if (IS_NOT_NULL(localError))
+		{
+			[self performSelectorOnMainThread: @selector(parseError:) withObject: localError waitUntilDone: NO];
+		}
 	}
 	return (bResult);
 }
@@ -372,62 +371,43 @@ NSInteger										S4JSONFileStackCapacity = 20;
 //============================================================================
 - (void)parseEnded
 {
-	id										parsedJSON = nil;
+	S4JSONParserError						parseError;
 	S4JSONClassType							jsonObjectType;
 	NSError									*error = nil;
-	NSMutableDictionary						*userDict;
-	NSString								*localizedDescription;
-	NSString								*localizedFailureReason;
 
-	if (S4JSONParserNoError == [self parseCompleted])
+	parseError = [m_parser parseCompleted];
+	if ((S4JSONParserNoError == parseError) && (IS_NOT_NULL(m_rootJSONObject)))
 	{
-		parsedJSON = self.document;
-		if (nil != parsedJSON)
+		if (YES == [m_rootJSONObject isKindOfClass: [NSDictionary class]])
 		{
-			if (YES == [parsedJSON isKindOfClass: [NSDictionary class]])
-			{
-				jsonObjectType = kNSDictionaryJSONClass;
-			}
-			else if (YES == [parsedJSON isKindOfClass: [NSArray class]])
-			{
-				jsonObjectType = kNSArrayJSONClass;
-			}
-			else if (YES == [parsedJSON isKindOfClass: [NSString class]])
-			{
-				jsonObjectType = kNSStringJSONClass;
-			}
-			else if (YES == [parsedJSON isKindOfClass: [NSNumber class]])
-			{
-				jsonObjectType = kNSNumberJSONClass;
-			}
-			else
-			{
-				jsonObjectType = kUnknownJSONClass;
-			}			
-			
-			// call the delegate with the JSON from the server parsed into an NSObject class
-			[m_delegate jsonFile: self didEndParsingJSON: parsedJSON ofType: jsonObjectType];
+			jsonObjectType = kNSDictionaryJSONClass;
 		}
-		else	// JSON parser could not parse response from server or response could not be converted to string
+		else if (YES == [m_rootJSONObject isKindOfClass: [NSArray class]])
 		{
-			userDict = [NSMutableDictionary dictionaryWithCapacity: 10];
-			if (nil != userDict)
-			{
-				localizedDescription = @"Malformed JSON";
-				[userDict setObject: localizedDescription forKey: NSLocalizedDescriptionKey];
-				localizedFailureReason = @"Malformed JSON response";
-				[userDict setObject: localizedFailureReason forKey: NSLocalizedFailureReasonErrorKey];
-			}
-			// create the NSError
-			error = [self errorforCode: S4JSONParserParsingError description: nil reason: nil];
+			jsonObjectType = kNSArrayJSONClass;
 		}
+		else if (YES == [m_rootJSONObject isKindOfClass: [NSString class]])
+		{
+			jsonObjectType = kNSStringJSONClass;
+		}
+		else if (YES == [m_rootJSONObject isKindOfClass: [NSNumber class]])
+		{
+			jsonObjectType = kNSNumberJSONClass;
+		}
+		else
+		{
+			jsonObjectType = kUnknownJSONClass;
+		}			
+
+		// call the delegate with the JSON from the server parsed into an NSObject class
+		[m_delegate jsonFile: self didEndParsingJSON: m_rootJSONObject ofType: jsonObjectType];
 	}
 	else	// could not create a JSON parser
 	{
-		error = [self errorforCode: S4JSONParserAllocationError description: nil reason: nil];
+		error = [self errorforCode: S4JSONParserParsingError description: nil reason: nil];
 	}
-	
-	if (nil != error)
+
+	if (IS_NOT_NULL(error))
 	{
 		[self parseError: error];
 	}
@@ -534,12 +514,14 @@ NSInteger										S4JSONFileStackCapacity = 20;
 //============================================================================
 - (S4JSONParserError)parse: (NSData *)data error: (NSError **)error
 {
-	S4JSONParserError				parseError;
+	S4JSONParserError					parseError;
+	NSError								*localError;
 
 	parseError = [m_parser parse: data];
+	localError = [self errorforCode: parseError description: nil reason: nil];
 	if (nil != error)
 	{
-		*error = [m_parser parserError];
+		*error = localError;
 	}
 	return (parseError);
 }
@@ -553,6 +535,7 @@ NSInteger										S4JSONFileStackCapacity = 20;
 	S4JSONParserError				parseError;
 
 	parseError = [m_parser parseCompleted];
+	(void)[self errorforCode: parseError description: nil reason: nil];
 	return (parseError);
 }
 

@@ -91,10 +91,10 @@ S4_EXTERN_CONSTANT_NSSTR				kDefaultJSONFileHostStr;
 }
 
 // Properties
-@property (nonatomic, retain) NSString						*reachableHostStr;
-@property (nonatomic, retain) NSOperationQueue				*operationQueue;
-@property (nonatomic, readonly) id							document;
-@property (nonatomic, readonly) NSError						*lastError;
+@property (nonatomic, retain) NSString							*reachableHostStr;
+@property (nonatomic, retain) NSOperationQueue					*operationQueue;
+@property (nonatomic, readonly) id								document;
+@property (nonatomic, copy, readonly) NSError					*lastError;
 
 // Class methods
 + (id)jsonFile;
