@@ -313,7 +313,7 @@ static BOOL										g_bInitialized = NO;
 		}
 
 		// create the NSError
-		error = [[NSError alloc] initWithDomain: S4JSONFileErrorDomain code: (NSInteger)code userInfo: userDict];
+		error = [NSError errorWithDomain: S4JSONFileErrorDomain code: (NSInteger)code userInfo: userDict];
 	}
 
 	// and set the instance var

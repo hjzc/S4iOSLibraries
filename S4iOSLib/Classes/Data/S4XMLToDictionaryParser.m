@@ -798,7 +798,6 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 			if (IS_NOT_NULL(error))
 			{
 				[self performSelectorOnMainThread: @selector(parseError:) withObject: error waitUntilDone: NO];
-				[error release];
 			}
 		}
 	}

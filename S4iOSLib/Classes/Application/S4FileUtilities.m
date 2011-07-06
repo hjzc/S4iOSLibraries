@@ -694,7 +694,7 @@ static NSString							*kApplSupportDirectory = nil;
 	{
 		if (YES == [S4FileUtilities fileExists: path])
 		{
-			tmpStr = [[NSString stringWithContentsOfFile: path usedEncoding: encodingPtr error: &error] autorelease];
+			tmpStr = [NSString stringWithContentsOfFile: path usedEncoding: encodingPtr error: &error];
 			if ((STR_NOT_EMPTY(tmpStr)) && (IS_NULL(error)))
 			{
 				bResult = YES;
