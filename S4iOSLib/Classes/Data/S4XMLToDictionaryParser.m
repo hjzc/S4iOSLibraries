@@ -62,6 +62,11 @@ S4_INTERN_CONSTANT_NSSTR						kXML_PrefixSeparatorStr = @"%@:%@";
 // ALL S4 LIBS SHOULD DEFINE THIS:
 S4_INTERN_CONSTANT_NSSTR						S4XMLToDictParserErrorDomain = @"S4XMLToDictionaryParser";
 
+// static class variables
+// the NSOperationsQueue for all S4XMLToDictionaryParser instances (if none is provided)
+static NSOperationQueue							*g_classOperationQueue;
+static BOOL										g_bInitialized = NO;
+
 
 // ============================= Forward Declarations ==================================
 
@@ -463,7 +468,7 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 	m_rootElementNameStr = [rootElementStr retain];
 
 	// create an S4OperationsHandler instance to spin a new thread for the parse operation
-	s4OpsHandler = [S4OperationsHandler handlerWithOperationQueue: nil];
+	s4OpsHandler = [S4OperationsHandler handlerWithOperationQueue:  self.operationQueue releaseQueueWhenDone: NO];
 	if IS_NOT_NULL(s4OpsHandler)
 	{
 		argArray = [NSMutableArray arrayWithCapacity: (NSUInteger)2];
@@ -569,8 +574,24 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 //============================================================================
 // public
 @synthesize reachableHostStr = m_reachableHostStr;
+@synthesize operationQueue = m_operationQueue;
 
 // private
+
+
+//============================================================================
+//	S4XMLToDictionaryParser :: initialize
+//============================================================================
++ (void)initialize
+{
+	if ((NO == g_bInitialized) && ([self class] == [S4XMLToDictionaryParser class]))
+	{
+		g_classOperationQueue = [[NSOperationQueue alloc] init];
+		[g_classOperationQueue setMaxConcurrentOperationCount: NSOperationQueueDefaultMaxConcurrentOperationCount];
+
+		g_bInitialized = YES;
+	}
+}
 
 
 //============================================================================
@@ -597,11 +618,12 @@ static xmlSAXHandler simpleSAXHandlerStruct =
 		m_bElementHasChars = NO;
 		m_rootElementNameStr = nil;
 		m_curXmlDictionary = nil;
-		m_reachableHostStr = [kDefaultReachabilityHostStr retain];
+		m_reachableHostStr = [kDefaultReachabilityHostStr copy];
 		m_parsingAutoreleasePool = nil;
 		m_libXmlParserContext = NULL;
 		m_bDoneParsing = YES;
 		m_S4HttpConnection = nil;
+		m_operationQueue = g_classOperationQueue;
 	}
 	return (self);
 }

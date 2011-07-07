@@ -279,7 +279,7 @@ NSInteger										S4JSONFileStackCapacity = 20;
 	m_delegate = [delegate retain];
 
 	// create an S4OperationsHandler instance to spin a new thread for the parse operation
-	s4OpsHandler = [S4OperationsHandler handlerWithOperationQueue: self.operationQueue];
+	s4OpsHandler = [S4OperationsHandler handlerWithOperationQueue: self.operationQueue releaseQueueWhenDone: NO];
 	if IS_NOT_NULL(s4OpsHandler)
 	{
 		argArray = [NSMutableArray arrayWithCapacity: (NSUInteger)2];

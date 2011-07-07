@@ -68,12 +68,6 @@ static BOOL								g_bInitialized = NO;
 
 // ======================== Begin Class S4OperationsHandler () =========================
 
-@interface S4OperationsHandler ()
-
-@property (nonatomic, retain) NSOperationQueue				*m_instanceOperationQueue;
-
-@end
-
 
 
 // =================== Begin Class S4OperationsHandler (PrivateImpl) ===================
@@ -139,8 +133,7 @@ static BOOL								g_bInitialized = NO;
 //============================================================================
 //	S4OperationsHandler :: properties
 //============================================================================
-// private
-@synthesize m_instanceOperationQueue;
+
 
 
 //============================================================================
@@ -161,9 +154,9 @@ static BOOL								g_bInitialized = NO;
 //============================================================================
 //	S4OperationsHandler :: handlerWithOperationQueue:
 //============================================================================
-+ (id)handlerWithOperationQueue: (NSOperationQueue *)queue
++ (id)handlerWithOperationQueue: (NSOperationQueue *)queue releaseQueueWhenDone: (BOOL)bShouldReleaseQueue
 {
-	return [[[[self class] alloc] initWithOperationQueue: queue] autorelease];
+	return [[[[self class] alloc] initWithOperationQueue: queue releaseQueueWhenDone: bShouldReleaseQueue] autorelease];
 }
 
 
@@ -175,7 +168,8 @@ static BOOL								g_bInitialized = NO;
 	self = [super init];
 	if (nil != self)
 	{
-		self.m_instanceOperationQueue = g_classOperationQueue;
+		m_instanceOperationQueue = g_classOperationQueue;
+		m_bShouldReleaseQueue = NO;
 	}
 	return (self);
 }
@@ -184,18 +178,20 @@ static BOOL								g_bInitialized = NO;
 //============================================================================
 //	S4OperationsHandler :: initWithOperationQueue
 //============================================================================
-- (id)initWithOperationQueue: (NSOperationQueue *)queue
+- (id)initWithOperationQueue: (NSOperationQueue *)queue releaseQueueWhenDone: (BOOL)bShouldReleaseQueue
 {
 	self = [super init];
 	if (nil != self)
 	{
 		if IS_NOT_NULL(queue)
 		{
-			self.m_instanceOperationQueue = queue;
+			m_instanceOperationQueue = [queue retain];
+			m_bShouldReleaseQueue = bShouldReleaseQueue;
 		}
 		else
 		{
 			m_instanceOperationQueue = g_classOperationQueue;
+			m_bShouldReleaseQueue = NO;
 		}
 	}
 	return (self);
@@ -209,9 +205,9 @@ static BOOL								g_bInitialized = NO;
 {
 	// if our instance member var has not been set to the class operation
 	//  queue, call release on it
-	if (NO == [g_classOperationQueue isEqual: self.m_instanceOperationQueue])
+	if ((NO == [g_classOperationQueue isEqual: m_instanceOperationQueue]) && (YES == m_bShouldReleaseQueue))
 	{
-		self.m_instanceOperationQueue = nil;
+		[m_instanceOperationQueue release];
 	}
 
 	[super dealloc];
@@ -272,7 +268,7 @@ static BOOL								g_bInitialized = NO;
 			invokeOperation = [[NSInvocationOperation alloc] initWithInvocation: invocation];
 			if (IS_NOT_NULL(invokeOperation))
 			{
-				[self.m_instanceOperationQueue addOperation: invokeOperation];
+				[m_instanceOperationQueue addOperation: invokeOperation];
 				[invokeOperation release];
 				bResult = YES;
 			}
@@ -287,7 +283,7 @@ static BOOL								g_bInitialized = NO;
 //============================================================================
 - (NSArray *)operations
 {
-	return ([self.m_instanceOperationQueue operations]);
+	return ([m_instanceOperationQueue operations]);
 }
 
 
@@ -296,7 +292,7 @@ static BOOL								g_bInitialized = NO;
 //============================================================================
 - (BOOL)isSuspended
 {
-	return ([self.m_instanceOperationQueue isSuspended]);
+	return ([m_instanceOperationQueue isSuspended]);
 }
 
 @end

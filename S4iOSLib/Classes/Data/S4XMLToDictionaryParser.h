@@ -94,10 +94,12 @@ S4_EXTERN_CONSTANT_NSSTR				S4XMLToDictParserErrorDomain;
 	xmlParserCtxtPtr									m_libXmlParserContext;
 	BOOL												m_bDoneParsing;
 	S4HttpConnection									*m_S4HttpConnection;
+	NSOperationQueue									*m_operationQueue;
 }
 
 // Properties
-@property (nonatomic, retain) NSString					*reachableHostStr;
+@property (nonatomic, copy) NSString							*reachableHostStr;
+@property (nonatomic, assign) NSOperationQueue					*operationQueue;
 
 // Class methods
 + (id)parser;

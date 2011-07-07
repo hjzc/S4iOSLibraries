@@ -63,28 +63,29 @@
 {
 @private
 	NSOperationQueue									*m_instanceOperationQueue;
+	BOOL												m_bShouldReleaseQueue;
 }
 
 //	Properties
 	/* None */
 
 //	Class methods
-+ (id)handlerWithOperationQueue: (NSOperationQueue *)queue;
++ (id)handlerWithOperationQueue: (NSOperationQueue *)queue releaseQueueWhenDone: (BOOL)bShouldReleaseQueue;
 
 //	Instance methods
 
-//
-- (id)initWithOperationQueue: (NSOperationQueue *)queue;
+// create an S4OperationsHandler for a given NSOerationQueue (can be nil to use Class's global Queue)
+- (id)initWithOperationQueue: (NSOperationQueue *)queue releaseQueueWhenDone: (BOOL)bShouldReleaseQueue;
 
 // all arguments passed via array MUST be objects - will not handle primitive types
 - (BOOL)addSelectorToQueue: (SEL)selector
 				  onTarget: (id)target
 			 withArguments: (NSArray *)argArray;
 
-// returns array of current and unexecuted operations in the instance OperationsQueue
+// returns array of current and unexecuted operations in the instance member NSOperationsQueue
 - (NSArray *)operations;
 
-// returns Suspended state of the instance OperationsQueue
+// returns Suspended state of the instance member NSOperationsQueue
 - (BOOL)isSuspended;
 
 @end

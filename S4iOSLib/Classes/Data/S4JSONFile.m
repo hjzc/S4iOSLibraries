@@ -43,13 +43,14 @@
 
 // ================================== Typedefs =========================================
 
+
+
+// =================================== Globals =========================================
+
 S4_INTERN_CONSTANT_NSSTR						kDefaultJSONFileHostStr = @"www.yahoo.com";
 
 // ALL S4 LIBS SHOULD DEFINE THIS:
 S4_INTERN_CONSTANT_NSSTR						S4JSONFileErrorDomain = @"S4JSONFileErrorDomain";
-
-
-// =================================== Globals =========================================
 
 // static class variables
 // the NSOperationsQueue for all S4JSONFile instances (if none is provided)
@@ -137,7 +138,7 @@ static BOOL										g_bInitialized = NO;
 		m_rootJSONObject = nil;
 		m_lastError = nil;
 		m_delegate = nil;
-		m_reachableHostStr = [kDefaultJSONFileHostStr retain];
+		m_reachableHostStr = [kDefaultJSONFileHostStr copy];
 		m_operationQueue = g_classOperationQueue;
 		m_parsingAutoreleasePool = nil;
 		m_bDoneParsing = YES;
@@ -155,6 +156,12 @@ static BOOL										g_bInitialized = NO;
 	{
 		[m_rootJSONObject release];
 		m_rootJSONObject = nil;
+	}
+
+	if (IS_NOT_NULL(m_lastError))
+	{
+		[m_lastError release];
+		m_lastError = nil;
 	}
 
 	if IS_NOT_NULL(m_delegate)
