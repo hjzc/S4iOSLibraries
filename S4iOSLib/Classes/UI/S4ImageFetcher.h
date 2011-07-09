@@ -25,9 +25,9 @@
 
 /* ***** FILE BLOCK ******
  *
- * Name:		S4CryptoUtils.h
- * Module:		Crypto
- * Library:		S4 iPhone Libraries
+ * Name:		S4ImageFetcher.h
+ * Module:		UI
+ * Library:		S4 iOS Libraries
  *
  * ***** FILE BLOCK *****/
 
@@ -35,6 +35,8 @@
 // ================================== Includes =========================================
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "S4CommonDefines.h"
 
 
 // =================================== Defines =========================================
@@ -43,29 +45,63 @@
 
 // ================================== Typedefs =========================================
 
+typedef enum
+{
+	S4ImageFetcherNoError					= 0,
+	S4ImageFetcherInvalidDataError			= 1,
+	S4ImageFetcherAllocationError			= 2,
+	S4ImageFetcherInvalidImageError			= 3,
+	S4ImageFetcherUnknownError				= 4
+} S4ImageFetcherError;
 
 
 // =================================== Globals =========================================
 
+S4_EXTERN_CONSTANT_NSSTR				S4ImageFetcherErrorDomain;
 
 
 // ============================= Forward Declarations ==================================
 
+@class S4ImageFetcher;
 
 
 // ================================== Protocols ========================================
 
+@protocol S4ImageFetcherDelegate <NSObject>
+
+@required
+// Called by the parser when parsing has begun.
+- (void)imageFetcher: (S4ImageFetcher *)fetcher loadedImage: (UIImage *)image context: (id)userObject;
+
+@optional
+// Called by the retriever in the case of an error.
+- (void)imageFetcher: (S4ImageFetcher *)fetcher didFailWithError: (NSError *)error;
+
+@end
 
 
-// ============================= Class S4CryptoUtils ===================================
+// ============================ Class S4ImageFetcher ===================================
 
-@interface S4CryptoUtils : NSObject
+@interface S4ImageFetcher : NSObject
+{
+@private
+	id													m_userObject;
+	id <S4ImageFetcherDelegate>							m_delegate;
+	NSString											*m_imageTag;
+	NSOperationQueue									*m_operationQueue;
+}
 
+// Properties
+@property (nonatomic, assign) NSOperationQueue					*operationQueue;
+@property (nonatomic, readonly) NSString						*imageTag;
 
-+ (NSString *)stringByBase64EncodingData: (NSData *)data;
+// Class methods
++ (id)fetcherForImageAtURL: (NSString *)urlStr
+			  withDelegate: (id <S4ImageFetcherDelegate>)delegate
+				   context: (id)userObject
+	   usingOperationQueue: (NSOperationQueue *)queue;
 
-+ (NSString *)md5HashStringFromString: (NSString *)strToHash;
-
-+ (NSString *)sha1HashStringFromString: (NSString *)strToHash;
+// Instance methods
+- (BOOL)loadImageAtURL: (NSString *)urlStr withDelegate: (id <S4ImageFetcherDelegate>)delegate context: (id)userObject;
 
 @end

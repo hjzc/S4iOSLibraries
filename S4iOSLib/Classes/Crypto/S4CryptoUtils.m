@@ -37,6 +37,7 @@
 #import "S4CryptoUtils.h"
 #include "Base64Transcoder.h"
 #import "S4CommonDefines.h"
+#include <CommonCrypto/CommonHMAC.h>
 
 
 // =================================== Defines =========================================
@@ -66,7 +67,7 @@
 
 
 //============================================================================
-//	S4CryptoUtils :: stringByBase64EncodingData
+//	S4CryptoUtils :: stringByBase64EncodingData:
 //============================================================================
 + (NSString *)stringByBase64EncodingData: (NSData *)data
 {
@@ -98,6 +99,67 @@
 		}
 	}
 	return (strResult);
+}
+
+
+//============================================================================
+//	S4CryptoUtils :: md5HashStringFromString:
+//============================================================================
++ (NSString *)md5HashStringFromString: (NSString *)strToHash
+{
+	const char							*cString;
+	unsigned char						buffer[CC_MD5_DIGEST_LENGTH];
+	NSString							*strResult = nil;
+
+	if (STR_NOT_EMPTY(strToHash))
+	{
+		cString = [strToHash UTF8String];
+		CC_MD5(cString, strlen(cString), buffer);
+		strResult = [NSString stringWithFormat: @"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+					 buffer[0],
+					 buffer[1],
+					 buffer[2],
+					 buffer[3],
+					 buffer[4],
+					 buffer[5],
+					 buffer[6],
+					 buffer[7],
+					 buffer[8],
+					 buffer[9],
+					 buffer[10],
+					 buffer[11],
+					 buffer[12],
+					 buffer[13],
+					 buffer[14],
+					 buffer[15]];
+	}
+	return (strResult);
+}
+
+
+//============================================================================
+//	S4CryptoUtils :: sha1HashStringFromString:
+//============================================================================
++ (NSString *)sha1HashStringFromString: (NSString *)strToHash
+{
+	const char							*cString;
+	NSData								*data;
+	uint8_t								buffer[CC_SHA1_DIGEST_LENGTH];
+	int									idx;
+	NSMutableString						*strResult = nil;
+
+	if (STR_NOT_EMPTY(strToHash))
+	{
+		cString = [strToHash cStringUsingEncoding: NSUTF8StringEncoding];
+		data = [NSData dataWithBytes: cString length: strToHash.length];
+		CC_SHA1(data.bytes, data.length, buffer);
+		strResult = [NSMutableString stringWithCapacity: (CC_SHA1_DIGEST_LENGTH * 2)];
+		for (idx = 0; idx < CC_SHA1_DIGEST_LENGTH; idx++)
+		{
+			[strResult appendFormat: @"%02x", buffer[idx]];
+		}
+	}
+	return strResult;
 }
 
 @end

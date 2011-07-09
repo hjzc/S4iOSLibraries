@@ -25,9 +25,9 @@
 
 /* ***** FILE BLOCK ******
  *
- * Name:		S4CryptoUtils.h
- * Module:		Crypto
- * Library:		S4 iPhone Libraries
+ * Name:		S4CacheItem.h
+ * Module:		Data
+ * Library:		S4 iOS Libraries
  *
  * ***** FILE BLOCK *****/
 
@@ -35,6 +35,7 @@
 // ================================== Includes =========================================
 
 #import <Foundation/Foundation.h>
+#import "S4CommonDefines.h"
 
 
 // =================================== Defines =========================================
@@ -57,15 +58,31 @@
 
 
 
-// ============================= Class S4CryptoUtils ===================================
+// ============================== Class S4CacheItem ===================================
 
-@interface S4CryptoUtils : NSObject
+@interface S4CacheItem : NSObject
+{
+@protected
+	NSString											*m_keyStr;
+	NSDate												*m_itemTimeStamp;
+	id													m_itemContents;
+}
 
+// Properties
+@property (nonatomic, copy, readonly) NSString					*key;
+@property (nonatomic, assign, readonly) NSDate					*timeStamp;
+@property (nonatomic, retain, readonly) id						contents;
 
-+ (NSString *)stringByBase64EncodingData: (NSData *)data;
+// Class methods
++ (id)cacheItemWithKey: (NSString *)key forContent: (id)object;
 
-+ (NSString *)md5HashStringFromString: (NSString *)strToHash;
+// Instance methods
+- (id)initWithKey: (NSString *)key forContent: (id)object;
 
-+ (NSString *)sha1HashStringFromString: (NSString *)strToHash;
+- (NSUInteger)hash;
+
+- (BOOL)isEqual: (id)anObject;
+
+- (BOOL)isEqualToS4CacheItem: (S4CacheItem *)aCacheItem;
 
 @end

@@ -11,11 +11,11 @@
  * for the specific language governing rights and limitations under the
  * License.
  *
- * The Original Code is the S4 iPhone Libraries.
+ * The Original Code is the S4 iOS Libraries.
  *
  * The Initial Developer of the Original Code is
  * Michael Papp dba SeaStones Software Company.
- * All software created by the Initial Developer are Copyright (C) 2008-2009
+ * All software created by the Initial Developer are Copyright (C) 2008-2010
  * the Initial Developer. All Rights Reserved.
  *
  * Original Author:
@@ -25,9 +25,9 @@
 
 /* ***** FILE BLOCK ******
  *
- * Name:		S4CryptoUtils.h
- * Module:		Crypto
- * Library:		S4 iPhone Libraries
+ * Name:		S4CircularArray.h
+ * Module:		Core
+ * Library:		S4 iOS Libraries
  *
  * ***** FILE BLOCK *****/
 
@@ -45,11 +45,11 @@
 
 
 
-// =================================== Globals =========================================
+// ================================== Globals =========================================
 
 
 
-// ============================= Forward Declarations ==================================
+// ============================= Forward Declarations =================================
 
 
 
@@ -57,15 +57,40 @@
 
 
 
-// ============================= Class S4CryptoUtils ===================================
+// ============================= S4CircularArray Class =================================
 
-@interface S4CryptoUtils : NSObject
+@interface S4CircularArray : NSObject
+{
+@private
+	NSMutableArray									*buffer;
+	NSUInteger										nextIndex;
+}
 
+//	Properties
+		/* None */
 
-+ (NSString *)stringByBase64EncodingData: (NSData *)data;
+//	Class methods
++ (id)circularArrayWithCapacity: (NSUInteger)numItems;
 
-+ (NSString *)md5HashStringFromString: (NSString *)strToHash;
+//	Instance methods
+- (id)initWithCapacity: (NSUInteger)numItems;
 
-+ (NSString *)sha1HashStringFromString: (NSString *)strToHash;
+- (NSUInteger)count;
+
+- (id)addObject: (id)obj;
+
+- (id)objectAtIndex: (int)i;
+
+- (void)removeObject: (id)key;
+
+- (void)removeObjectAtIndex: (int)i;
+
+- (id)swapObject: (id)anObject atIndex: (NSUInteger)idx;
+
+- (id)findObject: (id)key;
+
+- (int)findIndexOfObject: (id)key;
+
+- (NSArray *)allObjects;
 
 @end

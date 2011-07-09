@@ -99,6 +99,12 @@
 		0AAA5992139768ED006FB758 /* HTTPLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAA598B139768ED006FB758 /* HTTPLogging.h */; };
 		0AAA5993139768ED006FB758 /* HTTPRedirectResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAA598C139768ED006FB758 /* HTTPRedirectResponse.h */; };
 		0AAA5994139768ED006FB758 /* HTTPRedirectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA598D139768ED006FB758 /* HTTPRedirectResponse.m */; };
+		0AAFB45813C8159800FD70FC /* S4ImageFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAFB45613C8159700FD70FC /* S4ImageFetcher.h */; };
+		0AAFB45913C8159800FD70FC /* S4ImageFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAFB45713C8159700FD70FC /* S4ImageFetcher.m */; };
+		0AAFB45F13C815C300FD70FC /* S4CacheItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAFB45B13C815C300FD70FC /* S4CacheItem.h */; };
+		0AAFB46013C815C300FD70FC /* S4CacheItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAFB45C13C815C300FD70FC /* S4CacheItem.m */; };
+		0AAFB46113C815C300FD70FC /* S4CircularArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAFB45D13C815C300FD70FC /* S4CircularArray.h */; };
+		0AAFB46213C815C300FD70FC /* S4CircularArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAFB45E13C815C300FD70FC /* S4CircularArray.m */; };
 		0AB551D113AE83DD00589E24 /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB551CF13AE83DD00589E24 /* DDAbstractDatabaseLogger.h */; };
 		0AB551D213AE83DD00589E24 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB551D013AE83DD00589E24 /* DDAbstractDatabaseLogger.m */; };
 		0AB551EF13AE863100589E24 /* yajl_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AB551EE13AE863100589E24 /* yajl_version.h */; };
@@ -279,6 +285,12 @@
 		0AAA598B139768ED006FB758 /* HTTPLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPLogging.h; path = "Vendor/CocoaHttpServer/Github-fork/HTTPLogging.h"; sourceTree = "<group>"; };
 		0AAA598C139768ED006FB758 /* HTTPRedirectResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPRedirectResponse.h; path = "Vendor/CocoaHttpServer/Github-fork/HTTPRedirectResponse.h"; sourceTree = "<group>"; };
 		0AAA598D139768ED006FB758 /* HTTPRedirectResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTPRedirectResponse.m; path = "Vendor/CocoaHttpServer/Github-fork/HTTPRedirectResponse.m"; sourceTree = "<group>"; };
+		0AAFB45613C8159700FD70FC /* S4ImageFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4ImageFetcher.h; sourceTree = "<group>"; };
+		0AAFB45713C8159700FD70FC /* S4ImageFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S4ImageFetcher.m; sourceTree = "<group>"; };
+		0AAFB45B13C815C300FD70FC /* S4CacheItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4CacheItem.h; path = Classes/Cache/S4CacheItem.h; sourceTree = "<group>"; };
+		0AAFB45C13C815C300FD70FC /* S4CacheItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = S4CacheItem.m; path = Classes/Cache/S4CacheItem.m; sourceTree = "<group>"; };
+		0AAFB45D13C815C300FD70FC /* S4CircularArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4CircularArray.h; path = Classes/Cache/S4CircularArray.h; sourceTree = "<group>"; };
+		0AAFB45E13C815C300FD70FC /* S4CircularArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = S4CircularArray.m; path = Classes/Cache/S4CircularArray.m; sourceTree = "<group>"; };
 		0AB551CF13AE83DD00589E24 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = Vendor/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
 		0AB551D013AE83DD00589E24 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = Vendor/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
 		0AB551EE13AE863100589E24 /* yajl_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_version.h; sourceTree = "<group>"; };
@@ -435,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				0A8FCC021238111900E95217 /* Application */,
+				0AAFB45A13C815A400FD70FC /* Cache */,
 				0A8FCC0D1238111900E95217 /* Categories */,
 				0A8FCC181238111900E95217 /* Core */,
 				0AD5F35D123D859B00024367 /* Crypto */,
@@ -600,6 +613,8 @@
 		0A8FCC3B1238111900E95217 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0AAFB45613C8159700FD70FC /* S4ImageFetcher.h */,
+				0AAFB45713C8159700FD70FC /* S4ImageFetcher.m */,
 				0A8FCC461238111900E95217 /* S4ScreenUtils.h */,
 				0A8FCC471238111900E95217 /* S4ScreenUtils.m */,
 			);
@@ -630,6 +645,17 @@
 				0A8FCC911238119400E95217 /* NSFileManager-Utilities.m */,
 			);
 			name = erica_sadun;
+			sourceTree = "<group>";
+		};
+		0AAFB45A13C815A400FD70FC /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				0AAFB45B13C815C300FD70FC /* S4CacheItem.h */,
+				0AAFB45C13C815C300FD70FC /* S4CacheItem.m */,
+				0AAFB45D13C815C300FD70FC /* S4CircularArray.h */,
+				0AAFB45E13C815C300FD70FC /* S4CircularArray.m */,
+			);
+			name = Cache;
 			sourceTree = "<group>";
 		};
 		0ABA9781123C10F1006861CD /* yajl */ = {
@@ -855,6 +881,9 @@
 				0ABC654613C2CB57000B05D0 /* S4CryptoUtils.h in Headers */,
 				0A8B045C13C37CC2005031DC /* S4JSONCommon.h in Headers */,
 				0A8B049913C38417005031DC /* S4YajlJSONFile.h in Headers */,
+				0AAFB45813C8159800FD70FC /* S4ImageFetcher.h in Headers */,
+				0AAFB45F13C815C300FD70FC /* S4CacheItem.h in Headers */,
+				0AAFB46113C815C300FD70FC /* S4CircularArray.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,6 +1049,9 @@
 				0ABC654313C2CACB000B05D0 /* S4JSONSerializer.m in Sources */,
 				0ABC654713C2CB57000B05D0 /* S4CryptoUtils.m in Sources */,
 				0A8B049A13C38417005031DC /* S4YajlJSONFile.m in Sources */,
+				0AAFB45913C8159800FD70FC /* S4ImageFetcher.m in Sources */,
+				0AAFB46013C815C300FD70FC /* S4CacheItem.m in Sources */,
+				0AAFB46213C815C300FD70FC /* S4CircularArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
