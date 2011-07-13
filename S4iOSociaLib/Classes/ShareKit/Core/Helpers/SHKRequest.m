@@ -95,7 +95,7 @@
 	}
 	
 	// Start Connection
-	SHKLog(@"Start SHKRequest:\nURL: %@\nparams: %@", url, params);
+	S4DebugLog(@"Start SHKRequest:\nURL: %@\nparams: %@", url, params);
 	self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 	[request release];
 	[connection release];

@@ -137,17 +137,6 @@
 		0A27157813CAD0CA009D0CDC /* SHKShareMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A27151713CAD0CA009D0CDC /* SHKShareMenu.m */; };
 		0A27157913CAD0CA009D0CDC /* SHKViewControllerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A27151813CAD0CA009D0CDC /* SHKViewControllerWrapper.h */; };
 		0A27157A13CAD0CA009D0CDC /* SHKViewControllerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A27151913CAD0CA009D0CDC /* SHKViewControllerWrapper.m */; };
-		0A2715DE13CADA4B009D0CDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715DD13CADA4B009D0CDC /* CFNetwork.framework */; };
-		0A2715E013CADA4B009D0CDC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715DF13CADA4B009D0CDC /* CoreFoundation.framework */; };
-		0A2715E213CADA4B009D0CDC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715E113CADA4B009D0CDC /* CoreLocation.framework */; };
-		0A2715E413CADA4B009D0CDC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715E313CADA4B009D0CDC /* MapKit.framework */; };
-		0A2715E613CADA4B009D0CDC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715E513CADA4B009D0CDC /* MediaPlayer.framework */; };
-		0A2715E813CADA4B009D0CDC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715E713CADA4B009D0CDC /* MessageUI.framework */; };
-		0A2715EA13CADA4B009D0CDC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715E913CADA4B009D0CDC /* OpenGLES.framework */; };
-		0A2715EC13CADA4B009D0CDC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715EB13CADA4B009D0CDC /* Security.framework */; };
-		0A2715EE13CADA4B009D0CDC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715ED13CADA4B009D0CDC /* SystemConfiguration.framework */; };
-		0A2715F013CADA4B009D0CDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715EF13CADA4B009D0CDC /* UIKit.framework */; };
-		0A2715F213CADA4B009D0CDC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715F113CADA4B009D0CDC /* libxml2.dylib */; };
 		0A2715F413CADA69009D0CDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715F313CADA69009D0CDC /* CFNetwork.framework */; };
 		0A2715F613CADA9A009D0CDC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715F513CADA9A009D0CDC /* CoreFoundation.framework */; };
 		0A2715F813CADA9A009D0CDC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715F713CADA9A009D0CDC /* CoreLocation.framework */; };
@@ -157,7 +146,7 @@
 		0A27160013CADA9A009D0CDC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2715FF13CADA9A009D0CDC /* OpenGLES.framework */; };
 		0A27160213CADA9A009D0CDC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160113CADA9A009D0CDC /* Security.framework */; };
 		0A27160413CADA9A009D0CDC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160313CADA9A009D0CDC /* SystemConfiguration.framework */; };
-		0A27160613CADA9A009D0CDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160513CADA9A009D0CDC /* UIKit.framework */; };
+		0A27160613CADA9A009D0CDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160513CADA9A009D0CDC /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0A27160813CADABC009D0CDC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160713CADABC009D0CDC /* libxml2.dylib */; };
 		0A27163813CADDB2009D0CDC /* NSMutableURLRequest+Parameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A27161E13CADDB2009D0CDC /* NSMutableURLRequest+Parameters.h */; };
 		0A27163913CADDB2009D0CDC /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A27161F13CADDB2009D0CDC /* NSMutableURLRequest+Parameters.m */; };
@@ -185,7 +174,6 @@
 		0A27164F13CADDB2009D0CDC /* OAToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A27163513CADDB2009D0CDC /* OAToken.h */; };
 		0A27165013CADDB2009D0CDC /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A27163613CADDB2009D0CDC /* OAToken.m */; };
 		0A27165113CADDB2009D0CDC /* OAuthConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A27163713CADDB2009D0CDC /* OAuthConsumer.h */; };
-		0AC7F5B113C36B11008C0746 /* libS4iOSLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC7F5B013C36B11008C0746 /* libS4iOSLib.a */; };
 		0AC7F5D513C36B30008C0746 /* Base64Transcoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5B313C36B30008C0746 /* Base64Transcoder.h */; };
 		0AC7F5D613C36B30008C0746 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5B413C36B30008C0746 /* hmac.h */; };
 		0AC7F5D713C36B30008C0746 /* NSCollections+S4Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5B513C36B30008C0746 /* NSCollections+S4Utilities.h */; };
@@ -220,7 +208,6 @@
 		0AC7F5F413C36B30008C0746 /* S4XMLToDictionaryParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5D213C36B30008C0746 /* S4XMLToDictionaryParser.h */; };
 		0AC7F5F513C36B30008C0746 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5D313C36B30008C0746 /* SFHFKeychainUtils.h */; };
 		0AC7F5F613C36B30008C0746 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5D413C36B30008C0746 /* sha1.h */; };
-		0AC7F5F913C36B95008C0746 /* libS4iOS_UI_Lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC7F5F813C36B95008C0746 /* libS4iOS_UI_Lib.a */; };
 		0AC7F60513C36BBE008C0746 /* S4AbstractAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5FB13C36BBE008C0746 /* S4AbstractAppDelegate.h */; };
 		0AC7F60613C36BBE008C0746 /* S4FullScreenMoviePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5FC13C36BBE008C0746 /* S4FullScreenMoviePlayer.h */; };
 		0AC7F60713C36BBE008C0746 /* S4OverlayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5FD13C36BBE008C0746 /* S4OverlayViewController.h */; };
@@ -285,7 +272,7 @@
 		0A2714AD13CAD0C9009D0CDC /* SHKItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKItem.m; sourceTree = "<group>"; };
 		0A2714AE13CAD0C9009D0CDC /* SHKOfflineSharer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKOfflineSharer.h; sourceTree = "<group>"; };
 		0A2714AF13CAD0C9009D0CDC /* SHKOfflineSharer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKOfflineSharer.m; sourceTree = "<group>"; };
-		0A2714B013CAD0C9009D0CDC /* SHKSharers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SHKSharers.plist; sourceTree = "<group>"; };
+		0A2714B013CAD0C9009D0CDC /* SHKSharers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SHKSharers.plist; path = ../../../Resources/SHKSharers.plist; sourceTree = "<group>"; };
 		0A2714B213CAD0C9009D0CDC /* SHKCustomFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKCustomFormController.h; sourceTree = "<group>"; };
 		0A2714B313CAD0C9009D0CDC /* SHKCustomFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKCustomFormController.m; sourceTree = "<group>"; };
 		0A2714B413CAD0C9009D0CDC /* SHKCustomFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKCustomFormFieldCell.h; sourceTree = "<group>"; };
@@ -368,17 +355,6 @@
 		0A27151713CAD0CA009D0CDC /* SHKShareMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKShareMenu.m; sourceTree = "<group>"; };
 		0A27151813CAD0CA009D0CDC /* SHKViewControllerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKViewControllerWrapper.h; sourceTree = "<group>"; };
 		0A27151913CAD0CA009D0CDC /* SHKViewControllerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKViewControllerWrapper.m; sourceTree = "<group>"; };
-		0A2715DD13CADA4B009D0CDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		0A2715DF13CADA4B009D0CDC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		0A2715E113CADA4B009D0CDC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		0A2715E313CADA4B009D0CDC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		0A2715E513CADA4B009D0CDC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		0A2715E713CADA4B009D0CDC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		0A2715E913CADA4B009D0CDC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		0A2715EB13CADA4B009D0CDC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		0A2715ED13CADA4B009D0CDC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0A2715EF13CADA4B009D0CDC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		0A2715F113CADA4B009D0CDC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		0A2715F313CADA69009D0CDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0A2715F513CADA9A009D0CDC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0A2715F713CADA9A009D0CDC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -416,7 +392,6 @@
 		0A27163513CADDB2009D0CDC /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAToken.h; path = Vendor/OAuth/OAToken.h; sourceTree = "<group>"; };
 		0A27163613CADDB2009D0CDC /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAToken.m; path = Vendor/OAuth/OAToken.m; sourceTree = "<group>"; };
 		0A27163713CADDB2009D0CDC /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAuthConsumer.h; path = Vendor/OAuth/OAuthConsumer.h; sourceTree = "<group>"; };
-		0AC7F5B013C36B11008C0746 /* libS4iOSLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libS4iOSLib.a; path = ../S4iOSLib/dist/libS4iOSLib.a; sourceTree = SOURCE_ROOT; };
 		0AC7F5B313C36B30008C0746 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64Transcoder.h; path = ../S4iOSLib/dist/Headers/Base64Transcoder.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5B413C36B30008C0746 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hmac.h; path = ../S4iOSLib/dist/Headers/hmac.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5B513C36B30008C0746 /* NSCollections+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCollections+S4Utilities.h"; path = "../S4iOSLib/dist/Headers/NSCollections+S4Utilities.h"; sourceTree = SOURCE_ROOT; };
@@ -451,7 +426,6 @@
 		0AC7F5D213C36B30008C0746 /* S4XMLToDictionaryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4XMLToDictionaryParser.h; path = ../S4iOSLib/dist/Headers/S4XMLToDictionaryParser.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5D313C36B30008C0746 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = ../S4iOSLib/dist/Headers/SFHFKeychainUtils.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5D413C36B30008C0746 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha1.h; path = ../S4iOSLib/dist/Headers/sha1.h; sourceTree = SOURCE_ROOT; };
-		0AC7F5F813C36B95008C0746 /* libS4iOS_UI_Lib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libS4iOS_UI_Lib.a; path = ../S4iOS_UI_Lib/dist/libS4iOS_UI_Lib.a; sourceTree = SOURCE_ROOT; };
 		0AC7F5FB13C36BBE008C0746 /* S4AbstractAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4AbstractAppDelegate.h; path = ../S4iOS_UI_Lib/dist/Headers/S4AbstractAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5FC13C36BBE008C0746 /* S4FullScreenMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4FullScreenMoviePlayer.h; path = ../S4iOS_UI_Lib/dist/Headers/S4FullScreenMoviePlayer.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5FD13C36BBE008C0746 /* S4OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = S4OverlayViewController.h; path = ../S4iOS_UI_Lib/dist/Headers/S4OverlayViewController.h; sourceTree = SOURCE_ROOT; };
@@ -473,19 +447,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
-				0AC7F5B113C36B11008C0746 /* libS4iOSLib.a in Frameworks */,
-				0AC7F5F913C36B95008C0746 /* libS4iOS_UI_Lib.a in Frameworks */,
-				0A2715DE13CADA4B009D0CDC /* CFNetwork.framework in Frameworks */,
-				0A2715E013CADA4B009D0CDC /* CoreFoundation.framework in Frameworks */,
-				0A2715E213CADA4B009D0CDC /* CoreLocation.framework in Frameworks */,
-				0A2715E413CADA4B009D0CDC /* MapKit.framework in Frameworks */,
-				0A2715E613CADA4B009D0CDC /* MediaPlayer.framework in Frameworks */,
-				0A2715E813CADA4B009D0CDC /* MessageUI.framework in Frameworks */,
-				0A2715EA13CADA4B009D0CDC /* OpenGLES.framework in Frameworks */,
-				0A2715EC13CADA4B009D0CDC /* Security.framework in Frameworks */,
-				0A2715EE13CADA4B009D0CDC /* SystemConfiguration.framework in Frameworks */,
-				0A2715F013CADA4B009D0CDC /* UIKit.framework in Frameworks */,
-				0A2715F213CADA4B009D0CDC /* libxml2.dylib in Frameworks */,
 				0A2715F413CADA69009D0CDC /* CFNetwork.framework in Frameworks */,
 				0A2715F613CADA9A009D0CDC /* CoreFoundation.framework in Frameworks */,
 				0A2715F813CADA9A009D0CDC /* CoreLocation.framework in Frameworks */,
@@ -1003,7 +964,6 @@
 			isa = PBXGroup;
 			children = (
 				0AC7F5B213C36B16008C0746 /* Headers */,
-				0AC7F5B013C36B11008C0746 /* libS4iOSLib.a */,
 				0A27146313CACC8A009D0CDC /* Vendor */,
 			);
 			name = S4iOSLib;
@@ -1054,7 +1014,6 @@
 			isa = PBXGroup;
 			children = (
 				0AC7F5FA13C36B9E008C0746 /* Headers */,
-				0AC7F5F813C36B95008C0746 /* libS4iOS_UI_Lib.a */,
 			);
 			name = S4iOS_UI_Lib;
 			sourceTree = "<group>";
@@ -1286,7 +1245,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${PROJECT_DIR}/dist/libS4iOSociaLib.a\" ] ; then\n  rm ${PROJECT_DIR}/dist/libS4iOSociaLib.a\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Headers/S4AbstractAppDelegate.h\" ] ; then\n  rm ${PROJECT_DIR}/dist/Headers/*.h\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Resources/ico_refresh.png\" ] ; then\n  rm ${PROJECT_DIR}/dist/Resources/*.png\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Resources/S4WebView.xib\" ] ; then\n  rm ${PROJECT_DIR}/dist/Resources/*.xib\nfi\n";
+			shellScript = "if [ -e \"${PROJECT_DIR}/dist/libS4iOSociaLib.a\" ] ; then\n  rm ${PROJECT_DIR}/dist/libS4iOSociaLib.a\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Headers/SHK.h\" ] ; then\n  rm ${PROJECT_DIR}/dist/Headers/*.h\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Resources/SHKSharers.plist\" ] ; then\n  rm ${PROJECT_DIR}/dist/Resources/*.plist\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Resources/S4WebView.xib\" ] ; then\n  rm ${PROJECT_DIR}/dist/Resources/*.xib\nfi\n";
 		};
 		0A27161013CADC40009D0CDC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1299,7 +1258,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSociaLib.a\"\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Core/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Resources/* ${PROJECT_DIR}/dist/Resources\n\tfi\nfi\n";
+			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSociaLib.a\"\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Core/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Core/Categories/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Core/'Base Sharer Classes'/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Core/Helpers/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/'Customize UI'/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Delicious/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Evernote/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Facebook/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Flickr/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/'Google Reader'/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Instapaper/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Pinboard/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Posterous/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/'Read It Later'/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Tumblr/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/Sharers/Services/Twitter/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/ShareKit/UI/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Vendor/facebook-ios-sdk/src/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Resources/* ${PROJECT_DIR}/dist/Resources\n\tfi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1404,6 +1363,8 @@
 					"\"$(SRCROOT)/../S4iOSLib/dist\"",
 					"\"$(SRCROOT)/../S4iOS_UI_Lib/dist\"",
 				);
+				OTHER_CFLAGS = "-DDEBUG=1";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = S4iOSociaLib;
 			};
 			name = Debug;
@@ -1423,6 +1384,7 @@
 					"\"$(SRCROOT)/../S4iOSLib/dist\"",
 					"\"$(SRCROOT)/../S4iOS_UI_Lib/dist\"",
 				);
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = S4iOSociaLib;
 			};
 			name = Release;
@@ -1439,6 +1401,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				OTHER_CFLAGS = "-DDEBUG=1";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1459,6 +1423,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

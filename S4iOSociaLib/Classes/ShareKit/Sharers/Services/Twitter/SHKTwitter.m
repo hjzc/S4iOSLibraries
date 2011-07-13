@@ -172,7 +172,7 @@
 		{
 			NSString *response = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 			
-			SHKLog(@"tokenAccessTicket Response Body: %@", response);
+			S4DebugLog(@"tokenAccessTicket Response Body: %@", response);
 			
 			[self tokenAccessTicket:ticket didFailWithError:[SHK error:response]];
 			return;

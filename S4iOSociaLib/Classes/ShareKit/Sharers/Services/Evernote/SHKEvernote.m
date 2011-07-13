@@ -86,7 +86,7 @@
 		success = authResult&&[authResult userIsSet]&&[authResult authenticationTokenIsSet];
 	}
 	@catch (NSException * e) {
-		SHKLog(@"Caught %@: %@ %@", [e name], [e reason],e);
+		S4DebugLog(@"Caught %@: %@ %@", [e name], [e reason],e);
 	}	
 	[self performSelectorOnMainThread:@selector(_authFinished:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:success?@"1":@"0",@"success",nil] waitUntilDone:YES];
     [pool release];
@@ -284,7 +284,7 @@
 					}
 				}
 				@catch (NSException * e) {
-					SHKLog(@"Caught: %@",e);
+					S4DebugLog(@"Caught: %@",e);
 				}
 			}
 		}
@@ -295,13 +295,13 @@
     [note setCreated:(long long)[[NSDate date] timeIntervalSince1970] * 1000];
     EDAMNote *createdNote = [noteStore createNote:authToken :note];
     if (createdNote != NULL) {
-      SHKLog(@"Created note: %@", [createdNote title]);
+      S4DebugLog(@"Created note: %@", [createdNote title]);
 			success = YES;
     }
   }
   @catch (EDAMUserException * e) 
 	{
-		SHKLog(@"%@",e);
+		S4DebugLog(@"%@",e);
 		
 		NSString *errorName;		
 		switch (e.errorCode) 

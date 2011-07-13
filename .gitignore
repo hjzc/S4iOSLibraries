@@ -3,6 +3,7 @@
 S4iOSociaLib/build/
 S4iOSociaLib/dist/Headers/*.h
 S4iOSociaLib/dist/libS4iOSociaLib.a
+S4iOSociaLib/Test/build/
 S4iOS_UI_Lib/build/
 S4iOS_UI_Lib/dist/Headers/*.h
 S4iOS_UI_Lib/dist/libS4iOS_UI_Lib.a
