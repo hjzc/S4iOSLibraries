@@ -950,7 +950,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${PROJECT_DIR}/dist/libS4iOSLib.a\" ] ; then\n  rm ${PROJECT_DIR}/dist/libS4iOSLib.a\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Headers/S4CommonDefines.h\" ] ; then\n  rm ${PROJECT_DIR}/dist/Headers/*.h\nfi\n\nif [ -e \"${PROJECT_DIR}/dist/Resources/ico_refresh.png\" ] ; then\n  rm ${PROJECT_DIR}/dist/Resources/*.png\nfi\n";
+			shellScript = "if [ -e dist/libS4iOSLib.a ] ; then\n    rm dist/libS4iOSLib.a\nfi\n\nif [ -e dist/Headers/S4CommonDefines.h ] ; then\n    rm dist/Headers/*.h\nfi\n                \nif [ -e dist/Resources/ico_refresh.png ] ; then\n    rm dist/Resources/*.png\nfi\n";
 		};
 		0A8FCCAB1238143500E95217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -963,7 +963,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSLib.a\"\n\t\tcp ${PROJECT_DIR}/Classes/Application/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Categories/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Core/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Crypto/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Data/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/GeoLocation/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Headers/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/Network/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Classes/UI/*.h ${PROJECT_DIR}/dist/Headers/\n\t\tcp ${PROJECT_DIR}/Resources/* ${PROJECT_DIR}/dist/Resources/\n\t\tcp ${PROJECT_DIR}/Vendor/scifihifi-iphone/security/*.h ${PROJECT_DIR}/dist/Headers/\n\tfi\nfi\n";
+			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" ] ; then\n    if [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" ] ; then\n        lipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSLib.a\"\n        cp Classes/Application/*.h dist/Headers/\n        cp Classes/Categories/*.h dist/Headers/\n        cp Classes/Core/*.h dist/Headers/\n        cp Classes/Crypto/*.h dist/Headers/\n        cp Classes/Data/*.h dist/Headers/\n        cp Classes/GeoLocation/*.h dist/Headers/\n        cp Classes/Headers/*.h dist/Headers/\n        cp Classes/Network/*.h dist/Headers/\n        cp Classes/UI/*.h dist/Headers/\n        cp Resources/* dist/Resources/\n        cp Vendor/scifihifi-iphone/security/*.h dist/Headers/\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

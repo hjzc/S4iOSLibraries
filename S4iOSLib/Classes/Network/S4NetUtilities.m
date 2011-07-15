@@ -499,7 +499,7 @@
 		url = [S4NetUtilities createNSUrlForPathStr: path baseStr: nil];
 		if (IS_NOT_NULL(url))
 		{
-			tmpStr = [[NSString stringWithContentsOfURL: url usedEncoding: encodingPtr error: &error] autorelease];
+			tmpStr = [NSString stringWithContentsOfURL: url usedEncoding: encodingPtr error: &error];
 			if ((STR_NOT_EMPTY(tmpStr)) && (IS_NULL(error)))
 			{
 				bResult = YES;
