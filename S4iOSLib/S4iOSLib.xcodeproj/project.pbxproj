@@ -188,6 +188,19 @@
 		0AEEB2901296206D00C3C9E9 /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AEEB28D1296206D00C3C9E9 /* SBJsonStreamWriter.h */; };
 		0AEEB2911296206D00C3C9E9 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEEB28E1296206D00C3C9E9 /* SBJsonStreamWriter.m */; };
 		0AEEB2C21296224200C3C9E9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AEEB2C11296224200C3C9E9 /* CFNetwork.framework */; };
+		0AFD4ECA13D377EF00F5BE4A /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD4EBB13D377EF00F5BE4A /* CDataScanner.h */; };
+		0AFD4ECB13D377EF00F5BE4A /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD4EBC13D377EF00F5BE4A /* CDataScanner.m */; };
+		0AFD4ECC13D377EF00F5BE4A /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD4EBE13D377EF00F5BE4A /* CDataScanner_Extensions.h */; };
+		0AFD4ECD13D377EF00F5BE4A /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD4EBF13D377EF00F5BE4A /* CDataScanner_Extensions.m */; };
+		0AFD4ECE13D377EF00F5BE4A /* NSDictionary_JSONExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD4EC013D377EF00F5BE4A /* NSDictionary_JSONExtensions.h */; };
+		0AFD4ECF13D377EF00F5BE4A /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD4EC113D377EF00F5BE4A /* NSDictionary_JSONExtensions.m */; };
+		0AFD4ED013D377EF00F5BE4A /* CJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD4EC313D377EF00F5BE4A /* CJSONDeserializer.h */; };
+		0AFD4ED113D377EF00F5BE4A /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD4EC413D377EF00F5BE4A /* CJSONDeserializer.m */; };
+		0AFD4ED213D377EF00F5BE4A /* CJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD4EC513D377EF00F5BE4A /* CJSONScanner.h */; };
+		0AFD4ED313D377EF00F5BE4A /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD4EC613D377EF00F5BE4A /* CJSONScanner.m */; };
+		0AFD4ED413D377EF00F5BE4A /* CJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD4EC713D377EF00F5BE4A /* CJSONSerializer.h */; };
+		0AFD4ED513D377EF00F5BE4A /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD4EC813D377EF00F5BE4A /* CJSONSerializer.m */; };
+		0AFD4ED613D377EF00F5BE4A /* JSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD4EC913D377EF00F5BE4A /* JSONRepresentation.h */; };
 		AA747D9F0F9514B9006C5449 /* S4iOSLib_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* S4iOSLib_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -374,6 +387,19 @@
 		0AEEB28D1296206D00C3C9E9 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriter.h; path = "Vendor/json-framework/Classes/SBJsonStreamWriter.h"; sourceTree = "<group>"; };
 		0AEEB28E1296206D00C3C9E9 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonStreamWriter.m; path = "Vendor/json-framework/Classes/SBJsonStreamWriter.m"; sourceTree = "<group>"; };
 		0AEEB2C11296224200C3C9E9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0AFD4EBB13D377EF00F5BE4A /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner.h; path = Vendor/TouchJSON/Source/CDataScanner.h; sourceTree = "<group>"; };
+		0AFD4EBC13D377EF00F5BE4A /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDataScanner.m; path = Vendor/TouchJSON/Source/CDataScanner.m; sourceTree = "<group>"; };
+		0AFD4EBE13D377EF00F5BE4A /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		0AFD4EBF13D377EF00F5BE4A /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		0AFD4EC013D377EF00F5BE4A /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		0AFD4EC113D377EF00F5BE4A /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		0AFD4EC313D377EF00F5BE4A /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		0AFD4EC413D377EF00F5BE4A /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		0AFD4EC513D377EF00F5BE4A /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		0AFD4EC613D377EF00F5BE4A /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		0AFD4EC713D377EF00F5BE4A /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		0AFD4EC813D377EF00F5BE4A /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		0AFD4EC913D377EF00F5BE4A /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* S4iOSLib_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4iOSLib_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libS4iOSLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libS4iOSLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -631,6 +657,7 @@
 				0A8FCC8F1238116700E95217 /* erica_sadun */,
 				0ABA97E3123C3101006861CD /* json-framework */,
 				0A3E48C01298BB3700D33673 /* SFHFKeychainUtils */,
+				0AFD4EA213D3775000F5BE4A /* TouchJSON */,
 				0ABA9781123C10F1006861CD /* yajl */,
 			);
 			name = Vendor;
@@ -779,6 +806,44 @@
 			name = CocoaHttpServer;
 			sourceTree = "<group>";
 		};
+		0AFD4EA213D3775000F5BE4A /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				0AFD4EBB13D377EF00F5BE4A /* CDataScanner.h */,
+				0AFD4EBC13D377EF00F5BE4A /* CDataScanner.m */,
+				0AFD4EBD13D377EF00F5BE4A /* Extensions */,
+				0AFD4EC213D377EF00F5BE4A /* JSON */,
+			);
+			name = TouchJSON;
+			sourceTree = "<group>";
+		};
+		0AFD4EBD13D377EF00F5BE4A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0AFD4EBE13D377EF00F5BE4A /* CDataScanner_Extensions.h */,
+				0AFD4EBF13D377EF00F5BE4A /* CDataScanner_Extensions.m */,
+				0AFD4EC013D377EF00F5BE4A /* NSDictionary_JSONExtensions.h */,
+				0AFD4EC113D377EF00F5BE4A /* NSDictionary_JSONExtensions.m */,
+			);
+			name = Extensions;
+			path = Vendor/TouchJSON/Source/Extensions;
+			sourceTree = "<group>";
+		};
+		0AFD4EC213D377EF00F5BE4A /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				0AFD4EC313D377EF00F5BE4A /* CJSONDeserializer.h */,
+				0AFD4EC413D377EF00F5BE4A /* CJSONDeserializer.m */,
+				0AFD4EC513D377EF00F5BE4A /* CJSONScanner.h */,
+				0AFD4EC613D377EF00F5BE4A /* CJSONScanner.m */,
+				0AFD4EC713D377EF00F5BE4A /* CJSONSerializer.h */,
+				0AFD4EC813D377EF00F5BE4A /* CJSONSerializer.m */,
+				0AFD4EC913D377EF00F5BE4A /* JSONRepresentation.h */,
+			);
+			name = JSON;
+			path = Vendor/TouchJSON/Source/JSON;
+			sourceTree = "<group>";
+		};
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,6 +949,13 @@
 				0AAFB45813C8159800FD70FC /* S4ImageFetcher.h in Headers */,
 				0AAFB45F13C815C300FD70FC /* S4CacheItem.h in Headers */,
 				0AAFB46113C815C300FD70FC /* S4CircularArray.h in Headers */,
+				0AFD4ECA13D377EF00F5BE4A /* CDataScanner.h in Headers */,
+				0AFD4ECC13D377EF00F5BE4A /* CDataScanner_Extensions.h in Headers */,
+				0AFD4ECE13D377EF00F5BE4A /* NSDictionary_JSONExtensions.h in Headers */,
+				0AFD4ED013D377EF00F5BE4A /* CJSONDeserializer.h in Headers */,
+				0AFD4ED213D377EF00F5BE4A /* CJSONScanner.h in Headers */,
+				0AFD4ED413D377EF00F5BE4A /* CJSONSerializer.h in Headers */,
+				0AFD4ED613D377EF00F5BE4A /* JSONRepresentation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,7 +1022,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e dist/libS4iOSLib.a ] ; then\n    rm dist/libS4iOSLib.a\nfi\n\nif [ -e dist/Headers/S4CommonDefines.h ] ; then\n    rm dist/Headers/*.h\nfi\n                \nif [ -e dist/Resources/ico_refresh.png ] ; then\n    rm dist/Resources/*.png\nfi\n";
+			shellScript = "if [ -e dist/libS4iOSLib.a ] ; then\n    rm dist/libS4iOSLib.a\nfi\n\nif [ -e dist/Headers/S4CommonDefines.h ] ; then\n    rm dist/Headers/*.h\nfi\n\nif [ -e dist/Resources/ico_refresh.png ] ; then\n    rm dist/Resources/*.png\nfi\n\nif [ -e dist/Vendor/SFHFKeychainUtils.h ] ; then\n    rm dist/Vendor/*.h\nfi\n\nif [ -e dist/Vendor/CocoaAsyncSocket/AsyncSocket.h ] ; then\n    rm dist/Vendor/CocoaAsyncSocket/*.h\nfi\n\nif [ -e dist/Vendor/CocoaHttpServer/HTTPServer.h ] ; then\n    rm dist/Vendor/CocoaHttpServer/*.h\nfi\n\nif [ -e dist/Vendor/CocoaLumberjack/Lumberjack.h ] ; then\n    rm dist/Vendor/CocoaLumberjack/*.h\nfi\n\nif [ -e dist/Vendor/SBJson/SBJson.h ] ; then\n    rm dist/Vendor/SBJson/*.h\nfi\n\nif [ -e dist/Vendor/TouchJSON/CJSONScanner.h ] ; then\n    rm dist/Vendor/TouchJSON/*.h\nfi\n\nif [ -e dist/Vendor/yajl/yajl_parser.h ] ; then\n    rm dist/Vendor/yajl/*.h\nfi\n";
 		};
 		0A8FCCAB1238143500E95217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -963,7 +1035,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" ] ; then\n    if [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" ] ; then\n        lipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSLib.a\"\n        cp Classes/Application/*.h dist/Headers/\n        cp Classes/Categories/*.h dist/Headers/\n        cp Classes/Core/*.h dist/Headers/\n        cp Classes/Crypto/*.h dist/Headers/\n        cp Classes/Data/*.h dist/Headers/\n        cp Classes/GeoLocation/*.h dist/Headers/\n        cp Classes/Headers/*.h dist/Headers/\n        cp Classes/Network/*.h dist/Headers/\n        cp Classes/UI/*.h dist/Headers/\n        cp Resources/* dist/Resources/\n        cp Vendor/scifihifi-iphone/security/*.h dist/Headers/\n    fi\nfi\n";
+			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSLib.a\"\n\t\tcp Classes/Application/*.h dist/Headers/\n\t\tcp Classes/Categories/*.h dist/Headers/\n\t\tcp Classes/Core/*.h dist/Headers/\n\t\tcp Classes/Crypto/*.h dist/Headers/\n\t\tcp Classes/Data/*.h dist/Headers/\n\t\tcp Classes/GeoLocation/*.h dist/Headers/\n\t\tcp Classes/Headers/*.h dist/Headers/\n\t\tcp Classes/Network/*.h dist/Headers/\n\t\tcp Classes/UI/*.h dist/Headers/\n\t\tcp Resources/* dist/Resources/\n\t\tcp Vendor/CocoaAsyncSocket/Github-fork/GCD/*.h dist/Vendor/CocoaAsyncSocket/\n\t\tcp Vendor/CocoaAsyncSocket/Github-fork/RunLoop/*.h dist/Vendor/CocoaAsyncSocket/\n\t\tcp Vendor/CocoaHttpServer/Github-fork/*.h dist/Vendor/CocoaHttpServer/\n\t\tcp Vendor/CocoaLumberjack/Lumberjack/*.h dist/Vendor/CocoaLumberjack/\n\t\tcp Vendor/scifihifi-iphone/security/*.h dist/Vendor/\n\t\tcp Vendor/json-framework/Classes/*.h dist/Vendor/SBJson/\n\t\tcp Vendor/TouchJSON/Source/*.h dist/Vendor/TouchJSON/\n\t\tcp Vendor/TouchJSON/Source/Extensions/*.h dist/Vendor/TouchJSON/\n\t\tcp Vendor/TouchJSON/Source/JSON/*.h dist/Vendor/TouchJSON/\n\t\tcp Vendor/yajl/src/*.h dist/Vendor/yajl/\n\tfi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1052,6 +1124,12 @@
 				0AAFB45913C8159800FD70FC /* S4ImageFetcher.m in Sources */,
 				0AAFB46013C815C300FD70FC /* S4CacheItem.m in Sources */,
 				0AAFB46213C815C300FD70FC /* S4CircularArray.m in Sources */,
+				0AFD4ECB13D377EF00F5BE4A /* CDataScanner.m in Sources */,
+				0AFD4ECD13D377EF00F5BE4A /* CDataScanner_Extensions.m in Sources */,
+				0AFD4ECF13D377EF00F5BE4A /* NSDictionary_JSONExtensions.m in Sources */,
+				0AFD4ED113D377EF00F5BE4A /* CJSONDeserializer.m in Sources */,
+				0AFD4ED313D377EF00F5BE4A /* CJSONScanner.m in Sources */,
+				0AFD4ED513D377EF00F5BE4A /* CJSONSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1095,7 +1173,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1116,7 +1194,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

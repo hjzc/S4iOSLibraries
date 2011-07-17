@@ -1,0 +1,1 @@
+This directory contains headers from 3rd party libraries contained within the S4iOSLib.
