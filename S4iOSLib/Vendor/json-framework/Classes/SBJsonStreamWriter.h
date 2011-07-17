@@ -83,16 +83,10 @@
  */
 
 @interface SBJsonStreamWriter : NSObject {
-@private
-	NSString *error;
-    NSMutableArray *stateStack;
-    __weak SBJsonStreamWriterState *state;
-    id<SBJsonStreamWriterDelegate> delegate;
-	NSUInteger maxDepth;
-    BOOL sortKeys, humanReadable;
+    NSMutableDictionary *cache;
 }
 
-@property (nonatomic, assign) __weak SBJsonStreamWriterState *state; // Internal
+@property (nonatomic, assign) SBJsonStreamWriterState *state; // Internal
 @property (nonatomic, readonly, retain) NSMutableArray *stateStack; // Internal 
 
 /**

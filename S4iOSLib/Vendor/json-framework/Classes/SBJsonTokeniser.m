@@ -32,12 +32,14 @@
 #import "SBJsonTokeniser.h"
 #import "SBJsonUTF8Stream.h"
 
-#define SBStringIsIllegalSurrogateHighCharacter(x) (((x) >= 0xd800) && ((x) <= 0xdfff))
-
+#define SBStringIsIllegalSurrogateHighCharacter(character) (((character) >= 0xD800UL) && ((character) <= 0xDFFFUL))
+#define SBStringIsSurrogateLowCharacter(character) ((character >= 0xDC00UL) && (character <= 0xDFFFUL))
+#define SBStringIsSurrogateHighCharacter(character) ((character >= 0xD800UL) && (character <= 0xDBFFUL))
 
 @implementation SBJsonTokeniser
 
 @synthesize error = _error;
+@synthesize stream = _stream;
 
 - (id)init {
     self = [super init];
@@ -193,7 +195,7 @@
                         return sbjson_token_error;
                     }
 
-                    if (CFStringIsSurrogateHighCharacter(hi)) {
+                    if (SBStringIsSurrogateHighCharacter(hi)) {
                         unichar lo;
 
                         if (![_stream haveRemainingCharacters:6])
@@ -206,18 +208,17 @@
                             return sbjson_token_error;
                         }
 
-                        if (!CFStringIsSurrogateLowCharacter(lo)) {
+                        if (!SBStringIsSurrogateLowCharacter(lo)) {
                             self.error = @"Invalid low character in surrogate pair";
                             return sbjson_token_error;
                         }
 
-                        unichar pair[2] = {hi, lo};
-                        CFStringAppendCharacters((CFMutableStringRef)acc, pair, 2);
+                        [acc appendFormat:@"%C%C", hi, lo];
                     } else if (SBStringIsIllegalSurrogateHighCharacter(hi)) {
                         self.error = @"Invalid high character in surrogate pair";
                         return sbjson_token_error;
                     } else {
-                        CFStringAppendCharacters((CFMutableStringRef)acc, &hi, 1);
+                        [acc appendFormat:@"%C", hi];
                     }
 
 
@@ -225,7 +226,7 @@
                     unichar decoded;
                     if (![self decodeEscape:ch into:&decoded])
                         return sbjson_token_error;
-                    CFStringAppendCharacters((CFMutableStringRef)acc, &decoded, 1);
+                    [acc appendFormat:@"%C", decoded];
                 }
 
                 break;
