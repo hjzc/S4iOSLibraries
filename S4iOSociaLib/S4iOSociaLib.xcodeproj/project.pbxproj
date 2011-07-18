@@ -218,6 +218,26 @@
 		0AAB52DC13D4208000CD9AF3 /* MGTwitterXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB52B513D4208000CD9AF3 /* MGTwitterXMLParser.h */; };
 		0AAB52DD13D4208000CD9AF3 /* MGTwitterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB52B613D4208000CD9AF3 /* MGTwitterXMLParser.m */; };
 		0AAB52DE13D4208000CD9AF3 /* TwitterCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB52B713D4208000CD9AF3 /* TwitterCredentials.h */; };
+		0AAB532713D4255400CD9AF3 /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB531A13D4255400CD9AF3 /* NSObject+SBJson.h */; };
+		0AAB532813D4255400CD9AF3 /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB531B13D4255400CD9AF3 /* SBJson.h */; };
+		0AAB532913D4255400CD9AF3 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB531C13D4255400CD9AF3 /* SBJsonParser.h */; };
+		0AAB532A13D4255400CD9AF3 /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB531D13D4255400CD9AF3 /* SBJsonStreamParser.h */; };
+		0AAB532B13D4255400CD9AF3 /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB531E13D4255400CD9AF3 /* SBJsonStreamParserAccumulator.h */; };
+		0AAB532C13D4255400CD9AF3 /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB531F13D4255400CD9AF3 /* SBJsonStreamParserAdapter.h */; };
+		0AAB532D13D4255400CD9AF3 /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB532013D4255400CD9AF3 /* SBJsonStreamParserState.h */; };
+		0AAB532E13D4255400CD9AF3 /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB532113D4255400CD9AF3 /* SBJsonStreamWriter.h */; };
+		0AAB532F13D4255400CD9AF3 /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB532213D4255400CD9AF3 /* SBJsonStreamWriterAccumulator.h */; };
+		0AAB533013D4255400CD9AF3 /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB532313D4255400CD9AF3 /* SBJsonStreamWriterState.h */; };
+		0AAB533113D4255400CD9AF3 /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB532413D4255400CD9AF3 /* SBJsonTokeniser.h */; };
+		0AAB533213D4255400CD9AF3 /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB532513D4255400CD9AF3 /* SBJsonUTF8Stream.h */; };
+		0AAB533313D4255400CD9AF3 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB532613D4255400CD9AF3 /* SBJsonWriter.h */; };
+		0AAB533C13D4257800CD9AF3 /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB533513D4257800CD9AF3 /* CDataScanner_Extensions.h */; };
+		0AAB533D13D4257800CD9AF3 /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB533613D4257800CD9AF3 /* CDataScanner.h */; };
+		0AAB533E13D4257800CD9AF3 /* CJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB533713D4257800CD9AF3 /* CJSONDeserializer.h */; };
+		0AAB533F13D4257800CD9AF3 /* CJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB533813D4257800CD9AF3 /* CJSONScanner.h */; };
+		0AAB534013D4257800CD9AF3 /* CJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB533913D4257800CD9AF3 /* CJSONSerializer.h */; };
+		0AAB534113D4257800CD9AF3 /* JSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB533A13D4257800CD9AF3 /* JSONRepresentation.h */; };
+		0AAB534213D4257800CD9AF3 /* NSDictionary_JSONExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB533B13D4257800CD9AF3 /* NSDictionary_JSONExtensions.h */; };
 		0AC7F5D513C36B30008C0746 /* Base64Transcoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5B313C36B30008C0746 /* Base64Transcoder.h */; };
 		0AC7F5D613C36B30008C0746 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5B413C36B30008C0746 /* hmac.h */; };
 		0AC7F5D713C36B30008C0746 /* NSCollections+S4Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC7F5B513C36B30008C0746 /* NSCollections+S4Utilities.h */; };
@@ -480,6 +500,26 @@
 		0AAB52B513D4208000CD9AF3 /* MGTwitterXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterXMLParser.h; sourceTree = "<group>"; };
 		0AAB52B613D4208000CD9AF3 /* MGTwitterXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterXMLParser.m; sourceTree = "<group>"; };
 		0AAB52B713D4208000CD9AF3 /* TwitterCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitterCredentials.h; path = Vendor/MGTwitterEngine/TwitterCredentials.h; sourceTree = "<group>"; };
+		0AAB531A13D4255400CD9AF3 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "../S4iOSLib/dist/Vendor/json-framework/NSObject+SBJson.h"; sourceTree = SOURCE_ROOT; };
+		0AAB531B13D4255400CD9AF3 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJson.h"; sourceTree = SOURCE_ROOT; };
+		0AAB531C13D4255400CD9AF3 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonParser.h"; sourceTree = SOURCE_ROOT; };
+		0AAB531D13D4255400CD9AF3 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParser.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonStreamParser.h"; sourceTree = SOURCE_ROOT; };
+		0AAB531E13D4255400CD9AF3 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAccumulator.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonStreamParserAccumulator.h"; sourceTree = SOURCE_ROOT; };
+		0AAB531F13D4255400CD9AF3 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserAdapter.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonStreamParserAdapter.h"; sourceTree = SOURCE_ROOT; };
+		0AAB532013D4255400CD9AF3 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamParserState.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonStreamParserState.h"; sourceTree = SOURCE_ROOT; };
+		0AAB532113D4255400CD9AF3 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriter.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonStreamWriter.h"; sourceTree = SOURCE_ROOT; };
+		0AAB532213D4255400CD9AF3 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterAccumulator.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonStreamWriterAccumulator.h"; sourceTree = SOURCE_ROOT; };
+		0AAB532313D4255400CD9AF3 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonStreamWriterState.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonStreamWriterState.h"; sourceTree = SOURCE_ROOT; };
+		0AAB532413D4255400CD9AF3 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonTokeniser.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonTokeniser.h"; sourceTree = SOURCE_ROOT; };
+		0AAB532513D4255400CD9AF3 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonUTF8Stream.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonUTF8Stream.h"; sourceTree = SOURCE_ROOT; };
+		0AAB532613D4255400CD9AF3 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = "../S4iOSLib/dist/Vendor/json-framework/SBJsonWriter.h"; sourceTree = SOURCE_ROOT; };
+		0AAB533513D4257800CD9AF3 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner_Extensions.h; path = ../S4iOSLib/dist/Vendor/TouchJSON/CDataScanner_Extensions.h; sourceTree = SOURCE_ROOT; };
+		0AAB533613D4257800CD9AF3 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataScanner.h; path = ../S4iOSLib/dist/Vendor/TouchJSON/CDataScanner.h; sourceTree = SOURCE_ROOT; };
+		0AAB533713D4257800CD9AF3 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONDeserializer.h; path = ../S4iOSLib/dist/Vendor/TouchJSON/CJSONDeserializer.h; sourceTree = SOURCE_ROOT; };
+		0AAB533813D4257800CD9AF3 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONScanner.h; path = ../S4iOSLib/dist/Vendor/TouchJSON/CJSONScanner.h; sourceTree = SOURCE_ROOT; };
+		0AAB533913D4257800CD9AF3 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJSONSerializer.h; path = ../S4iOSLib/dist/Vendor/TouchJSON/CJSONSerializer.h; sourceTree = SOURCE_ROOT; };
+		0AAB533A13D4257800CD9AF3 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONRepresentation.h; path = ../S4iOSLib/dist/Vendor/TouchJSON/JSONRepresentation.h; sourceTree = SOURCE_ROOT; };
+		0AAB533B13D4257800CD9AF3 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDictionary_JSONExtensions.h; path = ../S4iOSLib/dist/Vendor/TouchJSON/NSDictionary_JSONExtensions.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5B313C36B30008C0746 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64Transcoder.h; path = ../S4iOSLib/dist/Headers/Base64Transcoder.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5B413C36B30008C0746 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hmac.h; path = ../S4iOSLib/dist/Headers/hmac.h; sourceTree = SOURCE_ROOT; };
 		0AC7F5B513C36B30008C0746 /* NSCollections+S4Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSCollections+S4Utilities.h"; path = "../S4iOSLib/dist/Headers/NSCollections+S4Utilities.h"; sourceTree = SOURCE_ROOT; };
@@ -618,6 +658,7 @@
 		0A27146313CACC8A009D0CDC /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				0AAB533413D4255B00CD9AF3 /* TouchJSON */,
 				0AAB52EB13D421D500CD9AF3 /* json-framework */,
 			);
 			name = Vendor;
@@ -994,7 +1035,7 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		0A27161C13CADD78009D0CDC /* OAuth */ = {
+		0A27161C13CADD78009D0CDC /* oauthconsumer */ = {
 			isa = PBXGroup;
 			children = (
 				0AAB524B13D41F6600CD9AF3 /* Categories */,
@@ -1025,7 +1066,7 @@
 				0AAB526B13D41F6600CD9AF3 /* OATokenManager.m */,
 				0AAB526C13D41F6600CD9AF3 /* OAuthConsumer.h */,
 			);
-			name = OAuth;
+			name = oauthconsumer;
 			sourceTree = "<group>";
 		};
 		0AAB524B13D41F6600CD9AF3 /* Categories */ = {
@@ -1100,8 +1141,35 @@
 		0AAB52EB13D421D500CD9AF3 /* json-framework */ = {
 			isa = PBXGroup;
 			children = (
+				0AAB531A13D4255400CD9AF3 /* NSObject+SBJson.h */,
+				0AAB531B13D4255400CD9AF3 /* SBJson.h */,
+				0AAB531C13D4255400CD9AF3 /* SBJsonParser.h */,
+				0AAB531D13D4255400CD9AF3 /* SBJsonStreamParser.h */,
+				0AAB531E13D4255400CD9AF3 /* SBJsonStreamParserAccumulator.h */,
+				0AAB531F13D4255400CD9AF3 /* SBJsonStreamParserAdapter.h */,
+				0AAB532013D4255400CD9AF3 /* SBJsonStreamParserState.h */,
+				0AAB532113D4255400CD9AF3 /* SBJsonStreamWriter.h */,
+				0AAB532213D4255400CD9AF3 /* SBJsonStreamWriterAccumulator.h */,
+				0AAB532313D4255400CD9AF3 /* SBJsonStreamWriterState.h */,
+				0AAB532413D4255400CD9AF3 /* SBJsonTokeniser.h */,
+				0AAB532513D4255400CD9AF3 /* SBJsonUTF8Stream.h */,
+				0AAB532613D4255400CD9AF3 /* SBJsonWriter.h */,
 			);
 			name = "json-framework";
+			sourceTree = "<group>";
+		};
+		0AAB533413D4255B00CD9AF3 /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				0AAB533513D4257800CD9AF3 /* CDataScanner_Extensions.h */,
+				0AAB533613D4257800CD9AF3 /* CDataScanner.h */,
+				0AAB533713D4257800CD9AF3 /* CJSONDeserializer.h */,
+				0AAB533813D4257800CD9AF3 /* CJSONScanner.h */,
+				0AAB533913D4257800CD9AF3 /* CJSONSerializer.h */,
+				0AAB533A13D4257800CD9AF3 /* JSONRepresentation.h */,
+				0AAB533B13D4257800CD9AF3 /* NSDictionary_JSONExtensions.h */,
+			);
+			name = TouchJSON;
 			sourceTree = "<group>";
 		};
 		0AC7F5AE13C36A9D008C0746 /* Vendor */ = {
@@ -1109,7 +1177,7 @@
 			children = (
 				0A27144C13CACC37009D0CDC /* facebook-ios-sdk */,
 				0AAB528F13D4203400CD9AF3 /* MGTwitterEngine */,
-				0A27161C13CADD78009D0CDC /* OAuth */,
+				0A27161C13CADD78009D0CDC /* oauthconsumer */,
 				0AC7F5AF13C36AB4008C0746 /* S4iOSLib */,
 				0AC7F5F713C36B62008C0746 /* S4iOS_UI_Lib */,
 				0A27146813CAD06F009D0CDC /* thrift */,
@@ -1360,6 +1428,26 @@
 				0AAB52DA13D4208000CD9AF3 /* MGTwitterUsersParser.h in Headers */,
 				0AAB52DC13D4208000CD9AF3 /* MGTwitterXMLParser.h in Headers */,
 				0AAB52DE13D4208000CD9AF3 /* TwitterCredentials.h in Headers */,
+				0AAB532713D4255400CD9AF3 /* NSObject+SBJson.h in Headers */,
+				0AAB532813D4255400CD9AF3 /* SBJson.h in Headers */,
+				0AAB532913D4255400CD9AF3 /* SBJsonParser.h in Headers */,
+				0AAB532A13D4255400CD9AF3 /* SBJsonStreamParser.h in Headers */,
+				0AAB532B13D4255400CD9AF3 /* SBJsonStreamParserAccumulator.h in Headers */,
+				0AAB532C13D4255400CD9AF3 /* SBJsonStreamParserAdapter.h in Headers */,
+				0AAB532D13D4255400CD9AF3 /* SBJsonStreamParserState.h in Headers */,
+				0AAB532E13D4255400CD9AF3 /* SBJsonStreamWriter.h in Headers */,
+				0AAB532F13D4255400CD9AF3 /* SBJsonStreamWriterAccumulator.h in Headers */,
+				0AAB533013D4255400CD9AF3 /* SBJsonStreamWriterState.h in Headers */,
+				0AAB533113D4255400CD9AF3 /* SBJsonTokeniser.h in Headers */,
+				0AAB533213D4255400CD9AF3 /* SBJsonUTF8Stream.h in Headers */,
+				0AAB533313D4255400CD9AF3 /* SBJsonWriter.h in Headers */,
+				0AAB533C13D4257800CD9AF3 /* CDataScanner_Extensions.h in Headers */,
+				0AAB533D13D4257800CD9AF3 /* CDataScanner.h in Headers */,
+				0AAB533E13D4257800CD9AF3 /* CJSONDeserializer.h in Headers */,
+				0AAB533F13D4257800CD9AF3 /* CJSONScanner.h in Headers */,
+				0AAB534013D4257800CD9AF3 /* CJSONSerializer.h in Headers */,
+				0AAB534113D4257800CD9AF3 /* JSONRepresentation.h in Headers */,
+				0AAB534213D4257800CD9AF3 /* NSDictionary_JSONExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,7 +1514,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e dist/libS4iOSociaLib.a ] ; then\n    rm dist/libS4iOSociaLib.a\nfi\n\nif [ -e dist/Headers/SHK.h ] ; then\n    rm dist/Headers/*.h\nfi\n\nif [ -e dist/Resources/SHKSharers.plist ] ; then\n    rm dist/Resources/*.plist\nfi\n\nif [ -e dist/Resources/S4WebView.xib ] ; then\n    rm dist/Resources/*.xib\nfi\n";
+			shellScript = "if [ -e dist/libS4iOSociaLib.a ] ; then\n    rm dist/libS4iOSociaLib.a\nfi\n\nif [ -e dist/Headers/SHK.h ] ; then\n    rm dist/Headers/*.h\nfi\n\nif [ -e dist/Resources/SHKSharers.plist ] ; then\n    rm dist/Resources/*.plist\nfi\n\nif [ -e dist/Resources/S4WebView.xib ] ; then\n    rm dist/Resources/*.xib\nfi\n\nif [ -e dist/Vendor/facebook-ios-sdk/Facebook.h ] ; then\n    rm dist/Vendor/facebook-ios-sdk/*.h\nfi\n\nif [ -e dist/Vendor/MGTwitterEngine/MGTwitterEngine.h ] ; then\n    rm dist/Vendor/MGTwitterEngine/*.h\nfi\n\nif [ -e dist/Vendor/oauthconsumer/OAuthConsumer.h ] ; then\n    rm dist/Vendor/oauthconsumer/*.h\nfi\n\nif [ -e dist/Vendor/thrift/TProtocol.h ] ; then\n    rm dist/Vendor/thrift/*.h\nfi\n\n";
 		};
 		0A27161013CADC40009D0CDC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1439,7 +1527,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSociaLib.a\"\n\t\tcp Classes/ShareKit/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/Categories/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/'Base Sharer Classes'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/Helpers/*.h dist/Headers/\n\t\tcp Classes/ShareKit/'Customize UI'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Delicious/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Evernote/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Facebook/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Flickr/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/'Google Reader'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Instapaper/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Pinboard/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Posterous/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/'Read It Later'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Tumblr/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Twitter/*.h dist/Headers/\n\t\tcp Classes/ShareKit/UI/*.h dist/Headers/\n\t\tcp Vendor/facebook-ios-sdk/src/*.h dist/Headers/\n\t\tcp Resources/* dist/Resources\n\tfi\nfi\n";
+			shellScript = "if [ -e \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" ] ; then\n\tif [ -e \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" ] ; then\n\t\tlipo -create \"${BUILT_PRODUCTS_DIR}/../Release-iphoneos/libS4iOSociaLib.a\" \"${BUILT_PRODUCTS_DIR}/../Debug-iphonesimulator/libS4iOSociaLib.a\" -output \"${PROJECT_DIR}/dist/libS4iOSociaLib.a\"\n\t\tcp Classes/ShareKit/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/Categories/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/'Base Sharer Classes'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Core/Helpers/*.h dist/Headers/\n\t\tcp Classes/ShareKit/'Customize UI'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Delicious/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Evernote/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Facebook/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Flickr/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/'Google Reader'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Instapaper/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Pinboard/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Posterous/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/'Read It Later'/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Tumblr/*.h dist/Headers/\n\t\tcp Classes/ShareKit/Sharers/Services/Twitter/*.h dist/Headers/\n\t\tcp Classes/ShareKit/UI/*.h dist/Headers/\n\t\tcp Resources/* dist/Resources\n\t\tcp Vendor/facebook-ios-sdk/src/*.h dist/Vendor/facebook-ios-sdk/\n\t\tcp Vendor/MGTwitterEngine/*.h dist/Vendor/MGTwitterEngine/\n\t\tcp Vendor/oauthconsumer/*.h dist/Vendor/oauthconsumer/\n\t\tcp Vendor/thrift/*.h dist/Vendor/thrift/\n\t\tcp Vendor/thrift/protocol/*.h dist/Vendor/thrift/\n\t\tcp Vendor/thrift/transport/*.h dist/Vendor/thrift/\n\tfi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1597,7 +1685,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
@@ -1619,7 +1707,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;

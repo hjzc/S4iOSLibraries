@@ -15,3 +15,5 @@ test/UnitTest/build/
 *~
 *#
 .arcconfig
+*.svn
+/.svn/*
