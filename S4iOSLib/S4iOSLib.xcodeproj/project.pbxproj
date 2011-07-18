@@ -124,7 +124,6 @@
 		0ABA97A5123C114F006861CD /* yajl_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA9793123C114F006861CD /* yajl_parser.c */; };
 		0ABA97A6123C114F006861CD /* yajl_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA9794123C114F006861CD /* yajl_parser.h */; };
 		0ABA97A8123C114F006861CD /* yajl.c in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA9796123C114F006861CD /* yajl.c */; };
-		0ABA97EF123C31E6006861CD /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA97E4123C31E6006861CD /* JSON.h */; };
 		0ABA97F6123C31E6006861CD /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA97EB123C31E6006861CD /* SBJsonParser.h */; };
 		0ABA97F7123C31E6006861CD /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA97EC123C31E6006861CD /* SBJsonParser.m */; };
 		0ABA97F8123C31E6006861CD /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABA97ED123C31E6006861CD /* SBJsonWriter.h */; };
@@ -323,7 +322,6 @@
 		0ABA9793123C114F006861CD /* yajl_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = yajl_parser.c; path = Vendor/yajl/src/yajl_parser.c; sourceTree = "<group>"; };
 		0ABA9794123C114F006861CD /* yajl_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = yajl_parser.h; path = Vendor/yajl/src/yajl_parser.h; sourceTree = "<group>"; };
 		0ABA9796123C114F006861CD /* yajl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = yajl.c; path = Vendor/yajl/src/yajl.c; sourceTree = "<group>"; };
-		0ABA97E4123C31E6006861CD /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = "Vendor/json-framework/Classes/JSON.h"; sourceTree = "<group>"; };
 		0ABA97EB123C31E6006861CD /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonParser.h; path = "Vendor/json-framework/Classes/SBJsonParser.h"; sourceTree = "<group>"; };
 		0ABA97EC123C31E6006861CD /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJsonParser.m; path = "Vendor/json-framework/Classes/SBJsonParser.m"; sourceTree = "<group>"; };
 		0ABA97ED123C31E6006861CD /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJsonWriter.h; path = "Vendor/json-framework/Classes/SBJsonWriter.h"; sourceTree = "<group>"; };
@@ -745,7 +743,6 @@
 				0AC835D513977260007D3010 /* SBJsonUTF8Stream.m */,
 				0AEEB28D1296206D00C3C9E9 /* SBJsonStreamWriter.h */,
 				0AEEB28E1296206D00C3C9E9 /* SBJsonStreamWriter.m */,
-				0ABA97E4123C31E6006861CD /* JSON.h */,
 				0ABA97EB123C31E6006861CD /* SBJsonParser.h */,
 				0ABA97EC123C31E6006861CD /* SBJsonParser.m */,
 				0ABA97ED123C31E6006861CD /* SBJsonWriter.h */,
@@ -896,7 +893,6 @@
 				0ABA97A1123C114F006861CD /* yajl_encode.h in Headers */,
 				0ABA97A4123C114F006861CD /* yajl_lex.h in Headers */,
 				0ABA97A6123C114F006861CD /* yajl_parser.h in Headers */,
-				0ABA97EF123C31E6006861CD /* JSON.h in Headers */,
 				0ABA97F6123C31E6006861CD /* SBJsonParser.h in Headers */,
 				0ABA97F8123C31E6006861CD /* SBJsonWriter.h in Headers */,
 				0AD5F367123D85B100024367 /* Base64Transcoder.h in Headers */,
