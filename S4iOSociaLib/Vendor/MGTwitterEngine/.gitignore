@@ -1,0 +1,10 @@
+*.pbxuser
+*.perspectivev3
+*.mode1v3
+project.xcworkspace
+xcuserdata
+build
+yajl
+OAuthConsumer
+TwitterCredentials.h
+TouchJSON/.gitignore
