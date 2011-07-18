@@ -21,7 +21,7 @@ S4iOSLib/dist/Vendor/*.h
 S4iOSLib/dist/Vendor/CocoaAsyncSocket/*.h
 S4iOSLib/dist/Vendor/CocoaHttpServer/*.h
 S4iOSLib/dist/Vendor/CocoaLumberjack/*.h
-S4iOSLib/dist/Vendor/SBJson/*.h
+S4iOSLib/dist/Vendor/json-framework/*.h
 S4iOSLib/dist/Vendor/TouchJSON/*.h
 S4iOSLib/dist/Vendor/yajl/*.h
 S4iOSLib/Vendor/cocoaasyncsocket/RunLoop/Xcode/
