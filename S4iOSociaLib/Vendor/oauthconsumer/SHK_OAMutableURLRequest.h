@@ -1,5 +1,5 @@
 //
-//  OAMutableURLRequest.h
+//  SHK_OAMutableURLRequest.h
 //  OAuthConsumer
 //
 //  Created by Jon Crosby on 10/19/07.
@@ -33,7 +33,7 @@
 #import "NSURL+Base.h"
 
 
-@interface OAMutableURLRequest : NSMutableURLRequest {
+@interface SHK_OAMutableURLRequest : NSMutableURLRequest {
 @protected
     OAConsumer *consumer;
     OAToken *token;

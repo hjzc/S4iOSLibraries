@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A21194E13D5C81B00068B6A /* OAAsynchronousDataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A21194A13D5C81B00068B6A /* OAAsynchronousDataFetcher.h */; };
+		0A21194F13D5C81B00068B6A /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A21194B13D5C81B00068B6A /* OAAsynchronousDataFetcher.m */; };
+		0A21195013D5C81B00068B6A /* SHK_OAMutableURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A21194C13D5C81B00068B6A /* SHK_OAMutableURLRequest.h */; };
 		0A27145613CACC64009D0CDC /* Facebook.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A27144D13CACC64009D0CDC /* Facebook.h */; };
 		0A27145713CACC64009D0CDC /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A27144E13CACC64009D0CDC /* Facebook.m */; };
 		0A27145813CACC64009D0CDC /* FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A27144F13CACC64009D0CDC /* FBConnect.h */; };
@@ -74,7 +77,6 @@
 		0A27153A13CAD0CA009D0CDC /* SHKTextMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2714C913CAD0CA009D0CDC /* SHKTextMessage.h */; };
 		0A27153B13CAD0CA009D0CDC /* SHKTextMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2714CA13CAD0CA009D0CDC /* SHKTextMessage.m */; };
 		0A27153C13CAD0CA009D0CDC /* SHKDelicious.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2714CD13CAD0CA009D0CDC /* SHKDelicious.h */; };
-		0A27153D13CAD0CA009D0CDC /* SHKDelicious.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2714CE13CAD0CA009D0CDC /* SHKDelicious.m */; };
 		0A27153E13CAD0CA009D0CDC /* EDAMLimits.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2714D213CAD0CA009D0CDC /* EDAMLimits.h */; };
 		0A27153F13CAD0CA009D0CDC /* EDAMLimits.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2714D313CAD0CA009D0CDC /* EDAMLimits.m */; };
 		0A27154013CAD0CA009D0CDC /* Errors.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2714D413CAD0CA009D0CDC /* Errors.h */; };
@@ -287,6 +289,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A21194A13D5C81B00068B6A /* OAAsynchronousDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAAsynchronousDataFetcher.h; path = Vendor/oauthconsumer/OAAsynchronousDataFetcher.h; sourceTree = "<group>"; };
+		0A21194B13D5C81B00068B6A /* OAAsynchronousDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAAsynchronousDataFetcher.m; path = Vendor/oauthconsumer/OAAsynchronousDataFetcher.m; sourceTree = "<group>"; };
+		0A21194C13D5C81B00068B6A /* SHK_OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHK_OAMutableURLRequest.h; path = Vendor/oauthconsumer/SHK_OAMutableURLRequest.h; sourceTree = "<group>"; };
+		0A21194D13D5C81B00068B6A /* SHK_OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHK_OAMutableURLRequest.m; path = Vendor/oauthconsumer/SHK_OAMutableURLRequest.m; sourceTree = "<group>"; };
 		0A27144D13CACC64009D0CDC /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "Vendor/facebook-ios-sdk/src/Facebook.h"; sourceTree = "<group>"; };
 		0A27144E13CACC64009D0CDC /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = "Vendor/facebook-ios-sdk/src/Facebook.m"; sourceTree = "<group>"; };
 		0A27144F13CACC64009D0CDC /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnect.h; path = "Vendor/facebook-ios-sdk/src/FBConnect.h"; sourceTree = "<group>"; };
@@ -1038,6 +1044,10 @@
 		0A27161C13CADD78009D0CDC /* oauthconsumer */ = {
 			isa = PBXGroup;
 			children = (
+				0A21194A13D5C81B00068B6A /* OAAsynchronousDataFetcher.h */,
+				0A21194B13D5C81B00068B6A /* OAAsynchronousDataFetcher.m */,
+				0A21194C13D5C81B00068B6A /* SHK_OAMutableURLRequest.h */,
+				0A21194D13D5C81B00068B6A /* SHK_OAMutableURLRequest.m */,
 				0AAB524B13D41F6600CD9AF3 /* Categories */,
 				0AAB525213D41F6600CD9AF3 /* OAAttachment.h */,
 				0AAB525313D41F6600CD9AF3 /* OAAttachment.m */,
@@ -1448,6 +1458,8 @@
 				0AAB534013D4257800CD9AF3 /* CJSONSerializer.h in Headers */,
 				0AAB534113D4257800CD9AF3 /* JSONRepresentation.h in Headers */,
 				0AAB534213D4257800CD9AF3 /* NSDictionary_JSONExtensions.h in Headers */,
+				0A21194E13D5C81B00068B6A /* OAAsynchronousDataFetcher.h in Headers */,
+				0A21195013D5C81B00068B6A /* SHK_OAMutableURLRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1566,7 +1578,6 @@
 				0A27153713CAD0CA009D0CDC /* SHKSafari.m in Sources */,
 				0A27153913CAD0CA009D0CDC /* SHKPhotoAlbum.m in Sources */,
 				0A27153B13CAD0CA009D0CDC /* SHKTextMessage.m in Sources */,
-				0A27153D13CAD0CA009D0CDC /* SHKDelicious.m in Sources */,
 				0A27153F13CAD0CA009D0CDC /* EDAMLimits.m in Sources */,
 				0A27154113CAD0CA009D0CDC /* Errors.m in Sources */,
 				0A27154313CAD0CA009D0CDC /* NoteStore.m in Sources */,
@@ -1628,6 +1639,7 @@
 				0AAB52D913D4208000CD9AF3 /* MGTwitterUsersLibXMLParser.m in Sources */,
 				0AAB52DB13D4208000CD9AF3 /* MGTwitterUsersParser.m in Sources */,
 				0AAB52DD13D4208000CD9AF3 /* MGTwitterXMLParser.m in Sources */,
+				0A21194F13D5C81B00068B6A /* OAAsynchronousDataFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

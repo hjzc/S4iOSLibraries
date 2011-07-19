@@ -19,7 +19,7 @@ static NSString *const SHKFacebookExpirationDate = @"SHKFacebookExpirationDate";
 static NSString *const SHKFacebookPendingItem = @"SHKFacebookPendingItem";
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		permissions = [[NSArray alloc] initWithObjects:@"publish_stream", @"offline_access", nil];
 	}
 	
@@ -45,30 +45,36 @@ static NSString *const SHKFacebookPendingItem = @"SHKFacebookPendingItem";
 #pragma mark -
 #pragma mark Configuration : Service Definition
 
-+ (NSString*)sharerTitle {
++ (NSString *)sharerTitle
+{
 	return @"Facebook";
 }
 
-+ (BOOL)canShareURL {
++ (BOOL)canShareURL
+{
 	return YES;
 }
 
-+ (BOOL)canShareText {
++ (BOOL)canShareText
+{
 	return YES;
 }
 
-+ (BOOL)canShareImage {
++ (BOOL)canShareImage
+{
 	return YES;
 }
 
-+ (BOOL)canShareOffline {
++ (BOOL)canShareOffline
+{
 	return NO;  // TODO - would love to make this work
 }
 
 #pragma mark -
 #pragma mark Configuration : Dynamic Enable
 
-- (BOOL)shouldAutoShare {
+- (BOOL)shouldAutoShare
+{
 	return YES; // FBConnect presents its own dialog
 }
 
@@ -85,7 +91,9 @@ static NSString *const SHKFacebookPendingItem = @"SHKFacebookPendingItem";
 	[self.facebook authorize:permissions delegate:self];
 }
 
-- (void)authFinished:(SHKRequest*)request {
+- (void)authFinished:(SHKRequest *)request
+{
+
 }
 
 + (void)logout {

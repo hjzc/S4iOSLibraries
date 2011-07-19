@@ -3,6 +3,7 @@
 S4iOSociaLib/build/
 S4iOSociaLib/dist/Headers/*.h
 S4iOSociaLib/dist/libS4iOSociaLib.a
+S4iOSociaLib/dist/Resources/*.plist
 S4iOSociaLib/dist/Vendor/MGTwitterEngine/*.h
 S4iOSociaLib/dist/Vendor/facebook-ios-sdk/*.h
 S4iOSociaLib/dist/Vendor/oauthconsumer/*.h

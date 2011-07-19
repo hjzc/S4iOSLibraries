@@ -49,22 +49,27 @@
 {    
     [request prepare];
 	
-	if (connection)
-		[connection release];
-	
-	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-	if (connection)
+	if (nil != connection)
 	{
-		if (responseData)
+		[connection release];
+	}
+	
+	connection = [[NSURLConnection alloc] initWithRequest: request delegate: self];
+    
+	if (nil != connection)
+	{
+		if (nil != responseData)
+		{
 			[responseData release];
+		}
 		responseData = [[NSMutableData data] retain];
 	}
 	else
 	{
-        OAServiceTicket *ticket= [[OAServiceTicket alloc] initWithRequest:request
-                                                                 response:nil
-                                                               didSucceed:NO];
+        OAServiceTicket *ticket= [[OAServiceTicket alloc] initWithRequest: request
+                                                                 response: nil
+																	 data: responseData
+                                                               didSucceed: NO];
         [delegate performSelector:didFailSelector
                        withObject:ticket
                        withObject:nil];
@@ -109,9 +114,10 @@
 
 - (void)connection:(NSURLConnection *)aConnection didFailWithError:(NSError *)error
 {
-	OAServiceTicket *ticket= [[OAServiceTicket alloc] initWithRequest:request
-															 response:response
-														   didSucceed:NO];
+	OAServiceTicket *ticket= [[OAServiceTicket alloc] initWithRequest: request
+															 response: response
+																 data: responseData
+														   didSucceed: NO];
 	[delegate performSelector:didFailSelector
 				   withObject:ticket
 				   withObject:error];
@@ -121,9 +127,10 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConnection
 {
-	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
-															  response:response
-															didSucceed:[(NSHTTPURLResponse *)response statusCode] < 400];
+	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest: request
+															  response: response
+																  data: responseData
+															didSucceed: [(NSHTTPURLResponse *)response statusCode] < 400];
 	[delegate performSelector:didFinishSelector
 				   withObject:ticket
 				   withObject:responseData];

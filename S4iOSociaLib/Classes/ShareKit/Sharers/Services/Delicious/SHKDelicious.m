@@ -27,6 +27,7 @@
 
 #import "SHKDelicious.h"
 #import "OAuthConsumer.h"
+#import "SHK_OAMutableURLRequest.h"
 #import "S4CommonDefines.h"
 
 
@@ -42,7 +43,7 @@
 
 - (id)init
 {
-	if (self = [super init])
+	if ((self = [super init]))
 	{		
 		self.consumerKey = SHKDeliciousConsumerKey;		
 		self.secretKey = SHKDeliciousSecretKey;
@@ -80,17 +81,17 @@
 #pragma mark -
 #pragma mark Authentication
 
-- (void)tokenRequestModifyRequest:(OAMutableURLRequest *)oRequest
+- (void)tokenRequestModifyRequest:(SHK_OAMutableURLRequest *)oRequest
 {
 	[oRequest setOAuthParameterName:@"oauth_callback" withValue:authorizeCallbackURL.absoluteString];
 }
 
-- (void)tokenAccessModifyRequest:(OAMutableURLRequest *)oRequest
+- (void)tokenAccessModifyRequest:(SHK_OAMutableURLRequest *)oRequest
 {
 	if (pendingAction == SHKPendingRefreshToken)
 	{
-		if (accessToken.sessionHandle != nil)
-			[oRequest setOAuthParameterName:@"oauth_session_handle" withValue:accessToken.sessionHandle];	
+		if (accessToken.session != nil)
+			[oRequest setOAuthParameterName:@"oauth_session_handle" withValue:accessToken.session];	
 	}
 	
 	else
@@ -136,7 +137,7 @@
 {	
 	if ([self validateItem])
 	{			
-		OAMutableURLRequest *oRequest = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.del.icio.us/v2/posts/add"]
+		SHK_OAMutableURLRequest *oRequest = [[SHK_OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://api.del.icio.us/v2/posts/add"]
 																		consumer:consumer
 																		   token:accessToken
 																		   realm:nil
@@ -145,20 +146,20 @@
 		[oRequest setHTTPMethod:@"GET"];
 		
 		
-		OARequestParameter *urlParam = [OARequestParameter requestParameterWithName:@"url"
-																			  value:[item.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		OARequestParameter *urlParam = [OARequestParameter requestParameter: @"url"
+																	  value: [item.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 		
-		OARequestParameter *descParam = [OARequestParameter requestParameterWithName:@"description"
-																			   value:SHKStringOrBlank(item.title)];
+		OARequestParameter *descParam = [OARequestParameter requestParameter: @"description"
+																	   value: SHKStringOrBlank(item.title)];
 		
-		OARequestParameter *tagsParam = [OARequestParameter requestParameterWithName:@"tags"
-																			   value:SHKStringOrBlank(item.tags)];
+		OARequestParameter *tagsParam = [OARequestParameter requestParameter: @"tags"
+																	   value: SHKStringOrBlank(item.tags)];
 		
-		OARequestParameter *extendedParam = [OARequestParameter requestParameterWithName:@"extended"
-																				   value:SHKStringOrBlank(item.text)];
+		OARequestParameter *extendedParam = [OARequestParameter requestParameter: @"extended"
+																		   value: SHKStringOrBlank(item.text)];
 		
-		OARequestParameter *sharedParam = [OARequestParameter requestParameterWithName:@"shared"
-																				 value:[item customBoolForSwitchKey:@"shared"]?@"yes":@"no"];
+		OARequestParameter *sharedParam = [OARequestParameter requestParameter: @"shared"
+																		 value: [item customBoolForSwitchKey:@"shared"]?@"yes":@"no"];
 		
 		
 		[oRequest setParameters:[NSArray arrayWithObjects:descParam, extendedParam, sharedParam, tagsParam, urlParam, nil]];

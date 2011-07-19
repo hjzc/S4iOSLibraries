@@ -1,5 +1,5 @@
 //
-// OAMutableURLRequest.m
+// SHK_OAMutableURLRequest.m
 // OAuthConsumer
 //
 // Created by Jon Crosby on 10/19/07.
@@ -24,17 +24,17 @@
 // THE SOFTWARE.
 
 
-#import "OAMutableURLRequest.h"
+#import "SHK_OAMutableURLRequest.h"
 #import "SHKConfig.h"
 
 
-@interface OAMutableURLRequest (Private)
+@interface SHK_OAMutableURLRequest (Private)
 - (void)_generateTimestamp;
 - (void)_generateNonce;
 - (NSString *)_signatureBaseString;
 @end
 
-@implementation OAMutableURLRequest
+@implementation SHK_OAMutableURLRequest
 @synthesize signature, nonce;
 
 #pragma mark init
@@ -258,7 +258,7 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
 					 [[[self URL] URLStringWithoutQuery] URLEncodedString],
 					 [normalizedRequestParameters URLEncodedString]];
 	
-	SHKLog(@"OAMutableURLRequest parameters %@", normalizedRequestParameters);
+	SHKLog(@"SHK_OAMutableURLRequest parameters %@", normalizedRequestParameters);
 	
 	return ret;
 }
