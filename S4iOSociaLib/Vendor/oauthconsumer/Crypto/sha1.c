@@ -14,7 +14,9 @@ A million repetitions of "a"
 
 /* #define LITTLE_ENDIAN * This should be #define'd if true. */
 #if __LITTLE_ENDIAN__
+#ifndef LITTLE_ENDIAN
 #define LITTLE_ENDIAN
+#endif 
 #endif 
 /* #define SHA1HANDSOFF * Copies data before messing with it. */
 
@@ -23,7 +25,7 @@ A million repetitions of "a"
 
 #include "sha1.h"
 
-void SHA1Transform(u_int32_t state[5], u_int8_t buffer[64]);
+void SHA1Transform(unsigned long state[5], unsigned char buffer[64]);
 
 #define rol(value, bits) (((value) << (bits)) | ((value) >> (32 - (bits))))
 
@@ -48,16 +50,16 @@ void SHA1Transform(u_int32_t state[5], u_int8_t buffer[64]);
 
 /* Hash a single 512-bit block. This is the core of the algorithm. */
 
-void SHA1Transform(u_int32_t state[5], u_int8_t buffer[64])
+void SHA1Transform(unsigned long state[5], unsigned char buffer[64])
 {
-u_int32_t a, b, c, d, e;
+unsigned long a, b, c, d, e;
 typedef union {
-    u_int8_t c[64];
-    u_int32_t l[16];
+    unsigned char c[64];
+    unsigned long l[16];
 } CHAR64LONG16;
 CHAR64LONG16* block;
 #ifdef SHA1HANDSOFF
-static u_int8_t workspace[64];
+static unsigned char workspace[64];
     block = (CHAR64LONG16*)workspace;
     memcpy(block, buffer, 64);
 #else
@@ -97,7 +99,12 @@ static u_int8_t workspace[64];
     state[3] += d;
     state[4] += e;
     /* Wipe variables */
-    a = b = c = d = e = 0;
+	a = b = c = d = e = 0;
+	(void)a;
+	(void)b;
+	(void)c;
+	(void)d;
+	(void)e;
 }
 
 
@@ -117,7 +124,7 @@ void SHA1Init(SHA1_CTX* context)
 
 /* Run your data through this. */
 
-void SHA1Update(SHA1_CTX* context, u_int8_t* data, unsigned int len)
+void SHA1Update(SHA1_CTX* context, unsigned char* data, unsigned int len)
 {
 unsigned int i, j;
 
@@ -139,26 +146,26 @@ unsigned int i, j;
 
 /* Add padding and return the message digest. */
 
-void SHA1Final(u_int8_t digest[20], SHA1_CTX* context)
+void SHA1Final(unsigned char digest[20], SHA1_CTX* context)
 {
-u_int32_t i, j;
-u_int8_t finalcount[8];
+unsigned long i;
+unsigned char finalcount[8];
 
     for (i = 0; i < 8; i++) {
-        finalcount[i] = (u_int8_t)((context->count[(i >= 4 ? 0 : 1)]
+        finalcount[i] = (unsigned char)((context->count[(i >= 4 ? 0 : 1)]
          >> ((3-(i & 3)) * 8) ) & 255);  /* Endian independent */
     }
-    SHA1Update(context, (u_int8_t *)"\200", 1);
+    SHA1Update(context, (unsigned char *)"\200", 1);
     while ((context->count[0] & 504) != 448) {
-        SHA1Update(context, (u_int8_t *)"\0", 1);
+        SHA1Update(context, (unsigned char *)"\0", 1);
     }
     SHA1Update(context, finalcount, 8);  /* Should cause a SHA1Transform() */
     for (i = 0; i < 20; i++) {
-        digest[i] = (u_int8_t)
+        digest[i] = (unsigned char)
          ((context->state[i>>2] >> ((3-(i & 3)) * 8) ) & 255);
     }
     /* Wipe variables */
-    i = j = 0;
+    i = 0;
     memset(context->buffer, 0, 64);
     memset(context->state, 0, 20);
     memset(context->count, 0, 8);
@@ -166,4 +173,5 @@ u_int8_t finalcount[8];
 #ifdef SHA1HANDSOFF  /* make SHA1Transform overwrite it's own static vars */
     SHA1Transform(context->state, context->buffer);
 #endif
+	(void)i;
 }

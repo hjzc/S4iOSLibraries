@@ -1,5 +1,5 @@
 //
-//  OAuthConsumer.h
+//  OAMutableURLRequest.h
 //  OAuthConsumer
 //
 //  Created by Jon Crosby on 10/19/07.
@@ -23,19 +23,49 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+
 #import <Foundation/Foundation.h>
-#import "OAProblem.h"
-#import "OAToken.h"
 #import "OAConsumer.h"
-#import "OAMutableURLRequest.h"
-#import "NSString+URLEncoding.h"
+#import "OAToken.h"
+#import "OAHMAC_SHA1SignatureProvider.h"
+#import "OASignatureProviding.h"
 #import "NSMutableURLRequest+Parameters.h"
 #import "NSURL+Base.h"
-#import "OASignatureProviding.h"
-#import "OAHMAC_SHA1SignatureProvider.h"
-#import "OAPlaintextSignatureProvider.h"
-#import "OARequestParameter.h"
-#import "OAServiceTicket.h"
-#import "OADataFetcher.h"
-#import "OATokenManager.h"
-#import "OAAsynchronousDataFetcher.h"
+
+
+@interface OAMutableURLRequest : NSMutableURLRequest {
+@protected
+    OAConsumer *consumer;
+    OAToken *token;
+    NSString *realm;
+    NSString *signature;
+    id<OASignatureProviding> signatureProvider;
+    NSString *nonce;
+    NSString *timestamp;
+	NSMutableDictionary *extraOAuthParameters;
+    NSMutableDictionary *extraOAuthBaseStringParameters;
+	BOOL didPrepare;
+}
+@property(readonly) NSString *signature;
+@property(readonly) NSString *nonce;
+
+- (id)initWithURL:(NSURL *)aUrl
+		 consumer:(OAConsumer *)aConsumer
+			token:(OAToken *)aToken
+            realm:(NSString *)aRealm
+signatureProvider:(id<OASignatureProviding, NSObject>)aProvider;
+
+- (id)initWithURL:(NSURL *)aUrl
+		 consumer:(OAConsumer *)aConsumer
+			token:(OAToken *)aToken
+            realm:(NSString *)aRealm
+signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
+            nonce:(NSString *)aNonce
+        timestamp:(NSString *)aTimestamp;
+
+- (void)prepare;
+
+- (void)setOAuthParameterName:(NSString*)parameterName withValue:(NSString*)parameterValue;
+- (void)setOAuthBaseStringParameterName:(NSString*)parameterName withValue:(NSString*)parameterValue;
+
+@end

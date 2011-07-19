@@ -26,6 +26,6 @@
 #ifndef HMAC_H
 #define HMAC_H 1
 
-extern void hmac_sha1(const u_int8_t *inText, size_t inTextLength, u_int8_t* inKey, const size_t inKeyLength, u_int8_t *outDigest);
+extern void hmac_sha1(const unsigned char *inText, size_t inTextLength, unsigned char* inKey, const size_t inKeyLengthConst, unsigned char *outDigest);
 
 #endif /* HMAC_H */

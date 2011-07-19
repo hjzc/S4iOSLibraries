@@ -29,14 +29,17 @@
 
 @implementation OADataFetcher
 
-- (id)init {
-	if ((self = [super init])) {
+- (id)init
+{
+	if ((self = [super init]))
+	{
 		responseData = [[NSMutableData alloc] init];
 	}
 	return self;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
 	[connection release];
 	[response release];
 	[responseData release];

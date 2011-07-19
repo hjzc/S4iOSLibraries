@@ -160,6 +160,7 @@ else if (theRemainingBytes == 2)
 		outOutputData[theOutIndex++] = '\n';
 		}
 	}
+	(void)theOutIndex;
 return(true);
 }
 
@@ -174,7 +175,7 @@ if (*ioOutputDataSize < theDecodedDataSize)
 const u_int8_t *theInPtr = (const u_int8_t *)inInputData;
 u_int8_t *theOutPtr = (u_int8_t *)ioOutputData;
 size_t theInIndex = 0, theOutIndex = 0;
-u_int8_t theOutputOctet;
+u_int8_t theOutputOctet = 0;
 size_t theSequence = 0;
 for (; theInIndex < inInputDataSize; )
 	{

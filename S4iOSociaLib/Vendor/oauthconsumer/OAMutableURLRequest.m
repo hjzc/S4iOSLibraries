@@ -42,37 +42,46 @@
 		 consumer:(OAConsumer *)aConsumer
 			token:(OAToken *)aToken
             realm:(NSString *)aRealm
-signatureProvider:(id<OASignatureProviding>)aProvider {
+signatureProvider:(id<OASignatureProviding>)aProvider
+{
     if ((self = [super initWithURL:aUrl
            cachePolicy:NSURLRequestReloadIgnoringCacheData
-	   timeoutInterval:10.0])) {
-    
+	   timeoutInterval:10.0]))
+	   {
 		consumer = [aConsumer retain];
 		
 		// empty token for Unauthorized Request Token transaction
-		if (aToken == nil) {
+		if (aToken == nil)
+		{
 			token = [[OAToken alloc] init];
-		} else {
+		}
+		else
+		{
 			token = [aToken retain];
 		}
 		
-		if (aRealm == nil) {
+		if (aRealm == nil)
+		{
 			realm = @"";
-		} else {
+		}
+		else
+		{
 			realm = [aRealm copy];
 		}
 		  
 		// default to HMAC-SHA1
-		if (aProvider == nil) {
+		if (aProvider == nil)
+		{
 			signatureProvider = [[OAHMAC_SHA1SignatureProvider alloc] init];
-		} else {
+		}
+		else
+		{
 			signatureProvider = [aProvider retain];
 		}
 		
 		[self _generateTimestamp];
 		[self _generateNonce];
 	}
-    
     return self;
 }
 
@@ -84,22 +93,23 @@ signatureProvider:(id<OASignatureProviding>)aProvider {
             realm:(NSString *)aRealm
 signatureProvider:(id<OASignatureProviding>)aProvider
             nonce:(NSString *)aNonce
-        timestamp:(NSString *)aTimestamp {
-    [self initWithURL:aUrl
+        timestamp:(NSString *)aTimestamp
+{
+    if ((self = [self initWithURL:aUrl
              consumer:aConsumer
                 token:aToken
                 realm:aRealm
-    signatureProvider:aProvider];
-    
-    nonce = [aNonce copy];
-    timestamp = [aTimestamp copy];
-    
+    signatureProvider:aProvider]))
+    {
+	    nonce = [aNonce copy];
+	    timestamp = [aTimestamp copy];
+    }
     return self;
 }
 
-- (void)prepare {
+- (void)prepare
+{
     // sign
-//	NSLog(@"Base string is: %@", [self _signatureBaseString]);
    signature = [signatureProvider signClearText:[self _signatureBaseString]
                                       withSecret:[NSString stringWithFormat:@"%@&%@",
                                                   consumer.secret,
@@ -127,12 +137,14 @@ signatureProvider:(id<OASignatureProviding>)aProvider
     [self setValue:oauthHeader forHTTPHeaderField:@"Authorization"];
 }
 
-- (void)_generateTimestamp {
+- (void)_generateTimestamp
+{
 	[timestamp release];
     timestamp = [[NSString alloc]initWithFormat:@"%d", time(NULL)];
 }
 
-- (void)_generateNonce {
+- (void)_generateNonce
+{
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
     NSMakeCollectable(theUUID);
@@ -142,7 +154,8 @@ signatureProvider:(id<OASignatureProviding>)aProvider
     nonce = (NSString *)string;
 }
 
-- (NSString *)_signatureBaseString {
+- (NSString *)_signatureBaseString
+{
     // OAuth Spec, Section 9.1.1 "Normalize Request Parameters"
     // build a sorted array of both request parameters and OAuth header parameters
 	NSDictionary *tokenParameters = [token parameters];

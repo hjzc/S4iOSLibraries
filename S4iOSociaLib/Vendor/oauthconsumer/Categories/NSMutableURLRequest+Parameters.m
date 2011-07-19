@@ -29,29 +29,37 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
 
 @implementation NSMutableURLRequest (OAParameterAdditions)
 
-- (BOOL)isMultipart {
+- (BOOL)isMultipart
+{
 	return [[self valueForHTTPHeaderField:@"Content-Type"] hasPrefix:@"multipart/form-data"];
 }
 
-- (NSArray *)parameters {
+- (NSArray *)parameters
+{
     NSString *encodedParameters = nil;
     
-	if (![self isMultipart]) {
-		if ([[self HTTPMethod] isEqualToString:@"GET"] || [[self HTTPMethod] isEqualToString:@"DELETE"]) {
+	if (![self isMultipart])
+	{
+		if ([[self HTTPMethod] isEqualToString:@"GET"] || [[self HTTPMethod] isEqualToString:@"DELETE"])
+		{
 			encodedParameters = [[self URL] query];
-		} else {
+		}
+		else
+		{
 			encodedParameters = [[[NSString alloc] initWithData:[self HTTPBody] encoding:NSASCIIStringEncoding] autorelease];
 		}
 	}
     
-    if (encodedParameters == nil || [encodedParameters isEqualToString:@""]) {
+    if ((encodedParameters == nil) || ([encodedParameters isEqualToString:@""]))
+    {
         return nil;
-    }
-//    NSLog(@"raw parameters %@", encodedParameters);
+	}
+
     NSArray *encodedParameterPairs = [encodedParameters componentsSeparatedByString:@"&"];
     NSMutableArray *requestParameters = [NSMutableArray arrayWithCapacity:[encodedParameterPairs count]];
     
-    for (NSString *encodedPair in encodedParameterPairs) {
+    for (NSString *encodedPair in encodedParameterPairs)
+    {
         NSArray *encodedPairElements = [encodedPair componentsSeparatedByString:@"="];
         OARequestParameter *parameter = [[OARequestParameter alloc] initWithName:[[encodedPairElements objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                                                                            value:[[encodedPairElements objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -65,15 +73,19 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
 - (void)setParameters:(NSArray *)parameters
 {
 	NSMutableArray *pairs = [[[NSMutableArray alloc] initWithCapacity:[parameters count]] autorelease];
-	for (OARequestParameter *requestParameter in parameters) {
+	for (OARequestParameter *requestParameter in parameters)
+	{
 		[pairs addObject:[requestParameter URLEncodedNameValuePair]];
 	}
 	
 	NSString *encodedParameterPairs = [pairs componentsJoinedByString:@"&"];
     
-	if ([[self HTTPMethod] isEqualToString:@"GET"] || [[self HTTPMethod] isEqualToString:@"DELETE"]) {
+	if ([[self HTTPMethod] isEqualToString:@"GET"] || [[self HTTPMethod] isEqualToString:@"DELETE"])
+	{
 		[self setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", [[self URL] URLStringWithoutQuery], encodedParameterPairs]]];
-	} else {
+	}
+	else
+	{
 		// POST, PUT
 		[self setHTTPBodyWithString:encodedParameterPairs];
 		[self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
