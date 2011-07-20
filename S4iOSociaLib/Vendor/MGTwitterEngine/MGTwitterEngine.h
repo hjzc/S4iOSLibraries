@@ -113,9 +113,21 @@
 - (NSString *)sendUpdate:(NSString *)status inReplyTo:(MGTwitterEngineID)updateID withLatitude:(MGTwitterEngineLocationDegrees)latitude longitude:(MGTwitterEngineLocationDegrees)longitude; // statuses/update
 - (NSString *)sendRetweet:(MGTwitterEngineID)tweetID; // statuses/retweet
 
-- (NSString *)getRepliesStartingAtPage:(int)pageNum; // statuses/mentions
-- (NSString *)getRepliesSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum count:(int)count; // statuses/mentions
-- (NSString *)getRepliesSinceID:(MGTwitterEngineID)sinceID withMaximumID:(MGTwitterEngineID)maxID startingAtPage:(int)pageNum count:(int)count; // statuses/mentions
+- (NSString *)getMentionsStartingAtPage:(int)pageNum; // statuses/mentions
+- (NSString *)getMentionsSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum count:(int)count; // statuses/mentions
+- (NSString *)getMentionsSinceID:(MGTwitterEngineID)sinceID withMaximumID:(MGTwitterEngineID)maxID startingAtPage:(int)pageNum count:(int)count; // statuses/mentions
+
+// replies are deprecated. mentions can be used instead.
+- (NSString *)getRepliesStartingAtPage:(int)pageNum DEPRECATED_ATTRIBUTE; // statuses/replies
+- (NSString *)getRepliesSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)pageNum count:(int)count DEPRECATED_ATTRIBUTE; // statuses/replies
+- (NSString *)getRepliesSinceID:(MGTwitterEngineID)sinceID withMaximumID:(MGTwitterEngineID)maxID startingAtPage:(int)pageNum count:(int)count DEPRECATED_ATTRIBUTE; // statuses/replies
+
+- (NSString *)getRetweetsForID:(MGTwitterEngineID)updateID;
+- (NSString *)getRetweetsForID:(MGTwitterEngineID)updateID startingAtPage:(int)page count:(int)count;
+
+// #newtwitter is required for this "related statuses" api call
+- (NSString *)getRelatedForID:(MGTwitterEngineID)updateID;
+- (NSString *)getRelatedForID:(MGTwitterEngineID)updateID startingAtPage:(int)page count:(int)count;
 
 - (NSString *)deleteUpdate:(MGTwitterEngineID)updateID; // statuses/destroy
 
@@ -125,7 +137,9 @@
 // User methods
 
 - (NSString *)getRecentlyUpdatedFriendsFor:(NSString *)username startingAtPage:(int)pageNum; // statuses/friends & statuses/friends/user
+- (NSString *)getRecentlyUpdatedFriendsForCursor:(MGTwitterEngineCursorID)cursor; // statuses/friends
 
+- (NSString *)getFollowersIncludingCurrentStatusForCursor:(MGTwitterEngineCursorID)cursor;  // statuses/followers
 - (NSString *)getFollowersIncludingCurrentStatus:(BOOL)flag; // statuses/followers
 
 - (NSString *)getUserInformationFor:(NSString *)usernameOrID; // users/show
@@ -133,7 +147,43 @@
 
 - (NSString *)getUserInformationForEmail:(NSString *)email; // users/show
 
+//	List Methods
 
+//	List the lists of the specified user. Private lists will be included if the 
+//	authenticated users is the same as the user who's lists are being returned.
+- (NSString *)getListsForUser:(NSString *)username;
+
+//	Creates a new list for the authenticated user. Accounts are limited to 20 lists.
+//	Options include:
+//	mode - Whether your list is public or private. Values can be public or private. 
+//		If no mode is specified the list will be public.
+//	description - The description to give the list.
+- (NSString *)createListForUser:(NSString *)username withName:(NSString *)listName withOptions:(NSDictionary *)options;
+
+//	update an existing list
+- (NSString *)updateListForUser:(NSString *)username withID:(MGTwitterEngineID)listID withOptions:(NSDictionary *)options;
+
+//	delete an existing list
+- (NSString *)deleteListForUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+
+//	Show the specified list. Private lists will only be shown if the authenticated user owns the specified list.
+- (NSString *)getListForUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+
+// Returns all status for in the specified list's timeline
+- (NSString *)getListStatusesForUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+- (NSString *)getListStatusesForUser:(NSString *)username withID:(MGTwitterEngineID)listID sinceID:(MGTwitterEngineID)sinceID withMaximumID:(MGTwitterEngineID)maxID startingAtPage:(int)page perPage:(int)perPage;
+
+- (NSString *)subscribeListForUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+- (NSString *)unsubscribeListForUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+
+// List Member methods
+
+// List all the members of the specified list
+- (NSString *)getListMembersForUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+- (NSString *)addListMember:(MGTwitterEngineID)memberID forUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+- (NSString *)addListMembers:(NSArray *)members listType:(NSString *)listType forUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+- (NSString *)removeListMember:(MGTwitterEngineID)memberID forUser:(NSString *)username withID:(MGTwitterEngineID)listID;
+- (NSString *)checkListMember:(MGTwitterEngineID)memberID forUser:(NSString *)username withID:(MGTwitterEngineID)listID;
 - (NSString *)getStatusesFromList:(NSString *)listName onAccount:(NSString *)username;
 
 // Direct Message methods
@@ -232,7 +282,9 @@
 
 @interface MGTwitterEngine (BasicAuth)
 
-- (NSString *)username DEPRECATED_ATTRIBUTE;
+- (NSString *)username;
+- (void)setUsername:(NSString *) newUsername;
+
 - (NSString *)password DEPRECATED_ATTRIBUTE;
 - (void)setUsername:(NSString *)username password:(NSString *)password DEPRECATED_ATTRIBUTE;
 

@@ -14,7 +14,7 @@
 
 #ifndef USE_LIBXML
 //  if you wish to use LibXML, add USE_LIBXML=1 to "Precompiler Macros" in Project Info for all targets
-#   define USE_LIBXML 1
+#   define USE_LIBXML 0
 #endif
 
 #if YAJL_AVAILABLE
@@ -44,6 +44,7 @@
 		#import "MGTwitterMessagesParser.h"
 		#import "MGTwitterMiscParser.h"
 		#import "MGTwitterSocialGraphParser.h"
+		#import "MGTwitterUserListsParser.h"
 	#endif
 #endif
 
@@ -728,6 +729,7 @@
     switch (responseType) {
         case MGTwitterStatuses:
         case MGTwitterStatus:
+        case MGTwitterMentions:
             [MGTwitterStatusesYAJLParser parserWithJSON:jsonData delegate:self 
                               connectionIdentifier:identifier requestType:requestType 
                                       responseType:responseType URL:URL deliveryOptions:_deliveryOptions];
@@ -792,6 +794,7 @@
     switch (responseType) {
         case MGTwitterStatuses:
         case MGTwitterStatus:
+        case MGTwitterMentions:
             [MGTwitterStatusesLibXMLParser parserWithXML:xmlData delegate:self 
                               connectionIdentifier:identifier requestType:requestType 
                                       responseType:responseType URL:URL];
@@ -830,6 +833,7 @@
     switch (responseType) {
         case MGTwitterStatuses:
         case MGTwitterStatus:
+        case MGTwitterMentions:
             [MGTwitterStatusesParser parserWithXML:xmlData delegate:self 
                               connectionIdentifier:identifier requestType:requestType 
                                       responseType:responseType];
@@ -851,6 +855,13 @@
 						  connectionIdentifier:identifier requestType:requestType 
 								  responseType:responseType];
 			break;
+		case MGTwitterUserLists:
+			NSLog(@"response type: %d", responseType);
+			[MGTwitterUserListsParser parserWithXML:xmlData delegate:self 
+						  connectionIdentifier:identifier requestType:requestType 
+								  responseType:responseType];
+			break;
+			
 		case MGTwitterSocialGraph:
 			[MGTwitterSocialGraphParser parserWithXML:xmlData delegate:self 
 						  connectionIdentifier:identifier requestType:requestType 
@@ -880,6 +891,7 @@
                  withParsedObjects:(NSArray *)parsedObjects
 {
     // Forward appropriate message to _delegate, depending on responseType.
+	NSLog(@"here at parsingSucceededForRequest");
     switch (responseType) {
         case MGTwitterStatuses:
         case MGTwitterStatus:
@@ -910,10 +922,18 @@
 			if ([self _isValidDelegateForSelector:@selector(socialGraphInfoReceived:forRequest:)])
 				[_delegate socialGraphInfoReceived: parsedObjects forRequest:identifier];
 			break;
+		case MGTwitterUserLists:
+			if ([self _isValidDelegateForSelector:@selector(userListsReceived:forRequest:)])
+				[_delegate userListsReceived: parsedObjects forRequest:identifier];
+			break;
 		case MGTwitterOAuthTokenRequest:
 			if ([self _isValidDelegateForSelector:@selector(accessTokenReceived:forRequest:)] && [parsedObjects count] > 0)
 				[_delegate accessTokenReceived:[parsedObjects objectAtIndex:0]
 									forRequest:identifier];
+			break;
+        case MGTwitterMentions:
+			if ([self _isValidDelegateForSelector:@selector(mentionsReceived:forRequest:)])
+				[_delegate mentionsReceived:parsedObjects forRequest:identifier];
 			break;
         default:
             break;
@@ -989,7 +1009,7 @@
         // Display headers for debugging.
         NSHTTPURLResponse *respDebug = (NSHTTPURLResponse *)response;
         NSLog(@"MGTwitterEngine: (%ld) [%@]:\r%@", 
-              [resp statusCode], 
+              (long)[resp statusCode], 
               [NSHTTPURLResponse localizedStringForStatusCode:[respDebug statusCode]], 
               [respDebug allHeaderFields]);
     }
@@ -1063,7 +1083,7 @@
         if (NO) {
             // Dump data as string for debugging.
             NSString *dataString = [NSString stringWithUTF8String:[receivedData bytes]];
-            NSLog(@"MGTwitterEngine: Succeeded! Received %ld bytes of data:\r\r%@", [receivedData length], dataString);
+            NSLog(@"MGTwitterEngine: Succeeded! Received %lu bytes of data:\r\r%@", (unsigned long)[receivedData length], dataString);
         }
         
         if (NO) {
@@ -1328,6 +1348,95 @@
                            responseType:MGTwitterStatuses];
 }
 
+#pragma mark -
+
+
+- (NSString *)getMentionsStartingAtPage:(int)page
+{
+    return [self getMentionsSinceID:0 startingAtPage:page count:0]; // zero means default
+}
+
+- (NSString *)getMentionsSinceID:(MGTwitterEngineID)sinceID startingAtPage:(int)page count:(int)count
+{
+    return [self getMentionsSinceID:sinceID withMaximumID:0 startingAtPage:page count:count];
+}
+
+- (NSString *)getMentionsSinceID:(MGTwitterEngineID)sinceID withMaximumID:(MGTwitterEngineID)maxID startingAtPage:(int)page count:(int)count
+{
+	NSString *path = [NSString stringWithFormat:@"statuses/mentions.%@", API_FORMAT];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+    if (sinceID > 0) {
+        [params setObject:[NSString stringWithFormat:@"%llu", sinceID] forKey:@"since_id"];
+    }
+    if (maxID > 0) {
+        [params setObject:[NSString stringWithFormat:@"%llu", maxID] forKey:@"max_id"];
+    }
+    if (page > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
+    }
+    if (count > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
+    }
+    
+    return [self _sendRequestWithMethod:nil path:path 
+						queryParameters:params body:nil 
+                            requestType:MGTwitterMentionsRequest 
+                           responseType:MGTwitterMentions];
+}
+
+
+#pragma mark -
+
+
+- (NSString *)getRetweetsForID:(MGTwitterEngineID)updateID
+{
+    return [self getRetweetsForID:updateID startingAtPage:0 count:0]; // zero means default
+}
+
+- (NSString *)getRetweetsForID:(MGTwitterEngineID)updateID startingAtPage:(int)page count:(int)count
+{
+    NSString *path = [NSString stringWithFormat:@"statuses/retweets/%llu.%@", updateID, API_FORMAT];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+    if (page > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
+    }
+    if (count > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
+    }
+    
+    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+                            requestType:MGTwitterRetweetsRequest 
+                           responseType:MGTwitterStatuses];
+}
+
+
+#pragma mark -
+
+
+- (NSString *)getRelatedForID:(MGTwitterEngineID)updateID
+{
+    return [self getRelatedForID:updateID startingAtPage:0 count:0]; // zero means default
+}
+
+- (NSString *)getRelatedForID:(MGTwitterEngineID)updateID startingAtPage:(int)page count:(int)count
+{
+    NSString *path = [NSString stringWithFormat:@"related_results/show/%llu.%@", updateID, API_FORMAT];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+    if (page > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
+    }
+    if (count > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
+    }
+    
+    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+                            requestType:MGTwitterRelatedRequest 
+                           responseType:MGTwitterStatuses];
+}
+
 
 #pragma mark -
 
@@ -1377,6 +1486,16 @@
                            responseType:MGTwitterUsers];
 }
 
+- (NSString *)getRecentlyUpdatedFriendsForCursor:(MGTwitterEngineCursorID)cursor {
+    NSString *path = [NSString stringWithFormat:@"statuses/friends.%@", API_FORMAT];
+    MGTwitterRequestType requestType = MGTwitterFriendUpdatesRequest;
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+	[params setObject:[NSString stringWithFormat:@"%llu", cursor] forKey:@"cursor"];
+    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+                            requestType:requestType 
+                           responseType:MGTwitterMiscellaneous];
+}
 
 #pragma mark -
 
@@ -1395,6 +1514,15 @@
                            responseType:MGTwitterUsers];
 }
 
+- (NSString *)getFollowersIncludingCurrentStatusForCursor:(MGTwitterEngineCursorID)cursor {
+    NSString *path = [NSString stringWithFormat:@"statuses/followers.%@", API_FORMAT];
+    MGTwitterRequestType requestType = MGTwitterFriendUpdatesRequest;	
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+	[params setObject:[NSString stringWithFormat:@"%llu", cursor] forKey:@"cursor"];
+    return [self _sendRequestWithMethod:nil path:path queryParameters:params body:nil 
+                            requestType:requestType 
+                           responseType:MGTwitterMiscellaneous];
+}
 
 #pragma mark -
 
@@ -1542,7 +1670,269 @@
                            responseType:MGTwitterDirectMessage];
 }
 
+#pragma mark Lists
+ 
+- (NSString *)getListsForUser:(NSString *)username
+{
+	NSString *path = [NSString stringWithFormat:@"%@/lists.%@", username, API_FORMAT];
+    
+    return [self _sendRequestWithMethod:nil path:path queryParameters:nil body:nil 
+                            requestType:MGTwitterUserListsRequest 
+                           responseType:MGTwitterUserLists];
+}
 
+- (NSString *)createListForUser:(NSString *)username withName:(NSString *)listName withOptions:(NSDictionary *)options;
+{
+	if (!username || !listName) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	
+	NSString *path = [NSString stringWithFormat:@"%@/lists.%@", username, API_FORMAT];
+	
+    NSMutableDictionary *queryParameters = [NSMutableDictionary dictionaryWithCapacity:0];
+	if ([options objectForKey:@"mode"]) {
+		[queryParameters setObject:[options objectForKey:@"mode"] forKey:@"mode"];
+	}
+	if ([options objectForKey:@"description"]) {
+		[queryParameters setObject:[options objectForKey:@"description"] forKey:@"description"];
+	}
+	[queryParameters setObject:listName forKey:@"name"];
+    NSString *body = [self _queryStringWithBase:nil parameters:queryParameters prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:queryParameters body:body 
+                            requestType:MGTwitterUserListCreate
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)updateListForUser:(NSString *)username withID:(MGTwitterEngineID)listID withOptions:(NSDictionary *)options
+{
+	if (!username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%llu.%@", username, listID, API_FORMAT];
+	
+    NSMutableDictionary *queryParameters = [NSMutableDictionary dictionaryWithCapacity:0];
+	if ([options objectForKey:@"name"]) {
+		[queryParameters setObject:[options objectForKey:@"name"] forKey:@"name"];
+	}
+	if ([options objectForKey:@"mode"]) {
+		[queryParameters setObject:[options objectForKey:@"mode"] forKey:@"mode"];
+	}
+	if ([options objectForKey:@"description"]) {
+		[queryParameters setObject:[options objectForKey:@"description"] forKey:@"description"];
+	}
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:queryParameters prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:queryParameters body:body 
+                            requestType:MGTwitterUserListCreate
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)deleteListForUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%llu.%@", username, listID, API_FORMAT];
+	NSLog(@"%@", path);
+    NSMutableDictionary *queryParameters = [NSMutableDictionary dictionaryWithCapacity:0];
+	[queryParameters setObject:@"DELETE" forKey:@"_method"];
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:queryParameters prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:queryParameters body:body 
+                            requestType:MGTwitterUserListDelete
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)getListForUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%llu.%@", username, listID, API_FORMAT];
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:nil prefixed:NO];
+    
+    return [self _sendRequestWithMethod:nil path:path 
+                        queryParameters:nil body:body 
+                            requestType:MGTwitterUserListCreate
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)getListStatusesForUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+    return [self getListStatusesForUser:username withID:listID sinceID:0 withMaximumID:0 startingAtPage:0 perPage:0]; // zero means default
+}
+
+- (NSString *)getListStatusesForUser:(NSString *)username withID:(MGTwitterEngineID)listID sinceID:(MGTwitterEngineID)sinceID withMaximumID:(MGTwitterEngineID)maxID startingAtPage:(int)page perPage:(int)perPage 
+{
+	if (!username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/lists/%llu/statuses.%@", username, listID, API_FORMAT];
+	
+	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+    if (sinceID > 0) {
+        [params setObject:[NSString stringWithFormat:@"%llu", sinceID] forKey:@"since_id"];
+    }
+    if (maxID > 0) {
+        [params setObject:[NSString stringWithFormat:@"%llu", maxID] forKey:@"max_id"];
+    }
+    if (page > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
+    }
+    if (perPage > 0) {
+        [params setObject:[NSString stringWithFormat:@"%d", perPage] forKey:@"per_page"];
+    }
+	    
+    return [self _sendRequestWithMethod:nil path:path 
+                        queryParameters:params body:nil 
+                            requestType:MGTwitterUserListStatuses
+                           responseType:MGTwitterStatuses];
+}
+
+- (NSString *)subscribeListForUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/%llu/subscribers.%@", username, listID, API_FORMAT];
+
+    NSString *body = [self _queryStringWithBase:nil parameters:nil prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:nil body:body 
+                            requestType:MGTwitterUserListSubscribe
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)unsubscribeListForUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/%llu/subscribers.%@", username, listID, API_FORMAT];
+	
+	NSMutableDictionary *queryParameters = [NSMutableDictionary dictionaryWithCapacity:0];
+	[queryParameters setObject:@"DELETE" forKey:@"_method"];
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:queryParameters prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:queryParameters body:body 
+                            requestType:MGTwitterUserListUnsubscribe
+                           responseType:MGTwitterUserLists];
+}
+
+#pragma mark List Members
+
+- (NSString *)getListMembersForUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/%llu/members.%@", username, listID, API_FORMAT];
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:nil prefixed:NO];
+    
+    return [self _sendRequestWithMethod:nil path:path 
+                        queryParameters:nil body:body 
+                            requestType:MGTwitterUserListMembersRequest
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)addListMember:(MGTwitterEngineID)memberID forUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!memberID || !username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/%llu/members.%@", username, listID, API_FORMAT];
+	
+	NSMutableDictionary *queryParameters = [NSMutableDictionary dictionaryWithCapacity:0];
+	[queryParameters setObject:[NSString stringWithFormat:@"%llu", memberID] forKey:@"id"];
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:queryParameters prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:queryParameters body:body 
+                            requestType:MGTwitterUserListMembersAdd
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)addListMembers:(NSArray *)members listType:(NSString *)listType forUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!members || !listType || !username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	
+	if (!([listType isEqualToString:@"user_id"] || [listType isEqualToString:@"screen_name"])) {
+		NSLog(@"type parameter must be either 'user_id' or 'screen_name'");
+		return nil;
+	}
+		
+	NSString *path = [NSString stringWithFormat:@"%@/%llu/members/create_all.%@", username, listID, API_FORMAT];
+	
+	NSMutableDictionary *queryParameters = [NSMutableDictionary dictionaryWithCapacity:0];
+	[queryParameters setObject:[members componentsJoinedByString:@","] forKey:listType];
+	
+	NSString *body = [self _queryStringWithBase:nil parameters:queryParameters prefixed:NO];
+
+	return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+						queryParameters:queryParameters body:body 
+							requestType:MGTwitterUserListMembersAdd
+						   responseType:MGTwitterUserLists];
+}
+
+- (NSString *)removeListMember:(MGTwitterEngineID)memberID forUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!memberID || !username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/%llu/members.%@", username, listID, API_FORMAT];
+	
+	NSMutableDictionary *queryParameters = [NSMutableDictionary dictionaryWithCapacity:0];
+	[queryParameters setObject:[NSString stringWithFormat:@"%llu", memberID] forKey:@"id"];
+	[queryParameters setObject:@"DELETE" forKey:@"_method"];	
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:queryParameters prefixed:NO];
+    
+    return [self _sendRequestWithMethod:HTTP_POST_METHOD path:path 
+                        queryParameters:queryParameters body:body 
+                            requestType:MGTwitterUserListMembersRemove
+                           responseType:MGTwitterUserLists];
+}
+
+- (NSString *)checkListMember:(MGTwitterEngineID)memberID forUser:(NSString *)username withID:(MGTwitterEngineID)listID
+{
+	if (!memberID || !username || !listID) {
+		NSLog(@"returning nil");
+		return nil;
+	}
+	NSString *path = [NSString stringWithFormat:@"%@/%llu/members/%llu.%@", username, listID, memberID, API_FORMAT];
+	
+    NSString *body = [self _queryStringWithBase:nil parameters:nil prefixed:NO];
+    
+    return [self _sendRequestWithMethod:nil path:path 
+                        queryParameters:nil body:body 
+                            requestType:MGTwitterUserListMembersCheck
+                           responseType:MGTwitterUser];
+}
 
 - (NSString *)getStatusesFromList:(NSString *)listName onAccount:(NSString *)username
 {
@@ -1989,6 +2379,12 @@
     return [[_username retain] autorelease];
 }
 
+- (void)setUsername:(NSString *)newUsername
+{
+    // Set new credentials.
+    [_username release];
+    _username = [newUsername retain];
+}
 
 - (NSString *)password
 {

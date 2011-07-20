@@ -45,6 +45,44 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AD6F51E13D6A024001B39C4 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "../dist/Vendor/facebook-ios-sdk/Facebook.h"; sourceTree = SOURCE_ROOT; };
+		0AD6F51F13D6A024001B39C4 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnect.h; path = "../dist/Vendor/facebook-ios-sdk/FBConnect.h"; sourceTree = SOURCE_ROOT; };
+		0AD6F52013D6A024001B39C4 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBDialog.h; path = "../dist/Vendor/facebook-ios-sdk/FBDialog.h"; sourceTree = SOURCE_ROOT; };
+		0AD6F52113D6A024001B39C4 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBLoginDialog.h; path = "../dist/Vendor/facebook-ios-sdk/FBLoginDialog.h"; sourceTree = SOURCE_ROOT; };
+		0AD6F52213D6A024001B39C4 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBRequest.h; path = "../dist/Vendor/facebook-ios-sdk/FBRequest.h"; sourceTree = SOURCE_ROOT; };
+		0AD6F53013D6A0DD001B39C4 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		0AD6F53113D6A0DD001B39C4 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		0AD6F53213D6A0DD001B39C4 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		0AD6F53313D6A0DD001B39C4 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		0AD6F53413D6A0DD001B39C4 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		0AD6F53513D6A0DD001B39C4 /* Lumberjack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lumberjack.h; sourceTree = "<group>"; };
+		0AD6F53813D6A0DD001B39C4 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
+		0AD6F53913D6A0DD001B39C4 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		0AD6F53A13D6A0DD001B39C4 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		0AD6F53B13D6A0DD001B39C4 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		0AD6F53C13D6A0DD001B39C4 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		0AD6F53D13D6A0DD001B39C4 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		0AD6F53E13D6A0DD001B39C4 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		0AD6F53F13D6A0DD001B39C4 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		0AD6F54013D6A0DD001B39C4 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		0AD6F54113D6A0DD001B39C4 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		0AD6F54213D6A0DD001B39C4 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		0AD6F54313D6A0DD001B39C4 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		0AD6F54413D6A0DD001B39C4 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		0AD6F54613D6A0DD001B39C4 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = ../../S4iOSLib/dist/Vendor/SFHFKeychainUtils.h; sourceTree = SOURCE_ROOT; };
+		0AD6F54813D6A0DD001B39C4 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		0AD6F54913D6A0DD001B39C4 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		0AD6F54A13D6A0DD001B39C4 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		0AD6F54B13D6A0DD001B39C4 /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		0AD6F54C13D6A0DD001B39C4 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		0AD6F54D13D6A0DD001B39C4 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		0AD6F54E13D6A0DD001B39C4 /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		0AD6F55213D6A0DD001B39C4 /* yajl_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_alloc.h; sourceTree = "<group>"; };
+		0AD6F55313D6A0DD001B39C4 /* yajl_buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_buf.h; sourceTree = "<group>"; };
+		0AD6F55413D6A0DD001B39C4 /* yajl_bytestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_bytestack.h; sourceTree = "<group>"; };
+		0AD6F55513D6A0DD001B39C4 /* yajl_encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_encode.h; sourceTree = "<group>"; };
+		0AD6F55613D6A0DD001B39C4 /* yajl_lex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_lex.h; sourceTree = "<group>"; };
+		0AD6F55713D6A0DD001B39C4 /* yajl_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parser.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* ShareKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -112,14 +150,8 @@
 		9AF385DF13CD062400FCB686 /* S4UserDefaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4UserDefaultsManager.h; sourceTree = "<group>"; };
 		9AF385E013CD062400FCB686 /* S4XMLToDictionaryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4XMLToDictionaryParser.h; sourceTree = "<group>"; };
 		9AF385E113CD062400FCB686 /* S4YajlJSONFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S4YajlJSONFile.h; sourceTree = "<group>"; };
-		9AF385E213CD062400FCB686 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9AF385E313CD062400FCB686 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
 		9AF385E413CD062400FCB686 /* libS4iOSLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libS4iOSLib.a; path = ../../S4iOSLib/dist/libS4iOSLib.a; sourceTree = SOURCE_ROOT; };
-		9AF385E813CD066D00FCB686 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
-		9AF385E913CD066D00FCB686 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
-		9AF385EA13CD066D00FCB686 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
-		9AF385EB13CD066D00FCB686 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
-		9AF385EC13CD066D00FCB686 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
 		9AF385EE13CD066D00FCB686 /* LFHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFHTTPRequest.h; sourceTree = "<group>"; };
 		9AF385EF13CD066D00FCB686 /* LFSiteReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSiteReachability.h; sourceTree = "<group>"; };
 		9AF385F013CD066D00FCB686 /* LFWebAPIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFWebAPIKit.h; sourceTree = "<group>"; };
@@ -216,6 +248,94 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		0AD6F51D13D6A004001B39C4 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6F51E13D6A024001B39C4 /* Facebook.h */,
+				0AD6F51F13D6A024001B39C4 /* FBConnect.h */,
+				0AD6F52013D6A024001B39C4 /* FBDialog.h */,
+				0AD6F52113D6A024001B39C4 /* FBLoginDialog.h */,
+				0AD6F52213D6A024001B39C4 /* FBRequest.h */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		0AD6F52E13D6A0B4001B39C4 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6F52F13D6A0DD001B39C4 /* CocoaLumberjack */,
+				0AD6F53713D6A0DD001B39C4 /* json-framework */,
+				0AD6F54613D6A0DD001B39C4 /* SFHFKeychainUtils.h */,
+				0AD6F54713D6A0DD001B39C4 /* TouchJSON */,
+				0AD6F55013D6A0DD001B39C4 /* yajl */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		0AD6F52F13D6A0DD001B39C4 /* CocoaLumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6F53013D6A0DD001B39C4 /* DDAbstractDatabaseLogger.h */,
+				0AD6F53113D6A0DD001B39C4 /* DDASLLogger.h */,
+				0AD6F53213D6A0DD001B39C4 /* DDFileLogger.h */,
+				0AD6F53313D6A0DD001B39C4 /* DDLog.h */,
+				0AD6F53413D6A0DD001B39C4 /* DDTTYLogger.h */,
+				0AD6F53513D6A0DD001B39C4 /* Lumberjack.h */,
+			);
+			name = CocoaLumberjack;
+			path = ../../S4iOSLib/dist/Vendor/CocoaLumberjack;
+			sourceTree = SOURCE_ROOT;
+		};
+		0AD6F53713D6A0DD001B39C4 /* json-framework */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6F53813D6A0DD001B39C4 /* NSObject+SBJson.h */,
+				0AD6F53913D6A0DD001B39C4 /* SBJson.h */,
+				0AD6F53A13D6A0DD001B39C4 /* SBJsonParser.h */,
+				0AD6F53B13D6A0DD001B39C4 /* SBJsonStreamParser.h */,
+				0AD6F53C13D6A0DD001B39C4 /* SBJsonStreamParserAccumulator.h */,
+				0AD6F53D13D6A0DD001B39C4 /* SBJsonStreamParserAdapter.h */,
+				0AD6F53E13D6A0DD001B39C4 /* SBJsonStreamParserState.h */,
+				0AD6F53F13D6A0DD001B39C4 /* SBJsonStreamWriter.h */,
+				0AD6F54013D6A0DD001B39C4 /* SBJsonStreamWriterAccumulator.h */,
+				0AD6F54113D6A0DD001B39C4 /* SBJsonStreamWriterState.h */,
+				0AD6F54213D6A0DD001B39C4 /* SBJsonTokeniser.h */,
+				0AD6F54313D6A0DD001B39C4 /* SBJsonUTF8Stream.h */,
+				0AD6F54413D6A0DD001B39C4 /* SBJsonWriter.h */,
+			);
+			name = "json-framework";
+			path = "../../S4iOSLib/dist/Vendor/json-framework";
+			sourceTree = SOURCE_ROOT;
+		};
+		0AD6F54713D6A0DD001B39C4 /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6F54813D6A0DD001B39C4 /* CDataScanner.h */,
+				0AD6F54913D6A0DD001B39C4 /* CDataScanner_Extensions.h */,
+				0AD6F54A13D6A0DD001B39C4 /* CJSONDeserializer.h */,
+				0AD6F54B13D6A0DD001B39C4 /* CJSONScanner.h */,
+				0AD6F54C13D6A0DD001B39C4 /* CJSONSerializer.h */,
+				0AD6F54D13D6A0DD001B39C4 /* JSONRepresentation.h */,
+				0AD6F54E13D6A0DD001B39C4 /* NSDictionary_JSONExtensions.h */,
+			);
+			name = TouchJSON;
+			path = ../../S4iOSLib/dist/Vendor/TouchJSON;
+			sourceTree = SOURCE_ROOT;
+		};
+		0AD6F55013D6A0DD001B39C4 /* yajl */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6F55213D6A0DD001B39C4 /* yajl_alloc.h */,
+				0AD6F55313D6A0DD001B39C4 /* yajl_buf.h */,
+				0AD6F55413D6A0DD001B39C4 /* yajl_bytestack.h */,
+				0AD6F55513D6A0DD001B39C4 /* yajl_encode.h */,
+				0AD6F55613D6A0DD001B39C4 /* yajl_lex.h */,
+				0AD6F55713D6A0DD001B39C4 /* yajl_parser.h */,
+			);
+			name = yajl;
+			path = ../../S4iOSLib/dist/Vendor/yajl;
+			sourceTree = SOURCE_ROOT;
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +411,7 @@
 				9AF385E713CD066D00FCB686 /* Headers */,
 				9AF3861613CD066D00FCB686 /* libS4iOSociaLib.a */,
 				9AF3861913CD067C00FCB686 /* Resources */,
+				0AD6F51D13D6A004001B39C4 /* Vendor */,
 			);
 			name = S4iOSociaLib;
 			sourceTree = "<group>";
@@ -300,6 +421,7 @@
 			children = (
 				9AF385BC13CD062400FCB686 /* Headers */,
 				9AF385E413CD062400FCB686 /* libS4iOSLib.a */,
+				0AD6F52E13D6A0B4001B39C4 /* Vendor */,
 			);
 			name = S4iOSLib;
 			sourceTree = "<group>";
@@ -343,7 +465,6 @@
 				9AF385DF13CD062400FCB686 /* S4UserDefaultsManager.h */,
 				9AF385E013CD062400FCB686 /* S4XMLToDictionaryParser.h */,
 				9AF385E113CD062400FCB686 /* S4YajlJSONFile.h */,
-				9AF385E213CD062400FCB686 /* SFHFKeychainUtils.h */,
 				9AF385E313CD062400FCB686 /* sha1.h */,
 			);
 			name = Headers;
@@ -353,11 +474,6 @@
 		9AF385E713CD066D00FCB686 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				9AF385E813CD066D00FCB686 /* Facebook.h */,
-				9AF385E913CD066D00FCB686 /* FBConnect.h */,
-				9AF385EA13CD066D00FCB686 /* FBDialog.h */,
-				9AF385EB13CD066D00FCB686 /* FBLoginDialog.h */,
-				9AF385EC13CD066D00FCB686 /* FBRequest.h */,
 				9AF385EE13CD066D00FCB686 /* LFHTTPRequest.h */,
 				9AF385EF13CD066D00FCB686 /* LFSiteReachability.h */,
 				9AF385F013CD066D00FCB686 /* LFWebAPIKit.h */,
@@ -733,7 +849,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
@@ -754,7 +870,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;

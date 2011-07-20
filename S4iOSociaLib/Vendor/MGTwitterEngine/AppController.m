@@ -73,6 +73,14 @@
 	NSLog(@"getRepliesStartingAtPage: connectionIdentifier = %@", [twitterEngine getRepliesStartingAtPage:0]);
 	//NSLog(@"deleteUpdate: connectionIdentifier = %@", [twitterEngine deleteUpdate:TESTING_ID]);
 
+	//	Lists
+	//NSLog(@"get Lists for User:%@ connectionIdentifier = %@", TESTING_PRIMARY_USER, [twitterEngine getListsForUser:TESTING_PRIMARY_USER]);
+
+	//	NSString *listName = @"test list 3";
+	//	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"private", @"mode", @"a description", @"description", nil];
+	//	
+	//	NSLog(@"creating list %@, connection identifier: %@", listName, [twitterEngine createListsForUser:TESTING_PRIMARY_USER withName:listName withOptions:dict]);
+	
 	// User methods:
 	//NSLog(@"getRecentlyUpdatedFriendsFor: connectionIdentifier = %@", [twitterEngine getRecentlyUpdatedFriendsFor:nil startingAtPage:0]);
 	//NSLog(@"getFollowersIncludingCurrentStatus: connectionIdentifier = %@", [twitterEngine getFollowersIncludingCurrentStatus:YES]);
@@ -190,6 +198,10 @@
 	NSLog(@"Got social graph results for %@:\r%@", connectionIdentifier, socialGraphInfo);
 }
 
+- (void)userListsReceived:(NSArray *)userInfo forRequest:(NSString *)connectionIdentifier
+{
+    NSLog(@"Got user lists for %@:\r%@", connectionIdentifier, userInfo);
+}
 
 - (void)imageReceived:(NSImage *)image forRequest:(NSString *)connectionIdentifier
 {

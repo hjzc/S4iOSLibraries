@@ -149,6 +149,8 @@
 		0A27160413CADA9A009D0CDC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160313CADA9A009D0CDC /* SystemConfiguration.framework */; };
 		0A27160613CADA9A009D0CDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160513CADA9A009D0CDC /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0A27160813CADABC009D0CDC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A27160713CADABC009D0CDC /* libxml2.dylib */; };
+		0A660BC113D6D193007908CC /* MGTwitterUserListsParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A660BBF13D6D193007908CC /* MGTwitterUserListsParser.h */; };
+		0A660BC213D6D193007908CC /* MGTwitterUserListsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A660BC013D6D193007908CC /* MGTwitterUserListsParser.m */; };
 		0AAB526E13D41F6600CD9AF3 /* NSMutableURLRequest+Parameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB524C13D41F6600CD9AF3 /* NSMutableURLRequest+Parameters.h */; };
 		0AAB526F13D41F6600CD9AF3 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB524D13D41F6600CD9AF3 /* NSMutableURLRequest+Parameters.m */; };
 		0AAB527013D41F6600CD9AF3 /* NSString+URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AAB524E13D41F6600CD9AF3 /* NSString+URLEncoding.h */; };
@@ -435,6 +437,8 @@
 		0A27160313CADA9A009D0CDC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0A27160513CADA9A009D0CDC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0A27160713CADABC009D0CDC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		0A660BBF13D6D193007908CC /* MGTwitterUserListsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterUserListsParser.h; sourceTree = "<group>"; };
+		0A660BC013D6D193007908CC /* MGTwitterUserListsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTwitterUserListsParser.m; sourceTree = "<group>"; };
 		0AAB524C13D41F6600CD9AF3 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		0AAB524D13D41F6600CD9AF3 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		0AAB524E13D41F6600CD9AF3 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -1137,6 +1141,8 @@
 				0AAB52AE13D4208000CD9AF3 /* MGTwitterStatusesParser.m */,
 				0AAB52AF13D4208000CD9AF3 /* MGTwitterTouchJSONParser.h */,
 				0AAB52B013D4208000CD9AF3 /* MGTwitterTouchJSONParser.m */,
+				0A660BBF13D6D193007908CC /* MGTwitterUserListsParser.h */,
+				0A660BC013D6D193007908CC /* MGTwitterUserListsParser.m */,
 				0AAB52B113D4208000CD9AF3 /* MGTwitterUsersLibXMLParser.h */,
 				0AAB52B213D4208000CD9AF3 /* MGTwitterUsersLibXMLParser.m */,
 				0AAB52B313D4208000CD9AF3 /* MGTwitterUsersParser.h */,
@@ -1460,6 +1466,7 @@
 				0AAB534213D4257800CD9AF3 /* NSDictionary_JSONExtensions.h in Headers */,
 				0A21194E13D5C81B00068B6A /* OAAsynchronousDataFetcher.h in Headers */,
 				0A21195013D5C81B00068B6A /* SHK_OAMutableURLRequest.h in Headers */,
+				0A660BC113D6D193007908CC /* MGTwitterUserListsParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1640,6 +1647,7 @@
 				0AAB52DB13D4208000CD9AF3 /* MGTwitterUsersParser.m in Sources */,
 				0AAB52DD13D4208000CD9AF3 /* MGTwitterXMLParser.m in Sources */,
 				0A21194F13D5C81B00068B6A /* OAAsynchronousDataFetcher.m in Sources */,
+				0A660BC213D6D193007908CC /* MGTwitterUserListsParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

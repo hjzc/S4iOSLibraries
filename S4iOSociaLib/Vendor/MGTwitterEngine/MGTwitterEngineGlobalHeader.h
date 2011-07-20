@@ -47,9 +47,12 @@
  MGTwitterEngine*YAJLParser.m files are added to the Compile Sources phase of the MGTwitterEngine
  target.
 */
-
+#ifndef YAJL_AVAILABLE
 #define YAJL_AVAILABLE 0
-#define TOUCHJSON_AVAILABLE 1
+#endif
+#ifndef TOUCHJSON_AVAILABLE
+#define TOUCHJSON_AVAILABLE 0
+#endif
 
 #ifndef __MGTWITTERENGINEID__
 #define __MGTWITTERENGINEID__
@@ -60,5 +63,4 @@ typedef long long MGTwitterEngineCursorID;
 #ifndef __MGTWITTERENGINELOCATIONDEGREES__
 #define __MGTWITTERENGINELOCATIONDEGREES__
 typedef double MGTwitterEngineLocationDegrees;
-
 #endif
