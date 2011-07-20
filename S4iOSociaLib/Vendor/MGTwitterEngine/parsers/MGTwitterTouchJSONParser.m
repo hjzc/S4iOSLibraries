@@ -36,7 +36,7 @@ connectionIdentifier:(NSString *)theIdentifier
 			     URL:(NSURL *)theURL
      deliveryOptions:(MGTwitterEngineDeliveryOptions)theDeliveryOptions
 {
-	if((self = [super init])){
+	if ((self = [super init]) != nil) {
 		json = [theJSON retain];
 		identifier = [theIdentifier retain];
 		requestType = reqType;

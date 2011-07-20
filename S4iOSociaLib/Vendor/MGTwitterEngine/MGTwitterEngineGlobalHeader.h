@@ -47,9 +47,11 @@
  MGTwitterEngine*YAJLParser.m files are added to the Compile Sources phase of the MGTwitterEngine
  target.
 */
+
 #ifndef YAJL_AVAILABLE
 #define YAJL_AVAILABLE 0
 #endif
+
 #ifndef TOUCHJSON_AVAILABLE
 #define TOUCHJSON_AVAILABLE 0
 #endif

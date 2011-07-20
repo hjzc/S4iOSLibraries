@@ -11,7 +11,8 @@
 
 @class OAToken;
 
-@interface AppController : NSObject <MGTwitterEngineDelegate> {
+@interface AppController : NSObject <MGTwitterEngineDelegate>
+{
     MGTwitterEngine *twitterEngine;
 	
 	OAToken *token;

@@ -11,7 +11,9 @@
 #import "MGTwitterRequestTypes.h"
 
 @protocol MGTwitterParserDelegate
- 
+
+@required
+
 - (void)parsingSucceededForRequest:(NSString *)identifier 
                     ofResponseType:(MGTwitterResponseType)responseType 
                  withParsedObjects:(NSArray *)parsedObjects;
@@ -20,9 +22,9 @@
                  ofResponseType:(MGTwitterResponseType)responseType 
                       withError:(NSError *)error;
 
-#if YAJL_AVAILABLE || TOUCHJSON_AVAILABLE
+@optional
+
 - (void)parsedObject:(NSDictionary *)parsedObject forRequest:(NSString *)identifier 
                     ofResponseType:(MGTwitterResponseType)responseType;
-#endif
 
 @end
