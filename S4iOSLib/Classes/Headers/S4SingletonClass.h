@@ -62,6 +62,7 @@
 #define SYNTHESIZE_SINGLETON_CLASS(classname)						\
 																	\
 static classname						*g_clsInstance = nil;		\
+static classname						*g_clsAlloc = nil;			\
 																	\
 																	\
 + (classname *)getInstance											\
@@ -74,6 +75,20 @@ static classname						*g_clsInstance = nil;		\
 		}															\
 	}																\
 	return (g_clsInstance);											\
+}																	\
+																	\
+																	\
++ (id)allocWithZone: (NSZone *)zone									\
+{																	\
+	@synchronized(self)												\
+	{																\
+		if (nil == g_clsAlloc)										\
+		{															\
+			g_clsAlloc = [super allocWithZone: zone];				\
+			return (g_clsAlloc);									\
+		}															\
+	}																\
+	return (nil);													\
 }																	\
 																	\
 																	\

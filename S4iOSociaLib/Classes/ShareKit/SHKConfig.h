@@ -177,8 +177,8 @@ S4_EXTERN_CONSTANT_NSSTR									SHKTwitterConsumerKey;
 S4_EXTERN_CONSTANT_NSSTR									SHKTwitterSecret;
 // You need to set this if using OAuth, see note above (xAuth users can skip it)
 S4_EXTERN_CONSTANT_NSSTR									SHKTwitterCallbackUrl;
-// To use xAuth, set to 1
-#define SHKTwitterUseXAuth									0
+// To use xAuth, set to YES
+S4_EXTERN_CONSTANT(BOOL)									SHKTwitterUseXAuth;
 // Enter your app's twitter account if you'd like to ask the user to follow it when logging in. (Only for xAuth)
 S4_EXTERN_CONSTANT_NSSTR									SHKTwitterUsername;
 
